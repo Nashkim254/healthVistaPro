@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "961431518227",
+    "project_id": "healthvistapro-2623f",
+    "storage_bucket": "healthvistapro-2623f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961431518227:android:db0235438e36805dd393e6",
+        "android_client_info": {
+          "package_name": "com.example.healthvistapro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGKDiFk0dm0xd39DReAwcEU2p8-CEXUPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
