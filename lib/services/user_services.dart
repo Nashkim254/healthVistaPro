@@ -6,6 +6,8 @@ class UserServices {
 
   // create and update user
   static Future<void> updateUser(m.User user) async {
+    print("================================================================");
+    print(user);
     await _userCollection.doc(user.id).set({
       'uid': user.id,
       'email': user.email,
@@ -67,14 +69,16 @@ class UserServices {
     }
   }
 
-  static Future<List<m.User>> getAllUser() async {
-    List<m.User> userList = <m.User>[];
-    QuerySnapshot querySnapshot = await _userCollection.get();
-    for (var i = 0; i < querySnapshot.docs.length; i++) {
-      userList.add(m.User.fromMap(querySnapshot.docs[i].data as Map<String, dynamic>));
-    }
-    return userList;
+static Future<List<m.User>> getAllUser() async {
+  List<m.User> userList = <m.User>[];
+  QuerySnapshot querySnapshot = await _userCollection.get();
+  
+  for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+    userList.add(m.User.fromMap(doc.data() as Map<String, dynamic>));
   }
+  
+  return userList;
+}
 
   static Future<List<m.User>> getAllContact(String doctorId) async {
     List<m.User> userList = <m.User>[];
@@ -143,29 +147,26 @@ class UserServices {
   static Stream<DocumentSnapshot> getUserStream({required String? uid}) =>
       _userCollection.doc(uid).snapshots();
 
-static Future<List<m.User>> fetchLastRatingDoctor() async {
-  QuerySnapshot qshot = await _userCollection
-      .orderBy('timestampField', descending: true)
-      .limit(10)
-      .get();
+  static Future<List<m.User>> fetchLastRatingDoctor() async {
+    QuerySnapshot qshot =
+        await _userCollection.orderBy('timestampField', descending: true).limit(10).get();
 
-  return qshot.docs
-      .map((value) => m.User(
-            (value.data() as Map<String, dynamic>)['uid'] ?? '',
-            (value.data() as Map<String, dynamic>)['email'] ?? '',
-            fullName: (value.data() as Map<String, dynamic>)['fullName'] ?? '',
-            job: (value.data() as Map<String, dynamic>)['job'] ?? '',
-            profileImage: (value.data() as Map<String, dynamic>)['profileImage'] ?? '',
-            noSIP: (value.data() as Map<String, dynamic>)['noSIP'] ?? '',
-            status: (value.data() as Map<String, dynamic>)['status'] ?? '',
-            ratingNum: (value.data() as Map<String, dynamic>)['ratingNum'] ?? '',
-            state: (value.data() as Map<String, dynamic>)['state'] ?? '',
-            alumnus: (value.data() as Map<String, dynamic>)['alumnus'] ?? '',
-            tempatPraktek: (value.data() as Map<String, dynamic>)['tempatPraktek'] ?? '',
-          ))
-      .toList();
-}
-
+    return qshot.docs
+        .map((value) => m.User(
+              (value.data() as Map<String, dynamic>)['uid'] ?? '',
+              (value.data() as Map<String, dynamic>)['email'] ?? '',
+              fullName: (value.data() as Map<String, dynamic>)['fullName'] ?? '',
+              job: (value.data() as Map<String, dynamic>)['job'] ?? '',
+              profileImage: (value.data() as Map<String, dynamic>)['profileImage'] ?? '',
+              noSIP: (value.data() as Map<String, dynamic>)['noSIP'] ?? '',
+              status: (value.data() as Map<String, dynamic>)['status'] ?? '',
+              ratingNum: (value.data() as Map<String, dynamic>)['ratingNum'] ?? '',
+              state: (value.data() as Map<String, dynamic>)['state'] ?? '',
+              alumnus: (value.data() as Map<String, dynamic>)['alumnus'] ?? '',
+              tempatPraktek: (value.data() as Map<String, dynamic>)['tempatPraktek'] ?? '',
+            ))
+        .toList();
+  }
 
   // static Stream<List<User>> fetchLastRatingDoctor() {
   //   Stream<QuerySnapshot> stream = _userCollection.snapshots();

@@ -22,12 +22,12 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
   @override
   void initState() {
     super.initState();
-    fullNameController.text = widget.registrationUserData.fullName!;
-    emailController.text = widget.registrationUserData.email!;
-    jobController.text = widget.registrationUserData.job!;
-    noSipController.text = widget.registrationUserData.noSIP!;
-    alumnusController.text = widget.registrationUserData.alumnus!;
-    tempatPraktekController.text = widget.registrationUserData.tempatPraktek!;
+    fullNameController.text = widget.registrationUserData.fullName ?? "";
+    emailController.text = widget.registrationUserData.email ?? "";
+    jobController.text = widget.registrationUserData.job ?? "";
+    noSipController.text = widget.registrationUserData.noSIP ?? "";
+    alumnusController.text = widget.registrationUserData.alumnus ??"";
+    tempatPraktekController.text = widget.registrationUserData.tempatPraktek ?? "";
   }
 
   @override
@@ -41,14 +41,14 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
       child: Scaffold(
         backgroundColor: accentColor5.withOpacity(0.1),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+          padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
           child: ListView(
             children: [
               Column(
                 children: [
                   // app bar
                   Container(
-                    margin: EdgeInsets.only(top: 20, bottom: 22),
+                    margin: const EdgeInsets.only(top: 20, bottom: 22),
                     height: 56,
                     child: Stack(
                       children: [
@@ -58,7 +58,7 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                             onTap: () {
                               context.read<PageBloc>().add(GoToWelcomePage());
                             },
-                            child: Icon(Icons.arrow_back_ios, size: 24, color: accentColor5),
+                            child: const Icon(Icons.arrow_back_ios, size: 24, color: accentColor5),
                           ),
                         ),
                         Center(
@@ -84,7 +84,7 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: (widget.registrationUserData.profilePicture) == null
-                                ? DecorationImage(
+                                ? const DecorationImage(
                                     image: AssetImage("images/user_default.png"), fit: BoxFit.cover)
                                 : DecorationImage(
                                     image: FileImage(widget.registrationUserData.profilePicture!),
@@ -118,163 +118,163 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 36,
                   ),
                   TextField(
-                    style: TextStyle(color: accentColor1),
+                    style: const TextStyle(color: accentColor1),
                     controller: fullNameController,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: accentColor5),
+                          borderSide: const BorderSide(color: accentColor5),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder:
-                            OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
+                            const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
                         labelText: "Full Name",
-                        labelStyle: TextStyle(color: accentColor1),
+                        labelStyle: const TextStyle(color: accentColor1),
                         hintText: "Full Name",
-                        hintStyle: TextStyle(color: accentColor1)),
+                        hintStyle: const TextStyle(color: accentColor1)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   TextField(
-                    style: TextStyle(color: accentColor1),
+                    style: const TextStyle(color: accentColor1),
                     controller: emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: accentColor5),
+                          borderSide: const BorderSide(color: accentColor5),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder:
-                            OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
+                            const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
                         labelText: "Email Address",
-                        labelStyle: TextStyle(color: accentColor1),
+                        labelStyle: const TextStyle(color: accentColor1),
                         hintText: "Email Address",
-                        hintStyle: TextStyle(color: accentColor1)),
+                        hintStyle: const TextStyle(color: accentColor1)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   TextField(
-                    style: TextStyle(color: accentColor1),
+                    style: const TextStyle(color: accentColor1),
                     controller: jobController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: accentColor5),
+                          borderSide: const BorderSide(color: accentColor5),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder:
-                            OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Your Speciality, ex : Dokter Anak",
-                        labelStyle: TextStyle(color: accentColor1),
-                        hintText: "Your Speciality, ex : Dokter Anak",
-                        hintStyle: TextStyle(color: accentColor1)),
+                            const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
+                        labelText: "Your Speciality, ex : Physio",
+                        labelStyle: const TextStyle(color: accentColor1),
+                        hintText: "Your Speciality, ex : Physio",
+                        hintStyle: const TextStyle(color: accentColor1)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   TextField(
-                    style: TextStyle(color: accentColor1),
+                    style: const TextStyle(color: accentColor1),
                     controller: noSipController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: accentColor5),
+                          borderSide: const BorderSide(color: accentColor5),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder:
-                            OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Nomor SIP",
-                        labelStyle: TextStyle(color: accentColor1),
-                        hintText: "Nomor SIP",
-                        hintStyle: TextStyle(color: accentColor1)),
+                            const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
+                        labelText: "Licence Number",
+                        labelStyle: const TextStyle(color: accentColor1),
+                        hintText: "Licence Number",
+                        hintStyle: const TextStyle(color: accentColor1)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   TextField(
-                    style: TextStyle(color: accentColor1),
+                    style: const TextStyle(color: accentColor1),
                     controller: alumnusController,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: accentColor5),
+                          borderSide: const BorderSide(color: accentColor5),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder:
-                            OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
+                            const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
                         labelText: "Alumnus",
-                        labelStyle: TextStyle(color: accentColor1),
+                        labelStyle: const TextStyle(color: accentColor1),
                         hintText: "Alumnus",
-                        hintStyle: TextStyle(color: accentColor1)),
+                        hintStyle: const TextStyle(color: accentColor1)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   TextField(
-                    style: TextStyle(color: accentColor1),
+                    style: const TextStyle(color: accentColor1),
                     controller: tempatPraktekController,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: accentColor5),
+                          borderSide: const BorderSide(color: accentColor5),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder:
-                            OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Tempat Praktek",
-                        labelStyle: TextStyle(color: accentColor1),
-                        hintText: "Tempat Praktek",
-                        hintStyle: TextStyle(color: accentColor1)),
+                            const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
+                        labelText: "Practice Location",
+                        labelStyle: const TextStyle(color: accentColor1),
+                        hintText: "Practice Location",
+                        hintStyle: const TextStyle(color: accentColor1)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   TextField(
                     obscureText: true,
-                    style: TextStyle(color: accentColor1),
+                    style: const TextStyle(color: accentColor1),
                     controller: passwordController,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: accentColor5),
+                          borderSide: const BorderSide(color: accentColor5),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder:
-                            OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
+                            const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
                         labelText: "Password",
-                        labelStyle: TextStyle(color: accentColor1),
+                        labelStyle: const TextStyle(color: accentColor1),
                         hintText: "Password",
-                        hintStyle: TextStyle(color: accentColor1)),
+                        hintStyle: const TextStyle(color: accentColor1)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   TextField(
                     obscureText: true,
-                    style: TextStyle(color: accentColor1),
+                    style: const TextStyle(color: accentColor1),
                     controller: retypeController,
                     decoration: InputDecoration(
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: accentColor5),
+                          borderSide: const BorderSide(color: accentColor5),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder:
-                            OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
+                            const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
                         labelText: "Confirm Password",
-                        labelStyle: TextStyle(color: accentColor1),
+                        labelStyle: const TextStyle(color: accentColor1),
                         hintText: "Confirm Password",
-                        hintStyle: TextStyle(color: accentColor1)),
+                        hintStyle: const TextStyle(color: accentColor1)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   FloatingActionButton(
                       backgroundColor: mainColor,
-                      child: Icon(Icons.arrow_forward),
+                      child: const Icon(Icons.arrow_forward),
                       onPressed: () {
-                        // jika semua field kosong
+                        // 
                         if ((fullNameController.text.trim() == "" &&
                             emailController.text.trim() == "" &&
                             jobController.text.trim() == "" &&
@@ -284,35 +284,35 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                             passwordController.text.trim() == "" &&
                             retypeController.text.trim() == "")) {
                           Flushbar(
-                            duration: Duration(milliseconds: 5500),
+                            duration: const Duration(milliseconds: 5500),
                             flushbarPosition: FlushbarPosition.TOP,
                             backgroundColor: accentColor2,
                             message: "Please fill all the text fields",
-                          )..show(context);
+                          ).show(context);
                         } else if (!EmailValidator.validate(emailController.text)) {
                           Flushbar(
-                            duration: Duration(milliseconds: 4500),
+                            duration: const Duration(milliseconds: 4500),
                             flushbarPosition: FlushbarPosition.TOP,
                             backgroundColor: accentColor2,
                             message: "Email format wrong, please check email format again",
-                          )..show(context);
+                          ).show(context);
                         } else if (passwordController.text != retypeController.text) {
                           Flushbar(
-                            duration: Duration(milliseconds: 4500),
+                            duration: const Duration(milliseconds: 4500),
                             flushbarPosition: FlushbarPosition.TOP,
                             backgroundColor: accentColor2,
                             message: "Mismatch password and confirm password",
-                          )..show(context);
+                          ).show(context);
                         } else if (passwordController.text.length < 6) {
                           Flushbar(
-                            duration: Duration(
+                            duration: const Duration(
                               milliseconds: 4500,
                             ),
                             flushbarPosition: FlushbarPosition.TOP,
                             backgroundColor: accentColor2,
                             message:
                                 "Password is too short, please input password more than 6 character",
-                          )..show(context);
+                          ).show(context);
                         } else {
                           // jika semua data validasi lolos
                           // isi registration data
@@ -331,7 +331,7 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                               .add(GoToConfirmationPage(widget.registrationUserData));
                         }
                       }),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                 ],

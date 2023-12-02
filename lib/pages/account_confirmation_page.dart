@@ -23,13 +23,13 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
       child: Scaffold(
         backgroundColor: accentColor1.withOpacity(0.8),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+          padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
           child: ListView(
             children: [
               Column(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 20, bottom: 90),
+                    margin: const EdgeInsets.only(top: 20, bottom: 90),
                     height: 66,
                     child: Stack(
                       children: [
@@ -45,7 +45,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                                       .read<PageBloc>()
                                       .add(GoToRegistrationUserPage(widget.registrationUserData!));
                             },
-                            child: Icon(Icons.arrow_back_ios, size: 24, color: Colors.white),
+                            child: const Icon(Icons.arrow_back_ios, size: 24, color: Colors.white),
                           ),
                         ),
                         Center(
@@ -63,14 +63,14 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                   Container(
                     width: 150,
                     height: 150,
-                    margin: EdgeInsets.only(bottom: 20),
+                    margin: const EdgeInsets.only(bottom: 20),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: widget.registrationUserData!.profilePicture != null
                           ? DecorationImage(
                               image: FileImage(widget.registrationUserData!.profilePicture!),
                               fit: BoxFit.cover)
-                          : DecorationImage(
+                          : const DecorationImage(
                               image: AssetImage("images/user_default.png"), fit: BoxFit.cover),
                     ),
                   ),
@@ -80,16 +80,16 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                   ),
                   Text(
                     (widget.registrationUserData!.status == "Doctor")
-                        ? "dr.${widget.registrationUserData!.fullName}"
+                        ? "Dr.${widget.registrationUserData!.fullName}"
                         : "${widget.registrationUserData!.fullName}",
                     style: whiteTextFont.copyWith(fontSize: 20),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 110,
                   ),
                   (isSignInUp)
-                      ? SpinKitCircle(
+                      ? const SpinKitCircle(
                           color: accentColor2,
                           size: 45,
                         )
@@ -128,11 +128,11 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                                   isSignInUp = false;
                                   // tampilkan pesan error
                                   Flushbar(
-                                    duration: Duration(milliseconds: 4500),
+                                    duration: const Duration(milliseconds: 4500),
                                     backgroundColor: accentColor2,
                                     flushbarPosition: FlushbarPosition.TOP,
                                     message: result.message,
-                                  )..show(context);
+                                  ).show(context);
                                 });
                               }
                             },

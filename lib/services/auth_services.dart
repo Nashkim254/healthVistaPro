@@ -23,19 +23,25 @@ class AuthServices {
         email: emailAdress!,
         password: password!,
       );
-
+      print("-------------------------------- 0");
+      print(result.user);
       // convert firebase user ke user
-      m.User user = result.user!.convertToUser(
-        fullName: fullName!,
-        job: job!,
-        noSIP: noSIP!,
-        status: status!,
-        state: state!,
-        ratingNum: ratingNum!,
-        alumnus: alumnus!,
-        tempatPraktek: tempatPraktek!,
+      m.User user = m.User(
+        result.user!.uid,
+        result.user!.email,
+        fullName: fullName,
+        profileImage: "no_pic",
+        job: job,
+        noSIP: noSIP,
+        status: status,
+        state: state ?? 1,
+        ratingNum: ratingNum ?? 1,
+        alumnus: alumnus,
+        tempatPraktek: tempatPraktek,
       );
-
+      print("-------------------------------- 1");
+      print(user,);
+ 
       // to store data to Firebase
       await UserServices.updateUser(user);
       return SignInSignUpResult(user: user);
@@ -45,11 +51,9 @@ class AuthServices {
   }
 
   // sign in services
-  static Future<SignInSignUpResult> signIn(
-      {String? email, String? password}) async {
+  static Future<SignInSignUpResult> signIn({String? email, String? password}) async {
     try {
-      var result = await _auth.signInWithEmailAndPassword(
-          email: email!, password: password!);
+      var result = await _auth.signInWithEmailAndPassword(email: email!, password: password!);
       // get data from firestore and sign to User
       m.User user = await result.user!.fromFireStore();
       return SignInSignUpResult(user: user);

@@ -11,8 +11,8 @@ extension FirebaseUserExtension on User {
           String alumnus = "",
           String tempatPraktek = ""}) =>
       m.User(
-        this.uid,
-        this.email,
+        uid,
+        email,
         fullName: fullName,
         job: job,
         noSIP: noSIP,
@@ -23,5 +23,5 @@ extension FirebaseUserExtension on User {
         tempatPraktek: tempatPraktek,
       );
 
-  Future<m.User> fromFireStore() async => await UserServices.getUser(this.uid);
+  Future<m.User> fromFireStore() async => await UserServices.getUser(uid);
 }

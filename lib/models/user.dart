@@ -69,7 +69,7 @@ class User extends Equatable {
         tempatPraktek!,
       ];
 
-  factory User.fromMap(Map<String, dynamic> mapData) {
+  factory User.fromMap( mapData) {
     return User(
       mapData['uid'],
       mapData['email'],

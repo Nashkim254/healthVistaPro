@@ -51,7 +51,7 @@ class Call {
   //     );
 
   // from Map
-  factory Call.fromMap(Map<String, dynamic> mapData) {
+  factory Call.fromMap( mapData) {
     return Call(
       callerId: mapData['caller_id'],
       callerName: mapData['caller_name'],

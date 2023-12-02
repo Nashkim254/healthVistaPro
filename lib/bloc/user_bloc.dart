@@ -11,22 +11,13 @@ part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   // intial bloc v6
-  UserBloc() : super(UserInitial());
-
-  // @override
-  // UserState get initialState => UserInitial();
-
-  Stream<UserState> mapEventToState(
-    UserEvent event,
-  ) async* {
-    if (event is UserLoad) {
+  UserBloc() : super(UserInitial()) {
+    on<UserLoad>((event, emit) async {
       User user = await UserServices.getUser(event.id!);
       List<User> userList = await UserServices.getAllUser();
-      yield UserLoaded(user, userList);
-    } else if (event is UserSignOut) {
-      yield UserInitial();
-    } else if (event is UpdateUserData) {
-      // assign new update
+      emit(UserLoaded(user, userList));
+    });
+    on<UpdateUserData>((event, emit) async {
       User updatedUser = (state as UserLoaded).user!.copyWith(
           fullName: event.fullName,
           job: event.job,
@@ -37,13 +28,13 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       // update user in database
       await UserServices.updateUser(updatedUser);
       List<User> userList = await UserServices.getAllUser();
+      emit(UserLoaded(updatedUser, userList));
+    });
 
-      yield UserLoaded(updatedUser, userList);
-    } else if (event is UpdateUserState) {
+    on<UpdateUserState>((event, emit) async {
       User updateUser = (state as UserLoaded).user!.copyWith(state: event.state);
-
-      // update userstate
       await UserServices.updateUser(updateUser);
-    }
+    });
+    on<UserSignOut>((event, emit) => UserInitial());
   }
 }

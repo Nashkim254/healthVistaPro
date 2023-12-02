@@ -9,8 +9,8 @@ class OnlineDotIndicator extends StatelessWidget {
       builder: (context, snapshot) {
         User? user;
 
-        if (snapshot.hasData && snapshot.data!.data != null) {
-          user = User.fromMap(snapshot.data!.data as Map<String, dynamic>);
+        if (snapshot.hasData && snapshot.data!.data() != null) {
+          user = User.fromMap(snapshot.data!.data());
         }
 
         return Container(
