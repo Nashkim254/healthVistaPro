@@ -32,53 +32,57 @@ class UserServices {
   static Future<m.User> getUserDetails() async {
     User currentUser = await getCurrentUser();
     DocumentSnapshot documentSnapshot = await _userCollection.doc(currentUser.uid).get();
-    return m.User.fromMap(documentSnapshot.data() as Map<String, dynamic>);
+    print("before getting user map§§");
+    print(documentSnapshot.data());
+    var user = m.User.fromMap(documentSnapshot.data());
+    print("user details=====§");
+    print(user);
+    return user;
   }
 
   // check and get user from firestore
   static Future<m.User> getUser(String id) async {
+    print("-------§--------");
+    print(id);
     try {
       DocumentSnapshot snapshot = await _userCollection.doc(id).get();
 
       if (snapshot.exists) {
-        Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+        Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
 
         return m.User(
           id,
-          data['email'] ?? '',
-          fullName: data['fullName'] ?? '',
-          profileImage: data['profileImage'] ?? '',
-          job: data['job'] ?? '',
-          noSIP: data['noSIP'] ?? '',
-          status: data['status'] ?? '',
-          ratingNum: data['ratingNum'] ?? 0,
-          state: data['state'] ?? '',
-          alumnus: data['alumnus'] ?? '',
-          tempatPraktek: data['tempatPraktek'] ?? '',
+          data?['email'] ?? '',
+          fullName: data?['fullName'] ?? '',
+          profileImage: data?['profileImage'] ?? '',
+          job: data?['job'] ?? '',
+          noSIP: data?['noSIP'] ?? '',
+          status: data?['status'] ?? '',
+          ratingNum: data?['ratingNum'] ?? 0,
+          state: data?['state'] ?? '',
+          alumnus: data?['alumnus'] ?? '',
+          tempatPraktek: data?['tempatPraktek'] ?? '',
         );
       } else {
         print("User with ID $id does not exist");
-        // Return null or throw an exception, depending on your use case
-        throw ();
+        throw Exception("User with ID $id does not exist");
       }
     } catch (e) {
       print("Error fetching user data: $e");
-      // Handle the error as per your requirements
-      // Return null or throw an exception, depending on your use case
-      throw (e);
+      throw Exception("Error fetching user data: $e");
     }
   }
 
-static Future<List<m.User>> getAllUser() async {
-  List<m.User> userList = <m.User>[];
-  QuerySnapshot querySnapshot = await _userCollection.get();
-  
-  for (QueryDocumentSnapshot doc in querySnapshot.docs) {
-    userList.add(m.User.fromMap(doc.data() as Map<String, dynamic>));
+  static Future<List<m.User>> getAllUser() async {
+    List<m.User> userList = <m.User>[];
+    QuerySnapshot querySnapshot = await _userCollection.get();
+
+    for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+      userList.add(m.User.fromMap(doc.data() as Map<String, dynamic>));
+    }
+
+    return userList;
   }
-  
-  return userList;
-}
 
   static Future<List<m.User>> getAllContact(String doctorId) async {
     List<m.User> userList = <m.User>[];
