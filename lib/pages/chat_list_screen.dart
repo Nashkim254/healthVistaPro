@@ -38,7 +38,7 @@ class ChatListScreenContainer extends StatelessWidget {
                   return ListView.builder(
                       itemCount: docList.length,
                       itemBuilder: (_, index) {
-                        m.Contact contact = m.Contact.fromMap(docList[index].data as Map<String, dynamic>);
+                       m.Contact contact = m.Contact.fromMap(docList[index].data() as Map<String, dynamic>);
                         return ContactView(contact);
                       });
                 } else {

@@ -9,21 +9,19 @@ class DoctorPage extends StatefulWidget {
 }
 
 class _DoctorPageState extends State<DoctorPage> {
-  List<String> doctor = ["Dokter Umum", "Dokter Mata", "Dokter Anak", "Dokter THT"];
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: PickupLayout(
         scaffold: Scaffold(
           body: ListView(
+            shrinkWrap: true,
             children: [
               Container(
-                padding: EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 30),
+                padding: const EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 30),
                 // get user data from firebase using BlocUser
                 child: BlocBuilder<UserBloc, UserState>(builder: (context, userState) {
                   if (userState is UserLoaded) {
-                    // // jika ada file profile gambar yang mau di upload dari page registrasi
                     // if (imageFileToUpload != null) {
                     //   uploadImage(imageFileToUpload).then((downloadUrl) {
                     //     imageFileToUpload = null;
@@ -41,14 +39,14 @@ class _DoctorPageState extends State<DoctorPage> {
                             // context.bloc<PageBloc>().add(GoDoctorSelectedPage());
                           },
                           child: Container(
-                            padding: EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(5),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(color: accentColor3, width: 1),
                             ),
                             child: Stack(
                               children: [
-                                SpinKitFadingCircle(
+                                const SpinKitFadingCircle(
                                   color: accentColor2,
                                   size: 50,
                                 ),
@@ -61,7 +59,7 @@ class _DoctorPageState extends State<DoctorPage> {
                                         ? DecorationImage(
                                             image: NetworkImage(userState.user!.profileImage!),
                                             fit: BoxFit.cover)
-                                        : DecorationImage(
+                                        : const DecorationImage(
                                             image: AssetImage("images/user_default.png"),
                                             fit: BoxFit.cover),
                                   ),
@@ -70,7 +68,7 @@ class _DoctorPageState extends State<DoctorPage> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 16,
                         ),
                         Column(
@@ -92,75 +90,67 @@ class _DoctorPageState extends State<DoctorPage> {
                       ],
                     );
                   } else {
-                    return SpinKitFadingCircle(
+                    return const SpinKitFadingCircle(
                       color: accentColor2,
                       size: 50,
                     );
                   }
                 }),
               ),
-              SizedBox(
-                height: 140,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        widget.doctorType.speciality = doctor[0];
-                        context.read<PageBloc>().add(GoToDoctorSelectedPage(widget.doctorType));
-                      },
-                      child: DoctorCard(
-                        doctorType: doctor[0],
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        widget.doctorType.speciality = doctor[1];
-                        context.read<PageBloc>().add(GoToDoctorSelectedPage(widget.doctorType));
-                      },
-                      child: DoctorCard(
-                        doctorType: doctor[1],
-                        // onTap: () {},
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        widget.doctorType.speciality = doctor[2];
-                        context.read<PageBloc>().add(GoToDoctorSelectedPage(widget.doctorType));
-                      },
-                      child: DoctorCard(
-                        doctorType: doctor[2],
-                        // onTap: () {},
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        widget.doctorType.speciality = doctor[3];
-                        context.read<PageBloc>().add(GoToDoctorSelectedPage(widget.doctorType));
-                      },
-                      child: DoctorCard(
-                        doctorType: doctor[3],
-                        // onTap: () {},
-                      ),
-                    ),
-                  ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal:20),
+                child: SizedBox(
+                  height: 140,
+                  child: StreamBuilder(
+                    stream: UserServices.getAllUser().asStream(),
+                    builder: (context, AsyncSnapshot<List<m.User>> snapshot) {
+                      List<m.User> userList = [];
+                      String doctorStatus = "Doctor";
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else {
+                        // userList = snapshot.data;
+                        userList.clear();
+                        for (int i = 0; i < snapshot.data!.length; i++) {
+                          if (snapshot.data![i].status == doctorStatus &&
+                              snapshot.data![i].ratingNum! > 0.0) {
+                            userList.add(snapshot.data![i]);
+                          }
+                        }
+                        if (userList.isNotEmpty) {
+                          return ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, int index) {
+                                return DoctorCard(
+                                  doctorType: userList[index],
+                                  onTap:() => context.read<PageBloc>().add(GoToSeeDoctorPage(userList[index])),
+                                );
+                              },
+                              separatorBuilder: (context, int index) => const SizedBox(width: 16),
+                              itemCount: userList.length);
+                        } else {
+                          return Container(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                "...No doctor found for a moment...",
+                                style: blackTextFont.copyWith(fontSize: 18, color: accentColor2),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          );
+                        }
+                      }
+                    },
+                  ),
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 14,
                     ),
                     Text(
@@ -171,24 +161,6 @@ class _DoctorPageState extends State<DoctorPage> {
                       ),
                     ),
                     TopRateDoctorListTile(),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Good News",
-                      style: blackTextFont.copyWith(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 24,
-                      ),
-                    ),
-                    GoodNewsListTile(),
-                    GoodNewsListTile(),
-                    GoodNewsListTile(),
                   ],
                 ),
               ),
@@ -208,9 +180,9 @@ class GoodNewsListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 5),
-      title: Text("Is it safe to stay at home during corona virus ?"),
-      subtitle: Text("Today"),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 5),
+      title: const Text("Is it safe to stay at home during corona virus ?"),
+      subtitle: const Text("Today"),
       trailing: Container(
         height: 150,
         width: 50,
@@ -235,19 +207,20 @@ class _TopRateDoctorListTileState extends State<TopRateDoctorListTile> {
     // int counter = 0;
     String doctorStatus = "Doctor";
     return StreamBuilder(
-      stream: UserServices.fetchLastRatingDoctor().asStream(),
+      stream: UserServices.getAllUser().asStream(),
       builder: (context, AsyncSnapshot<List<m.User>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else {
           // userList = snapshot.data;
+          userList.clear();
           for (int i = 0; i < snapshot.data!.length; i++) {
             if (snapshot.data![i].status == doctorStatus && snapshot.data![i].ratingNum! > 3.0) {
               userList.add(snapshot.data![i]);
             }
           }
           if (userList.isNotEmpty) {
-            return buildListDoctor(doctorStatus);
+            return buildListDoctor(doctorStatus, context);
           } else {
             return Container(
               child: Align(
@@ -265,7 +238,7 @@ class _TopRateDoctorListTileState extends State<TopRateDoctorListTile> {
     );
   }
 
-  Widget buildListDoctor(String doctorStatus) {
+  Widget buildListDoctor(String doctorStatus, context) {
     final List<m.User> doctorList = doctorStatus.isEmpty
         ? []
         : userList.where((m.User user) {
@@ -275,14 +248,14 @@ class _TopRateDoctorListTileState extends State<TopRateDoctorListTile> {
             bool matchStatus = _getUserStatus.contains(_doctorQuery);
             return (matchStatus && _rating > 3);
           }).toList();
-
-    return Container(
-      height: 250,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .7,
       child: Column(
         children: [
           Expanded(
             child: ListView.builder(
               itemCount: doctorList.length,
+              shrinkWrap: true,
               itemBuilder: (context, index) {
                 m.User doctor = m.User(
                   doctorList[index].id,
@@ -301,13 +274,13 @@ class _TopRateDoctorListTileState extends State<TopRateDoctorListTile> {
                   child: CustomChatTile(
                     mini: false,
                     leading: (doctor.profileImage!.isEmpty)
-                        ? CircularProgressIndicator()
+                        ? const CircularProgressIndicator()
                         : (doctor.profileImage != "no_pic")
                             ? CircleAvatar(
                                 radius: 30,
                                 backgroundImage: NetworkImage(doctor.profileImage!),
                               )
-                            : CircleAvatar(
+                            : const CircleAvatar(
                                 radius: 30,
                                 backgroundImage: AssetImage("images/user_default.png"),
                               ),
@@ -321,7 +294,6 @@ class _TopRateDoctorListTileState extends State<TopRateDoctorListTile> {
                       doctor.job!,
                       style: greyTextFont,
                     ),
-                    
                     onTap: () {
                       context.read<PageBloc>().add(GoToSeeDoctorPage(doctor));
                     },

@@ -74,14 +74,23 @@ class UserServices {
   }
 
   static Future<List<m.User>> getAllUser() async {
-    List<m.User> userList = <m.User>[];
-    QuerySnapshot querySnapshot = await _userCollection.get();
+    try {
+      List<m.User> userList = <m.User>[];
+      QuerySnapshot querySnapshot = await _userCollection.get();
 
-    for (QueryDocumentSnapshot doc in querySnapshot.docs) {
-      userList.add(m.User.fromMap(doc.data() as Map<String, dynamic>));
+      for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+        Map<String, dynamic>? data = doc.data() as Map<String, dynamic>?;
+
+        if (data != null) {
+          userList.add(m.User.fromMap(data));
+        }
+      }
+      return userList;
+    } catch (e) {
+      print("Error fetching all user data: $e");
+      // Handle the error as per your requirements
+      throw Exception("Error fetching all user data: $e");
     }
-
-    return userList;
   }
 
   static Future<List<m.User>> getAllContact(String doctorId) async {
@@ -152,24 +161,69 @@ class UserServices {
       _userCollection.doc(uid).snapshots();
 
   static Future<List<m.User>> fetchLastRatingDoctor() async {
-    QuerySnapshot qshot =
-        await _userCollection.orderBy('timestampField', descending: true).limit(10).get();
+    try {
+      QuerySnapshot qshot =
+          await _userCollection.orderBy('timestampField', descending: true).limit(10).get();
 
-    return qshot.docs
-        .map((value) => m.User(
-              (value.data() as Map<String, dynamic>)['uid'] ?? '',
-              (value.data() as Map<String, dynamic>)['email'] ?? '',
-              fullName: (value.data() as Map<String, dynamic>)['fullName'] ?? '',
-              job: (value.data() as Map<String, dynamic>)['job'] ?? '',
-              profileImage: (value.data() as Map<String, dynamic>)['profileImage'] ?? '',
-              noSIP: (value.data() as Map<String, dynamic>)['noSIP'] ?? '',
-              status: (value.data() as Map<String, dynamic>)['status'] ?? '',
-              ratingNum: (value.data() as Map<String, dynamic>)['ratingNum'] ?? '',
-              state: (value.data() as Map<String, dynamic>)['state'] ?? '',
-              alumnus: (value.data() as Map<String, dynamic>)['alumnus'] ?? '',
-              tempatPraktek: (value.data() as Map<String, dynamic>)['tempatPraktek'] ?? '',
-            ))
-        .toList();
+      print("qshot.docs");
+      print(qshot.docs);
+
+      return qshot.docs.map((value) {
+        Map<String, dynamic>? data = value.data() as Map<String, dynamic>?;
+
+        return m.User(
+          data?['uid'] ?? '',
+          data?['email'] ?? '',
+          fullName: data?['fullName'] ?? '',
+          job: data?['job'] ?? '',
+          profileImage: data?['profileImage'] ?? '',
+          noSIP: data?['noSIP'] ?? '',
+          status: data?['status'] ?? '',
+          ratingNum: data?['ratingNum'] ?? '',
+          state: data?['state'] ?? '',
+          alumnus: data?['alumnus'] ?? '',
+          tempatPraktek: data?['tempatPraktek'] ?? '',
+        );
+      }).toList();
+    } catch (e) {
+      print("Error fetching last rating doctor data: $e");
+      // Handle the error as per your requirements
+      throw Exception("Error fetching last rating doctor data: $e");
+    }
+  }
+
+  static Future<List<m.User>> fetchAllDoctors() async {
+    try {
+      QuerySnapshot qshot = await _userCollection
+          .orderBy('timestampField', descending: true)
+          .where('status', isEqualTo: 'Doctor')
+          .get();
+
+      print("qshot.docs");
+      print(qshot.docs);
+
+      return qshot.docs.map((value) {
+        Map<String, dynamic>? data = value.data() as Map<String, dynamic>?;
+
+        return m.User(
+          data?['uid'] ?? '',
+          data?['email'] ?? '',
+          fullName: data?['fullName'] ?? '',
+          job: data?['job'] ?? '',
+          profileImage: data?['profileImage'] ?? '',
+          noSIP: data?['noSIP'] ?? '',
+          status: data?['status'] ?? '',
+          ratingNum: data?['ratingNum'] ?? '',
+          state: data?['state'] ?? '',
+          alumnus: data?['alumnus'] ?? '',
+          tempatPraktek: data?['tempatPraktek'] ?? '',
+        );
+      }).toList();
+    } catch (e) {
+      print("Error fetching last rating doctor data: $e");
+      // Handle the error as per your requirements
+      throw Exception("Error fetching last rating doctor data: $e");
+    }
   }
 
   // static Stream<List<User>> fetchLastRatingDoctor() {

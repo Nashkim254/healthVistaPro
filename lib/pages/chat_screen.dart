@@ -24,11 +24,11 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
         builder: (context) {
           return AlertDialog(
             title: Text(
-              "Konfirmasi selesai konsultasi",
+              "Confirmation of consultation completion.",
               style: blackTextFont,
             ),
             content: Text(
-              "Apakah anda sudah selesai melakukan konsultasi ?",
+              "Have you finished your consultation ?",
               style: greyTextFont,
             ),
             actions: [
@@ -46,19 +46,22 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
                         context: context,
                         barrierDismissible: false,
                         builder: (context) {
+                          String image = "";
+                          widget.receiver!.profileImage == "no_pic"
+                              ? image = "https://placehold.co/600x400"
+                              : image = widget.receiver!.profileImage!;
                           return RatingDialog(
                             image: Image(
-                              image: NetworkImage("${widget.receiver!.profileImage}"),
+                              image: NetworkImage(image),
                               height: 100,
                             ),
-                            title: Text("Doctor Rating Consultation"),
+                            title: const Text("Doctor Rating Consultation"),
                             message: Text(
                                 "How was the consultation with dr. ${widget.receiver!.fullName!}"),
                             submitButtonText: "SUBMIT",
                             commentHint: "We are so happy to hear :)",
                             starColor: Colors.red,
                             onSubmitted: (RatingDialogResponse res) async {
-                              print("onSubmitPressed: rating = ${res.rating}");
                               await UserServices.setDoctorRating(
                                   widget.receiver!.id!, res.rating.toDouble());
                             },
@@ -109,22 +112,22 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
       return PickupLayout(
         scaffold: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(60),
+            preferredSize: const Size.fromHeight(60),
             child: AppBar(
               centerTitle: true,
               leading: IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
                         title: Text(
-                          "Konfirmasi selesai konsultasi",
+                          "Confirmation of consultation completion.",
                           style: blackTextFont,
                         ),
                         content: Text(
-                          "Apakah anda sudah selesai melakukan konsultasi ?",
+                          "Have you finished your consultation ?",
                           style: greyTextFont,
                         ),
                         actions: [
@@ -147,7 +150,7 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
                                           image: NetworkImage("${widget.receiver!.profileImage}"),
                                           height: 100,
                                         ),
-                                        title: Text("Doctor Rating Consultation"),
+                                        title: const Text("Doctor Rating Consultation"),
                                         message: Text(
                                             "How was the consultation with dr. ${widget.receiver!.fullName}"),
                                         submitButtonText: "SUBMIT",
@@ -218,7 +221,7 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
                     child: Stack(
                       children: [
                         (widget.receiver!.profileImage == "no_pic")
-                            ? CircleAvatar(
+                            ? const CircleAvatar(
                                 radius: 30, backgroundImage: AssetImage("images/user_default.png"))
                             : CircleAvatar(
                                 radius: 30,
@@ -248,13 +251,13 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
               _imageUploadProvider!.getViewState == ViewState.LOADING
                   ? Container(
                       alignment: Alignment.centerRight,
-                      margin: EdgeInsets.only(right: 20),
-                      child: CircularProgressIndicator(
+                      margin: const EdgeInsets.only(right: 20),
+                      child: const CircularProgressIndicator(
                         backgroundColor: accentColor2,
                       ),
                     )
                   : Container(),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               ChatBottomControl(
                 receiver: widget.receiver!,
                 sender: widget.sender!,
@@ -290,7 +293,7 @@ class _ChatMessageScreenState extends State<ChatMessageScreen> {
             .snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.data == null) {
-            return Center(
+            return const Center(
               child: SpinKitFadingCircle(
                 color: accentColor2,
                 size: 30,
@@ -300,7 +303,7 @@ class _ChatMessageScreenState extends State<ChatMessageScreen> {
 
           // return DashChat(messages: null, user: null, onSend: null);
           return ListView.builder(
-              padding: EdgeInsets.all(defaultMargin),
+              padding: const EdgeInsets.all(defaultMargin),
               itemCount: snapshot.data!.docs.length,
               reverse: true,
               itemBuilder: (context, index) {
@@ -330,7 +333,8 @@ class _ChatMessageItemState extends State<ChatMessageItem> {
 
   @override
   Widget build(BuildContext context) {
-    m.Message _message = m.Message.fromMap(widget.documentSnapshot.data as Map<String, dynamic>);
+    m.Message _message = m.Message.fromMap(widget.documentSnapshot.data() as Map<String, dynamic>);
+
     // var date = DateFormat.yMMMd().format(_message.timeStamp.toDate());
     // var dateNow = DateFormat.yMMMd().format(DateTime.now());
     // int check = 0;
@@ -343,7 +347,7 @@ class _ChatMessageItemState extends State<ChatMessageItem> {
     //   setShowDate(false);
     // }
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 15),
+      margin: const EdgeInsets.symmetric(vertical: 15),
       child: Container(
         alignment: (_message.senderId == widget._currentUserId)
             ? Alignment.centerRight
@@ -357,7 +361,7 @@ class _ChatMessageItemState extends State<ChatMessageItem> {
 
   // to show the message from the sender
   Widget senderLayout(m.Message message, BuildContext context) {
-    Radius messageRadius = Radius.circular(5);
+    Radius messageRadius = const Radius.circular(5);
     String time = DateFormat.jm().add_MMMd().format(message.timeStamp!.toDate());
 
     return Column(
@@ -383,7 +387,7 @@ class _ChatMessageItemState extends State<ChatMessageItem> {
                           builder: (context) => ViewImage(message)));
                 },
                 child: Container(
-                  margin: EdgeInsets.only(top: 12),
+                  margin: const EdgeInsets.only(top: 12),
                   decoration: BoxDecoration(
                       color: accentColor1,
                       borderRadius: BorderRadius.only(
@@ -392,13 +396,13 @@ class _ChatMessageItemState extends State<ChatMessageItem> {
                         bottomRight: messageRadius,
                       )),
                   child: Padding(
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     child: getMessage(message, context),
                   ),
                 ),
               )
             : Container(
-                margin: EdgeInsets.only(top: 12),
+                margin: const EdgeInsets.only(top: 12),
                 decoration: BoxDecoration(
                     color: accentColor1,
                     borderRadius: BorderRadius.only(
@@ -407,7 +411,7 @@ class _ChatMessageItemState extends State<ChatMessageItem> {
                       bottomRight: messageRadius,
                     )),
                 child: Padding(
-                  padding: EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(5),
                   child: getMessage(message, context),
                 ),
               ),
@@ -424,7 +428,7 @@ class _ChatMessageItemState extends State<ChatMessageItem> {
 
   // to show the message from the receiver
   Widget receiverLayout(m.Message message, BuildContext context) {
-    Radius messageRadius = Radius.circular(5);
+    Radius messageRadius = const Radius.circular(5);
     String time = DateFormat.jm().format(message.timeStamp!.toDate());
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -436,7 +440,7 @@ class _ChatMessageItemState extends State<ChatMessageItem> {
                       context, MaterialPageRoute(builder: (context) => ViewImage(message)));
                 },
                 child: Container(
-                  margin: EdgeInsets.only(top: 12),
+                  margin: const EdgeInsets.only(top: 12),
                   decoration: BoxDecoration(
                       color: accentColor2,
                       borderRadius: BorderRadius.only(
@@ -444,11 +448,12 @@ class _ChatMessageItemState extends State<ChatMessageItem> {
                         topRight: messageRadius,
                         bottomRight: messageRadius,
                       )),
-                  child: Padding(padding: EdgeInsets.all(5), child: getMessage(message, context)),
+                  child: Padding(
+                      padding: const EdgeInsets.all(5), child: getMessage(message, context)),
                 ),
               )
             : Container(
-                margin: EdgeInsets.only(top: 12),
+                margin: const EdgeInsets.only(top: 12),
                 decoration: BoxDecoration(
                     color: accentColor2,
                     borderRadius: BorderRadius.only(
@@ -456,7 +461,8 @@ class _ChatMessageItemState extends State<ChatMessageItem> {
                       topRight: messageRadius,
                       bottomRight: messageRadius,
                     )),
-                child: Padding(padding: EdgeInsets.all(5), child: getMessage(message, context)),
+                child:
+                    Padding(padding: const EdgeInsets.all(5), child: getMessage(message, context)),
               ),
         Align(
           alignment: Alignment.centerLeft,
@@ -479,10 +485,10 @@ class _ChatMessageItemState extends State<ChatMessageItem> {
                 width: 250,
                 radius: 10,
               )
-            : Text("no image url")
+            : const Text("no image url")
         : (message.type == "call")
             ? Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
                     Icon(
@@ -536,7 +542,7 @@ class _ChatBottomControlState extends State<ChatBottomControl> {
     _imageUploadProvider = Provider.of<ImageUploadProvider>(context);
     return Container(
       // color: Colors.red,
-      decoration: BoxDecoration(color: Colors.white, boxShadow: [
+      decoration: const BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(
           color: Colors.grey,
           offset: Offset(0.0, 1.0), //(x,y)
@@ -558,15 +564,15 @@ class _ChatBottomControlState extends State<ChatBottomControl> {
                 },
                 decoration: InputDecoration(
                   hintText: (widget.receiver!.status == "Doctor")
-                      ? "Tulis pesan untuk dr.$receiverName ..."
-                      : "Tulis pesan untuk $receiverName ...",
-                  border: OutlineInputBorder(
+                      ? "Write a message to  Dr.$receiverName ..."
+                      : "Write a message to $receiverName ...",
+                  border: const OutlineInputBorder(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(10),
                       bottomRight: Radius.circular(10),
                     ),
                   ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 ),
               ),
             ),
@@ -574,10 +580,10 @@ class _ChatBottomControlState extends State<ChatBottomControl> {
             (isWriting)
                 ? Container()
                 : Container(
-                    padding: EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     width: 32,
                     child: IconButton(
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.image,
                           size: 28,
                           color: mainColor,
@@ -594,10 +600,10 @@ class _ChatBottomControlState extends State<ChatBottomControl> {
             (isWriting)
                 ? Container()
                 : Container(
-                    padding: EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     width: 32,
                     child: IconButton(
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.camera_alt,
                           size: 28,
                           color: mainColor,
@@ -614,10 +620,10 @@ class _ChatBottomControlState extends State<ChatBottomControl> {
             (isWriting)
                 ? Container()
                 : Container(
-                    padding: EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     width: 38,
                     child: IconButton(
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.video_call,
                           size: 32,
                           color: mainColor,
@@ -651,10 +657,10 @@ class _ChatBottomControlState extends State<ChatBottomControl> {
             (isWriting)
                 ? Container(
                     width: 38,
-                    margin: EdgeInsets.only(left: 10),
-                    decoration: BoxDecoration(shape: BoxShape.circle, color: mainColor),
+                    margin: const EdgeInsets.only(left: 10),
+                    decoration: const BoxDecoration(shape: BoxShape.circle, color: mainColor),
                     child: IconButton(
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.send,
                           size: 18,
                           color: accentColor2,
@@ -664,7 +670,7 @@ class _ChatBottomControlState extends State<ChatBottomControl> {
                         }),
                   )
                 : Container(),
-            SizedBox(
+            const SizedBox(
               width: 8,
             )
           ],

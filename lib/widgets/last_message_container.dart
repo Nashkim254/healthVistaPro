@@ -12,7 +12,7 @@ class LastMessageContainer extends StatelessWidget {
         if (snapshot.hasData) {
           var docList = snapshot.data!.docs;
           if (docList.isNotEmpty) {
-            Message message = Message.fromMap(docList.last.data as Map<String, dynamic>);
+            Message message = Message.fromMap(docList.last.data()! as Map<String, dynamic>);
             String time =
                 DateFormat.jm().add_MMMd().format(message.timeStamp!.toDate());
             return Container(
@@ -25,7 +25,7 @@ class LastMessageContainer extends StatelessWidget {
                           width: 25,
                           child: Image.network(message.photoUrl!),
                         ),
-                        Text("Send a photo")
+                        const Text("Send a photo")
                       ],
                     )
                   : Row(

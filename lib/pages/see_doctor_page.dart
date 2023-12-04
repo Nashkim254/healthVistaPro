@@ -30,7 +30,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               context.read<PageBloc>().add(
                     GoToMainPage(bottomNavBarIndex: 0),
@@ -50,7 +50,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
               Column(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(top: 42, bottom: 20),
+                    margin: const EdgeInsets.only(top: 42, bottom: 20),
                     // height: 104,
                     // width: 90,
                     child: Container(
@@ -64,7 +64,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
                                 : profilePath != ""
                                     ? DecorationImage(
                                         image: NetworkImage(profilePath!), fit: BoxFit.cover)
-                                    : DecorationImage(
+                                    : const DecorationImage(
                                         image: AssetImage("images/user_default.png"),
                                         fit: BoxFit.cover))),
                   ),
@@ -80,9 +80,9 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
                       fontSize: 18,
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+                    padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -94,28 +94,28 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
                           child: TextFormField(
                             style: blackTextFont.copyWith(fontWeight: FontWeight.w400),
                             initialValue: widget.doctorUser!.alumnus!,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: InputBorder.none,
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Text(
-                          "Tempat Praktik",
+                          "Practice Location",
                           style: greyTextFont,
                         ),
                         AbsorbPointer(
                           child: TextFormField(
                             style: blackTextFont.copyWith(fontWeight: FontWeight.w400),
                             initialValue: widget.doctorUser!.tempatPraktek,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: InputBorder.none,
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Text(
@@ -126,7 +126,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
                           child: TextFormField(
                             style: blackTextFont.copyWith(fontWeight: FontWeight.w400),
                             initialValue: widget.doctorUser!.noSIP,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: InputBorder.none,
                             ),
                           ),
@@ -134,7 +134,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   BlocBuilder<UserBloc, UserState>(
