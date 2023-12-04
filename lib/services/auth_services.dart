@@ -23,8 +23,6 @@ class AuthServices {
         email: emailAdress!,
         password: password!,
       );
-      print("-------------------------------- 0");
-      print(result.user);
       // convert firebase user ke user
       m.User user = m.User(
         result.user!.uid,
@@ -32,16 +30,13 @@ class AuthServices {
         fullName: fullName,
         profileImage: "no_pic",
         job: job,
-        noSIP: noSIP,
+        noSIP: noSIP ?? "66887",
         status: status,
         state: state ?? 1,
         ratingNum: ratingNum ?? 1,
-        alumnus: alumnus,
-        tempatPraktek: tempatPraktek,
+        alumnus: alumnus ?? "",
+        tempatPraktek: tempatPraktek ?? "",
       );
-      print("-------------------------------- 1");
-      print(user,);
- 
       // to store data to Firebase
       await UserServices.updateUser(user);
       return SignInSignUpResult(user: user);

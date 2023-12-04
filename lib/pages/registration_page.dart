@@ -12,15 +12,15 @@ class RegistrationPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: accentColor5.withOpacity(0.1),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+          padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 18,
               ),
               // app bar
               Container(
-                margin: EdgeInsets.only(top: 20, bottom: 22),
+                margin: const EdgeInsets.only(top: 20, bottom: 22),
                 height: 56,
                 child: Stack(
                   children: [
@@ -30,7 +30,7 @@ class RegistrationPage extends StatelessWidget {
                         onTap: () {
                           context.read<PageBloc>().add(GoToWelcomePage());
                         },
-                        child: Icon(Icons.arrow_back_ios, size: 24, color: accentColor5),
+                        child: const Icon(Icons.arrow_back_ios, size: 24, color: accentColor5),
                       ),
                     ),
                     Center(
@@ -70,7 +70,7 @@ class RegistrationPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 18,
                   ),
                   ElevatedButton(
