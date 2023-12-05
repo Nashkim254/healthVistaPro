@@ -40,16 +40,15 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
                   setState(() {
                     isConsultationDone = true;
                     Navigator.pop(context);
-
                     if (widget.sender!.status == "Patient") {
+                      String image = "";
+                      widget.receiver!.profileImage == "no_pic"
+                          ? image = "https://placehold.co/600x400"
+                          : image = widget.receiver!.profileImage!;
                       showDialog<String>(
                         context: context,
                         barrierDismissible: false,
                         builder: (context) {
-                          String image = "";
-                          widget.receiver!.profileImage == "no_pic"
-                              ? image = "https://placehold.co/600x400"
-                              : image = widget.receiver!.profileImage!;
                           return RatingDialog(
                             image: Image(
                               image: NetworkImage(image),
@@ -111,12 +110,15 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
     }, child: BlocBuilder<UserBloc, UserState>(builder: (context, userState) {
       return PickupLayout(
         scaffold: Scaffold(
+          backgroundColor: Colors.white,
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(60),
             child: AppBar(
               centerTitle: true,
+              backgroundColor: Colors.white,
+              elevation: 0,
               leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () {
                   showDialog(
                     context: context,
@@ -139,7 +141,10 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
                               setState(() {
                                 isConsultationDone = true;
                                 Navigator.pop(context);
-
+                                String image = "";
+                                widget.receiver!.profileImage == "no_pic"
+                                    ? image = "https://placehold.co/600x400"
+                                    : image = widget.receiver!.profileImage!;
                                 if (widget.sender!.status == "Patient") {
                                   showDialog<String>(
                                     context: context,
@@ -147,17 +152,16 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
                                     builder: (context) {
                                       return RatingDialog(
                                         image: Image(
-                                          image: NetworkImage("${widget.receiver!.profileImage}"),
+                                          image: NetworkImage(image),
                                           height: 100,
                                         ),
                                         title: const Text("Doctor Rating Consultation"),
                                         message: Text(
-                                            "How was the consultation with dr. ${widget.receiver!.fullName}"),
+                                            "How was the consultation with Dr. ${widget.receiver!.fullName}"),
                                         submitButtonText: "SUBMIT",
                                         commentHint: "We are so happy to hear :)",
                                         starColor: Colors.red,
                                         onSubmitted: (RatingDialogResponse res) async {
-                                          print("onSubmitPressed: rating = ${res.rating}");
                                           await UserServices.setDoctorRating(
                                               widget.receiver!.id!, res.rating.toDouble());
                                         },
@@ -206,7 +210,7 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
               ),
               title: Column(
                 children: [
-                  Text(widget.receiver!.fullName!, style: whiteTextFont.copyWith(fontSize: 18)),
+                  Text(widget.receiver!.fullName!, style: blackTextFont.copyWith(fontSize: 18)),
                   Text(
                     widget.receiver!.job!,
                     style: greyTextFont.copyWith(fontSize: 14),
@@ -629,9 +633,13 @@ class _ChatBottomControlState extends State<ChatBottomControl> {
                           color: mainColor,
                         ),
                         onPressed: () async {
-                          bool getPermission =
-                              await Permissions.cameraAndMicrophonePermissionsGranted();
-                          if (getPermission) {
+                           var permission = await Permission.camera.request();
+                            var mic = await Permission.microphone.request();
+                          // bool getPermission =
+                          //     await Permissions.cameraAndMicrophonePermissionsGranted();
+                          
+                          if (permission.isGranted &&mic.isGranted) {
+                            print(" permissions");
                             await CallUtils.dial(
                               context: context,
                               userCaller: widget.sender,
@@ -650,7 +658,9 @@ class _ChatBottomControlState extends State<ChatBottomControl> {
                               context.read<PageBloc>().add(GoToCallScreenPage(
                                   call: call, sender: widget.sender, receiver: widget.receiver));
                             }
-                          } else {}
+                          } else {
+                            print("no permissions");
+                          }
                         }),
                   ),
             // *send button

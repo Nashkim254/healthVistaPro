@@ -20,7 +20,7 @@ class _PickupLayoutState extends State<PickupLayout> {
             stream: CallServices.callStream(id: userState.user!.id),
             builder: (context, snapshot) {
               if (snapshot.hasData && snapshot.data!.data() != null) {
-                m.Call call = m.Call.fromMap(snapshot.data!.data);
+                m.Call call = m.Call.fromMap(snapshot.data!.data());
                 // get caller
                 UserServices.getUser(call.callerId!).then((value) {
                   print(value);
@@ -92,9 +92,9 @@ class WelcomeIntroLogo extends StatelessWidget {
       body: Center(
         child: Container(
           child: AnimatedContainer(
-              duration: Duration(seconds: 1),
+              duration: const Duration(seconds: 1),
               curve: Curves.bounceInOut,
-              child: Image(image: AssetImage("images/logo.png"))),
+              child: const Image(image: AssetImage("images/logo.png"))),
         ),
       ),
     );

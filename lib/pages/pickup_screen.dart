@@ -18,7 +18,7 @@ class _PickUpScreenState extends State<PickUpScreen> {
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(vertical: 100),
+        padding: const EdgeInsets.symmetric(vertical: 100),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -26,7 +26,7 @@ class _PickUpScreenState extends State<PickUpScreen> {
               "Incoming calls",
               style: blackTextFont.copyWith(fontSize: 30),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             CachedImage(
@@ -36,36 +36,36 @@ class _PickUpScreenState extends State<PickUpScreen> {
               isRounded: true,
               radius: 180,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Text(widget.call.callerName!,
                 style: blackTextFont.copyWith(
                   fontSize: 20,
                 )),
-            SizedBox(
+            const SizedBox(
               height: 75,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                    icon: Icon(Icons.call, color: Colors.green),
+                    icon: const Icon(Icons.call, color: Colors.green),
                     onPressed: () async {
-                      bool getPermission = await Permissions
-                          .cameraAndMicrophonePermissionsGranted();
-                      if (getPermission) {
+                    var permission = await Permission.camera.request();
+                            var mic = await Permission.microphone.request();
+                      if (permission.isGranted &&mic.isGranted) {
                         context.read<PageBloc>().add(GoToCallScreenPage(
                             call: widget.call,
                             sender: widget.caller,
                             receiver: widget.receiver));
                       }
                     }),
-                SizedBox(
+                const SizedBox(
                   width: 25,
                 ),
                 IconButton(
-                    icon: Icon(Icons.call_end, color: Colors.red),
+                    icon: const Icon(Icons.call_end, color: Colors.red),
                     onPressed: () async {
                       await CallServices.endCall(call: widget.call);
                     }),

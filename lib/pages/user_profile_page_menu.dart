@@ -14,16 +14,18 @@ class UserProfilePageMenu extends StatelessWidget {
       child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
             // leading: IconButton(
             //     icon: Icon(Icons.arrow_back),
             //     onPressed: () {
             //       context.bloc<PageBloc>().add(GoToMainPage());
             //     }),
-            title: Text("Profile"),
+            title:  Text("Profile",style: blackTextFont.copyWith(fontSize: 16)),
             centerTitle: true,
           ),
           body: Container(
-            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
             child: ListView(
               children: [
                 BlocBuilder<UserBloc, UserState>(
@@ -34,12 +36,12 @@ class UserProfilePageMenu extends StatelessWidget {
                       return Column(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(top: 74, bottom: 10),
+                            margin: const EdgeInsets.only(top: 74, bottom: 10),
                             width: 150,
                             height: 150,
                             child: Stack(
                               children: <Widget>[
-                                Center(
+                                const Center(
                                   child: SizedBox(
                                     width: 50,
                                     height: 50,
@@ -57,7 +59,7 @@ class UserProfilePageMenu extends StatelessWidget {
                                           ? DecorationImage(
                                               image: NetworkImage(user.profileImage!),
                                               fit: BoxFit.cover)
-                                          : DecorationImage(
+                                          : const DecorationImage(
                                               image: AssetImage("images/user_default.png"),
                                               fit: BoxFit.cover)),
                                 ),
@@ -84,7 +86,7 @@ class UserProfilePageMenu extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return SizedBox();
+                      return const SizedBox();
                     }
                   },
                 ),
@@ -98,12 +100,12 @@ class UserProfilePageMenu extends StatelessWidget {
                                 .read<PageBloc>()
                                 .add(GoToEditProfilePage((userState as UserLoaded).user!));
                           },
-                          leadingIcon: Icon(
+                          leadingIcon: const Icon(
                             Icons.person,
                             color: accentColor2,
                           )),
                     ),
-                    DashDividerUserProfileMenu(),
+                    const DashDividerUserProfileMenu(),
                     BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
                       if (userState is UserLoaded) {
                         return UserProfileMenuListTileMenu(
@@ -115,15 +117,15 @@ class UserProfilePageMenu extends StatelessWidget {
                               AuthServices.signOut();
                               context.read<PageBloc>().add(GoToWelcomePage());
                             },
-                            leadingIcon: Icon(
+                            leadingIcon: const Icon(
                               Icons.exit_to_app,
                               color: accentColor2,
                             ));
                       } else {
-                        return SizedBox();
+                        return const SizedBox();
                       }
                     }),
-                    DashDivider(),
+                    const DashDivider(),
                   ],
                 )
               ],
@@ -164,7 +166,7 @@ class UserProfileMenuListTileMenu extends StatelessWidget {
         userProfileMenuTitle,
         style: blackTextFont.copyWith(fontSize: 16),
       ),
-      trailing: Icon(
+      trailing: const Icon(
         Icons.arrow_forward_ios,
         color: accentColor2,
       ),
@@ -181,7 +183,7 @@ Widget generateDashedDividerUserMenu(double width) {
             ? Container(
                 height: 2,
                 width: width / n,
-                color: Color(0xFFE4E4E4),
+                color: const Color(0xFFE4E4E4),
               )
             : SizedBox(
                 width: width / n,

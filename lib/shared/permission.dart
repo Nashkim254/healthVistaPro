@@ -30,13 +30,13 @@ class Permissions {
   ) {
     if (cameraPermissionStatus == PermissionStatus.denied &&
         microphonePermissionStatus == PermissionStatus.denied) {
-      throw new PlatformException(
+      throw PlatformException(
           code: "PERMISSION_DENIED",
           message: "Access to camera and microphone denied",
           details: null);
     } else if (cameraPermissionStatus == PermissionStatus.denied &&
         microphonePermissionStatus == PermissionStatus.restricted) {
-      throw new PlatformException(
+      throw PlatformException(
           code: "PERMISSION_DISABLED",
           message: "Location data is not available on device",
           details: null);

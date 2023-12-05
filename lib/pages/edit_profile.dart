@@ -46,9 +46,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
       },
       child: SafeArea(
         child: Scaffold(
+           backgroundColor: Colors.white,
           appBar: AppBar(
+            elevation: 0,
+             backgroundColor: Colors.white,
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back,color: Colors.black,),
               onPressed: () {
                 (widget.user!.status == "Doctor")
                     ? context.read<PageBloc>().add(GoToMainPage(
@@ -57,18 +60,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     : context.read<PageBloc>().add(GoToUserProfilePage());
               },
             ),
-            title: Text("Edit Profile"),
+            title:  Text("Edit Profile",style: blackTextFont.copyWith(fontSize: 16),),
             centerTitle: true,
           ),
           body: (widget.user!.status == "Patient")
               ? Container(
-                  padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+                  padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
                   child: ListView(
                     children: [
                       Column(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(top: 42, bottom: 10),
+                            margin: const EdgeInsets.only(top: 42, bottom: 10),
                             height: 104,
                             width: 90,
                             child: Stack(
@@ -85,7 +88,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                             ? DecorationImage(
                                                 image: NetworkImage(profilePath!),
                                                 fit: BoxFit.cover)
-                                            : DecorationImage(
+                                            : const DecorationImage(
                                                 image: AssetImage("images/user_default.png"),
                                                 fit: BoxFit.cover),
                                   ),
@@ -138,7 +141,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   labelText: "User ID"),
                             ),
                           ),
-                          SizedBox(height: 30),
+                          const SizedBox(height: 30),
                           AbsorbPointer(
                             child: TextField(
                               controller: TextEditingController(text: widget.user!.email),
@@ -149,7 +152,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   labelText: "User Email"),
                             ),
                           ),
-                          SizedBox(height: 30),
+                          const SizedBox(height: 30),
                           TextField(
                             controller: nameController,
                             onChanged: (text) {
@@ -168,7 +171,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               hintText: "Full Name",
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           TextField(
@@ -191,7 +194,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               hintText: "Your Job",
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           SizedBox(
@@ -202,10 +205,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 shape:
                                     RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                                 primary: Colors.red[400],
-                                onSurface: Color(0xFFE4E4E4),
+                                onSurface: const Color(0xFFE4E4E4),
                                 textStyle: whiteTextFont.copyWith(
                                   fontSize: 16,
-                                  color: (isUpdating) ? Color(0xFFBEBEBE) : Colors.white,
+                                  color: (isUpdating) ? const Color(0xFFBEBEBE) : Colors.white,
                                 ),
                               ),
                               onPressed: (isUpdating)
@@ -213,7 +216,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   : () async {
                                       await AuthServices.resetPassword(widget.user!.email!);
                                       Flushbar(
-                                        duration: Duration(milliseconds: 8000),
+                                        duration: const Duration(milliseconds: 8000),
                                         flushbarPosition: FlushbarPosition.TOP,
                                         backgroundColor: accentColor2,
                                         message:
@@ -224,15 +227,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Icon(MdiIcons.alertCircle, color: Colors.white, size: 20),
-                                  SizedBox(width: 5),
+                                  const SizedBox(width: 5),
                                   Text(
                                     "Change Password",
                                     style: whiteTextFont.copyWith(
                                       fontSize: 16,
-                                      color: (isUpdating) ? Color(0xFFBEBEBE) : Colors.white,
+                                      color: (isUpdating) ? const Color(0xFFBEBEBE) : Colors.white,
                                     ),
                                   ),
-                                  SizedBox(width: 5),
+                                  const SizedBox(width: 5),
                                   Icon(
                                     MdiIcons.alertCircle,
                                     color: Colors.white,
@@ -242,11 +245,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           (isUpdating)
-                              ? SizedBox(
+                              ? const SizedBox(
                                   width: 50,
                                   height: 50,
                                   child: SpinKitFadingCircle(
@@ -264,7 +267,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       onSurface: accentColor3,
                                       textStyle: whiteTextFont.copyWith(
                                         fontSize: 16,
-                                        color: (isDataEdited) ? accentColor7 : Color(0xFFBEBEBE),
+                                        color: (isDataEdited) ? accentColor7 : const Color(0xFFBEBEBE),
                                       ),
                                     ),
                                     onPressed: (isDataEdited)
@@ -288,12 +291,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       "Update my profile",
                                       style: whiteTextFont.copyWith(
                                         fontSize: 16,
-                                        color: (isDataEdited) ? accentColor7 : Color(0xFFBEBEBE),
+                                        color: (isDataEdited) ? accentColor7 : const Color(0xFFBEBEBE),
                                       ),
                                     ),
                                   ),
                                 ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                         ],
@@ -302,13 +305,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   ),
                 )
               : Container(
-                  padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+                  padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
                   child: ListView(
                     children: [
                       Column(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(top: 42, bottom: 10),
+                            margin: const EdgeInsets.only(top: 42, bottom: 10),
                             height: 104,
                             width: 90,
                             child: Stack(
@@ -326,7 +329,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                                 ? DecorationImage(
                                                     image: NetworkImage(profilePath!),
                                                     fit: BoxFit.cover)
-                                                : DecorationImage(
+                                                : const DecorationImage(
                                                     image: AssetImage("images/user_default.png"),
                                                     fit: BoxFit.cover))),
                                 Align(
@@ -377,7 +380,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   labelText: "User ID"),
                             ),
                           ),
-                          SizedBox(height: 30),
+                          const SizedBox(height: 30),
                           AbsorbPointer(
                             child: TextField(
                               controller: TextEditingController(text: widget.user!.email),
@@ -388,7 +391,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   labelText: "User Email"),
                             ),
                           ),
-                          SizedBox(height: 30),
+                          const SizedBox(height: 30),
                           TextField(
                             controller: nameController,
                             onChanged: (text) {
@@ -407,7 +410,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               hintText: "Full Name",
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           TextField(
@@ -430,7 +433,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               hintText: "Your Job",
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           TextField(
@@ -451,7 +454,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               hintText: "Alumnus",
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           TextField(
@@ -472,7 +475,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               hintText: "Tempat Praktek",
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           SizedBox(
@@ -483,10 +486,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 shape:
                                     RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                                 primary: Colors.red[400],
-                                onSurface: Color(0xFFE4E4E4),
+                                onSurface: const Color(0xFFE4E4E4),
                                 textStyle: whiteTextFont.copyWith(
                                   fontSize: 16,
-                                  color: (isUpdating) ? Color(0xFFBEBEBE) : Colors.white,
+                                  color: (isUpdating) ? const Color(0xFFBEBEBE) : Colors.white,
                                 ),
                               ),
                               onPressed: (isUpdating)
@@ -494,7 +497,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   : () async {
                                       await AuthServices.resetPassword(widget.user!.email!);
                                       Flushbar(
-                                        duration: Duration(milliseconds: 8000),
+                                        duration: const Duration(milliseconds: 8000),
                                         flushbarPosition: FlushbarPosition.TOP,
                                         backgroundColor: accentColor2,
                                         message:
@@ -505,15 +508,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Icon(MdiIcons.alertCircle, color: Colors.white, size: 20),
-                                  SizedBox(width: 5),
+                                  const SizedBox(width: 5),
                                   Text(
                                     "Change Password",
                                     style: whiteTextFont.copyWith(
                                       fontSize: 16,
-                                      color: (isUpdating) ? Color(0xFFBEBEBE) : Colors.white,
+                                      color: (isUpdating) ? const Color(0xFFBEBEBE) : Colors.white,
                                     ),
                                   ),
-                                  SizedBox(width: 5),
+                                  const SizedBox(width: 5),
                                   Icon(
                                     MdiIcons.alertCircle,
                                     color: Colors.white,
@@ -523,11 +526,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           (isUpdating)
-                              ? SizedBox(
+                              ? const SizedBox(
                                   width: 50,
                                   height: 50,
                                   child: SpinKitFadingCircle(
@@ -545,7 +548,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       onSurface: accentColor3,
                                       textStyle: whiteTextFont.copyWith(
                                         fontSize: 16,
-                                        color: (isDataEdited) ? accentColor7 : Color(0xFFBEBEBE),
+                                        color: (isDataEdited) ? accentColor7 : const Color(0xFFBEBEBE),
                                       ),
                                     ),
                                     onPressed: (isDataEdited)
@@ -571,12 +574,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       "Update my profile",
                                       style: whiteTextFont.copyWith(
                                         fontSize: 16,
-                                        color: (isDataEdited) ? accentColor7 : Color(0xFFBEBEBE),
+                                        color: (isDataEdited) ? accentColor7 : const Color(0xFFBEBEBE),
                                       ),
                                     ),
                                   ),
                                 ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                         ],

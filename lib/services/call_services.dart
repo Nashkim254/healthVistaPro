@@ -35,6 +35,7 @@ class CallServices {
     try {
       await _callCollection.doc(call!.callerId).delete();
       await _callCollection.doc(call.receiverId).delete();
+      
       return true;
     } catch (e) {
       print(e);

@@ -15,7 +15,7 @@ class _PatientListMedicalRecordPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Past Patient List Medical Record"),
+        title: const Text("Past Patient List Medical Record"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -30,7 +30,7 @@ class _PatientListMedicalRecordPageState
                   itemCount: doc.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(context, MaterialPageRoute(
@@ -60,7 +60,7 @@ class _PatientListMedicalRecordPageState
                   },
                 );
               } else {
-                return SpinKitFadingCircle(color: accentColor2, size: 100);
+                return const SpinKitFadingCircle(color: accentColor2, size: 100);
               }
             }),
       ),
@@ -82,14 +82,14 @@ class _PatientMedRecordViewState extends State<PatientMedRecordView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Patient Medical Record View"),
+        title: const Text("Patient Medical Record View"),
       ),
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: Center(
                   child: Text(
                     widget.patientName,
@@ -150,7 +150,7 @@ class _PatientMedRecordViewState extends State<PatientMedRecordView> {
                       },
                     );
                   } else {
-                    return SpinKitFadingCircle(color: accentColor2, size: 100);
+                    return const SpinKitFadingCircle(color: accentColor2, size: 100);
                   }
                 },
               ),
@@ -178,7 +178,7 @@ class _PatientMedRecordDetailPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Patient Medical Record Detail"),
+        title: const Text("Patient Medical Record Detail"),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: HistoryPatientServices.getPatientData(
@@ -189,8 +189,8 @@ class _PatientMedRecordDetailPageState
             return ListView.builder(
               itemCount: 1,
               itemBuilder: (context, index) {
-                m.PatientMedRecord patientMedRecord =
-                    m.PatientMedRecord.fromMap(doc[index].data as Map<String, dynamic>);
+               m.PatientMedRecord patientMedRecord =
+    m.PatientMedRecord.fromMap(doc[index].data() as Map<String, dynamic>);
                 return Column(
                   children: [
                     MedicalRecordCard(
@@ -217,7 +217,7 @@ class _PatientMedRecordDetailPageState
               },
             );
           } else {
-            return SpinKitFadingCircle(color: accentColor2, size: 100);
+            return const SpinKitFadingCircle(color: accentColor2, size: 100);
           }
         },
       ),

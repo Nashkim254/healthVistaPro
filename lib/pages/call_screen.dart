@@ -22,7 +22,7 @@ class _CallScreenState extends State<CallScreen> {
   DateTime? startTime;
   String elapsed = '00:00:00';
   late RtcEngine _engine;
-   int? _remoteUid;
+  int? _remoteUid;
   bool _localUserJoined = false;
   // void startTimeCall() {
   //   startTime = DateTime.now();
@@ -34,12 +34,8 @@ class _CallScreenState extends State<CallScreen> {
   Stopwatch swatch = Stopwatch();
 
   String showTimeCallDuration() {
-    return elapsed = swatch.elapsed.inHours.toString().padLeft(2, "0") +
-        "h:" +
-        (swatch.elapsed.inMinutes % 60).toString().padLeft(2, "0") +
-        "m:" +
-        (swatch.elapsed.inSeconds % 60).toString().padLeft(2, "0") +
-        "s";
+    return elapsed =
+        "${swatch.elapsed.inHours.toString().padLeft(2, "0")}h:${(swatch.elapsed.inMinutes % 60).toString().padLeft(2, "0")}m:${(swatch.elapsed.inSeconds % 60).toString().padLeft(2, "0")}s";
   }
 
   @override
@@ -56,8 +52,7 @@ class _CallScreenState extends State<CallScreen> {
       userProvider = Provider.of<UserProvider>(context, listen: false);
 
       callStreamSubscription =
-          CallServices.callStream(id: userProvider!.getUser.id)
-              .listen((DocumentSnapshot ds) {
+          CallServices.callStream(id: userProvider!.getUser.id).listen((DocumentSnapshot ds) {
         // defining the logic
         switch (ds.data) {
           case null:
@@ -66,13 +61,9 @@ class _CallScreenState extends State<CallScreen> {
             m.User caller = widget.caller!;
             m.User receiver = widget.receiver!;
             if (userProvider!.getUser.id == widget.call.callerId) {
-              context
-                  .read<PageBloc>()
-                  .add(GoToChatScreenPage(sender: caller, receiver: receiver));
+              context.read<PageBloc>().add(GoToChatScreenPage(sender: caller, receiver: receiver));
             } else {
-              context
-                  .read<PageBloc>()
-                  .add(GoToChatScreenPage(sender: receiver, receiver: caller));
+              context.read<PageBloc>().add(GoToChatScreenPage(sender: receiver, receiver: caller));
             }
 
             break;
@@ -83,11 +74,6 @@ class _CallScreenState extends State<CallScreen> {
       });
     });
   }
-
-
-
-
-
 
   Future<void> initAgora() async {
     // retrieve permissions
@@ -114,8 +100,7 @@ class _CallScreenState extends State<CallScreen> {
             _remoteUid = remoteUid;
           });
         },
-        onUserOffline: (RtcConnection connection, int remoteUid,
-            UserOfflineReasonType reason) {
+        onUserOffline: (RtcConnection connection, int remoteUid, UserOfflineReasonType reason) {
           debugPrint("remote user $remoteUid left channel");
           setState(() {
             _remoteUid = null;
@@ -139,10 +124,12 @@ class _CallScreenState extends State<CallScreen> {
       options: const ChannelMediaOptions(),
     );
   }
+
   @override
   void dispose() {
     super.dispose();
-
+    _engine.leaveChannel();
+    _engine.release();
     _dispose();
   }
 
@@ -155,8 +142,24 @@ class _CallScreenState extends State<CallScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Video Call'),
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            _engine.leaveChannel();
+            _engine.release();
+          },
+        ),
+        elevation: 0,
+        title: Text(
+          'Video Call',
+          style: blackTextFont.copyWith(fontSize: 16),
+        ),
       ),
       body: Stack(
         children: [
@@ -184,6 +187,7 @@ class _CallScreenState extends State<CallScreen> {
       ),
     );
   }
+
 //  m.User receiver =
 //                   await UserServices.getUser(widget.call.receiverId!);
 //               m.User sender = await UserServices.getUser(widget.call.callerId!);
@@ -207,9 +211,10 @@ class _CallScreenState extends State<CallScreen> {
       );
     }
   }
-   void saveCall(m.User receiver, m.User sender) {
+
+  void saveCall(m.User receiver, m.User sender) {
     var text = (sender.status == "Doctor")
-        ? "call by dr.${widget.call.callerName}"
+        ? "call by Dr.${widget.call.callerName}"
         : "call by ${widget.call.callerName}";
     m.Message _message = m.Message(
         receiverId: widget.call.receiverId,
@@ -223,5 +228,3 @@ class _CallScreenState extends State<CallScreen> {
     MessageServices.addMessageToDb(_message, sender, receiver);
   }
 }
-
-

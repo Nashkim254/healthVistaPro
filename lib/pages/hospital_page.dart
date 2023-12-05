@@ -9,7 +9,7 @@ class HospitalPage extends StatelessWidget {
           alignment: Alignment.topCenter,
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height / 2,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
                   "images/hospital_cover.png",
@@ -36,7 +36,7 @@ class HospitalPage extends StatelessWidget {
                 flex: 1,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Text(
@@ -55,7 +55,7 @@ class HospitalPage extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: accentColor7,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
@@ -66,23 +66,23 @@ class HospitalPage extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: defaultMargin,
                           ),
                           ListTile(
                             leading: Image.asset("images/hospital_cover.png"),
-                            title: Text("Rumah sakit siloam"),
-                            subtitle: Text("Jln. Diponegoro Lippo Karawaci"),
+                            title: const Text("Rumah sakit siloam"),
+                            subtitle: const Text("Jln. Diponegoro Lippo Karawaci"),
                           ),
                           ListTile(
                             leading: Image.asset("images/hospital_cover.png"),
-                            title: Text("Rumah sakit siloam"),
-                            subtitle: Text("Jln. Diponegoro Lippo Karawaci"),
+                            title: const Text("Rumah sakit siloam"),
+                            subtitle: const Text("Jln. Diponegoro Lippo Karawaci"),
                           ),
                           ListTile(
                             leading: Image.asset("images/hospital_cover.png"),
-                            title: Text("Rumah sakit siloam"),
-                            subtitle: Text("Jln. Diponegoro Lippo Karawaci"),
+                            title: const Text("Rumah sakit siloam"),
+                            subtitle: const Text("Jln. Diponegoro Lippo Karawaci"),
                           ),
                         ],
                       ),

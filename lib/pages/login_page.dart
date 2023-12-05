@@ -148,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                                           flushbarPosition: FlushbarPosition.TOP,
                                           backgroundColor: accentColor2,
                                           message: result.message,
-                                        )..show(context);
+                                        ).show(context);
                                       }
                                     }
                                   : null),

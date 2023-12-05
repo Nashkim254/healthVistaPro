@@ -35,13 +35,13 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("History Patient Page"),
+        title: const Text("History Patient Page"),
       ),
       body: (widget.call!.callerStatus == "Doctor")
           ? ListView(
               children: [
                 Container(
-                  padding: EdgeInsets.all(18),
+                  padding: const EdgeInsets.all(18),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -49,7 +49,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                         "Please filled up the patient ${widget.call!.receiverName} history",
                         style: blackTextFont.copyWith(fontSize: 18),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: defaultMargin,
                       ),
                       TextField(
@@ -58,9 +58,9 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            labelText: "Nama Pasien"),
+                            labelText: "Patient's name"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextField(
@@ -69,9 +69,9 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            labelText: "Nama Dokter"),
+                            labelText: "Doctor's name"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextField(
@@ -80,9 +80,9 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            labelText: "Umur Pasien"),
+                            labelText: "Patient's Age"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextField(
@@ -91,19 +91,20 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            labelText: "Diagnosa Pasien"),
+                            labelText: "Patient's Diagnosis"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Container(
                         height: 200,
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Patient Status"),
+                            const Text("Patient Status"),
                             RadioListTile(
-                                title: Text("Berobat Jalan"),
-                                value: "Berobat Jalan",
+                                title: const Text("Outpatient Treatment"),
+                                value: "Outpatient Treatment",
                                 groupValue: patientStatus,
                                 onChanged: (value) {
                                   setState(() {
@@ -111,8 +112,8 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                                   });
                                 }),
                             RadioListTile(
-                                title: Text("Rujuk Internal"),
-                                value: "Rujuk Internal",
+                                title: const Text("Internal Referral"),
+                                value: "Internal Referral",
                                 groupValue: patientStatus,
                                 onChanged: (value) {
                                   setState(() {
@@ -120,8 +121,8 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                                   });
                                 }),
                             RadioListTile(
-                                title: Text("Rujuk Lanjut"),
-                                value: "Rujuk Lanjut",
+                                title: const Text("Further Referral"),
+                                value: "Further Referral",
                                 groupValue: patientStatus,
                                 onChanged: (value) {
                                   setState(() {
@@ -131,7 +132,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextField(
@@ -140,9 +141,9 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          labelText: "Tanggal Konsultasi",
+                          labelText: "Consultation Date",
                           suffixIcon: IconButton(
-                              icon: Icon(Icons.calendar_today),
+                              icon: const Icon(Icons.calendar_today),
                               onPressed: () {
                                 showDatePicker(
                                   context: context,
@@ -159,13 +160,13 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                               }),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Container(
                         height: 85,
                         width: 250,
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -224,7 +225,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
           : ListView(
               children: [
                 Container(
-                  padding: EdgeInsets.all(18),
+                  padding: const EdgeInsets.all(18),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -232,7 +233,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                         "Please filled up the patient ${widget.call!.callerName} history",
                         style: blackTextFont.copyWith(fontSize: 18),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: defaultMargin,
                       ),
                       TextField(
@@ -243,7 +244,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                             ),
                             labelText: "Nama Pasien"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextField(
@@ -254,7 +255,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                             ),
                             labelText: "Nama Dokter"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextField(
@@ -265,7 +266,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                             ),
                             labelText: "Umur Pasien"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextField(
@@ -276,16 +277,16 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                             ),
                             labelText: "Diagnosa Pasien"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Container(
                         height: 200,
                         child: Column(
                           children: [
-                            Text("Patient Status"),
+                            const Text("Patient Status"),
                             RadioListTile(
-                                title: Text("Berobat Jalan"),
+                                title: const Text("Berobat Jalan"),
                                 value: "Berobat Jalan",
                                 groupValue: patientStatus,
                                 onChanged: (value) {
@@ -294,7 +295,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                                   });
                                 }),
                             RadioListTile(
-                                title: Text("Rujuk Internal"),
+                                title: const Text("Rujuk Internal"),
                                 value: "Rujuk Internal",
                                 groupValue: patientStatus,
                                 onChanged: (value) {
@@ -303,7 +304,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                                   });
                                 }),
                             RadioListTile(
-                                title: Text("Rujuk Lanjut"),
+                                title: const Text("Rujuk Lanjut"),
                                 value: "Rujuk Lanjut",
                                 groupValue: patientStatus,
                                 onChanged: (value) {
@@ -314,7 +315,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextField(
@@ -325,7 +326,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                           ),
                           labelText: "Tanggal Konsultasi",
                           suffixIcon: IconButton(
-                              icon: Icon(Icons.calendar_today),
+                              icon: const Icon(Icons.calendar_today),
                               onPressed: () {
                                 showDatePicker(
                                   context: context,
@@ -342,13 +343,13 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                               }),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Container(
                         height: 85,
                         width: 250,
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
