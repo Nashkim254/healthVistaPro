@@ -19,7 +19,7 @@ class _DoctorSelectedPageListState extends State<DoctorSelectedPageList> {
     return WillPopScope(
       onWillPop: () async {
         context.read<PageBloc>().add(GoToMainPage());
-        return true;
+        return false;
       },
       child: Scaffold(
         appBar: AppBar(

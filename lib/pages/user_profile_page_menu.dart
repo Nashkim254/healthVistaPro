@@ -9,7 +9,7 @@ class UserProfilePageMenu extends StatelessWidget {
       onWillPop: () async {
         context.read<PageBloc>().add(GoToMainPage());
 
-        return true;
+        return false;
       },
       child: Scaffold(
           backgroundColor: Colors.white,
@@ -21,7 +21,7 @@ class UserProfilePageMenu extends StatelessWidget {
             //     onPressed: () {
             //       context.bloc<PageBloc>().add(GoToMainPage());
             //     }),
-            title:  Text("Profile",style: blackTextFont.copyWith(fontSize: 16)),
+            title:  Text("Profile",style: blackTextFont.copyWith(fontSize: 20)),
             centerTitle: true,
           ),
           body: Container(

@@ -28,9 +28,15 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
         return true;
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
             onPressed: () {
               context.read<PageBloc>().add(
                     GoToMainPage(bottomNavBarIndex: 0),
@@ -39,7 +45,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
           ),
           title: Text(
             "Profile",
-            style: blackTextFont.copyWith(fontSize: 20, color: Colors.white),
+            style: blackTextFont.copyWith(fontSize: 20),
           ),
           centerTitle: true,
         ),
@@ -158,6 +164,40 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
                             },
                             child: Text(
                               "Start Consultation",
+                              style: whiteTextFont.copyWith(
+                                fontSize: 16,
+                                color: accentColor7,
+                              ),
+                            ),
+                          ),
+                        );
+                      } else {
+                        return Container();
+                      }
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  BlocBuilder<UserBloc, UserState>(
+                    builder: (context, userState) {
+                      if (userState is UserLoaded) {
+                        return SizedBox(
+                          height: 45,
+                          width: 250,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              primary: mainColor,
+                            ),
+                            onPressed: () async {
+                              context.read<PageBloc>().add(GoToBookingAppointment(
+                                    patient: userState.user!,
+                                    doctor: widget.doctorUser!,
+                                  ));
+                            },
+                            child: Text(
+                              "Book Appointment",
                               style: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 color: accentColor7,

@@ -7,10 +7,10 @@ class OnlineDotIndicator extends StatelessWidget {
     return StreamBuilder<DocumentSnapshot>(
       stream: UserServices.getUserStream(uid: uid),
       builder: (context, snapshot) {
-        User? user;
+        m.User? user;
 
         if (snapshot.hasData && snapshot.data!.data() != null) {
-          user = User.fromMap(snapshot.data!.data());
+          user = m.User.fromMap(snapshot.data!.data());
         }
 
         return Container(

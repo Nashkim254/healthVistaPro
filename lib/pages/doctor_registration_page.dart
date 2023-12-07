@@ -36,7 +36,7 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
     return WillPopScope(
       onWillPop: () async {
         context.read<PageBloc>().add(GoToRegistrationPage());
-        return true;
+        return false;
       },
       child: Scaffold(
         backgroundColor: accentColor5.withOpacity(0.1),

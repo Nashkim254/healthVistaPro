@@ -17,8 +17,8 @@ class _DoctorRatingPageState extends State<DoctorRatingPage> {
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("How was the consultation with dr. ${widget.call!.receiverName} ?"),
-                  SizedBox(
+                  Text("How was the consultation with Dr. ${widget.call!.receiverName} ?"),
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
@@ -28,8 +28,8 @@ class _DoctorRatingPageState extends State<DoctorRatingPage> {
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 5,
-                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                      itemBuilder: (context, _) => Icon(
+                      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) => const Icon(
                         Icons.star,
                         color: Colors.amber,
                       ),
@@ -40,7 +40,7 @@ class _DoctorRatingPageState extends State<DoctorRatingPage> {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
@@ -61,8 +61,8 @@ class _DoctorRatingPageState extends State<DoctorRatingPage> {
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("How was the consultation with dr. ${widget.call!.callerName} ?"),
-                  SizedBox(
+                  Text("How was the consultation with Dr. ${widget.call!.callerName} ?"),
+                  const SizedBox(
                     height: 10,
                   ),
                    Container(
@@ -72,8 +72,8 @@ class _DoctorRatingPageState extends State<DoctorRatingPage> {
                       direction: Axis.horizontal,
                       allowHalfRating: true,
                       itemCount: 5,
-                      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                      itemBuilder: (context, _) => Icon(
+                      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                      itemBuilder: (context, _) => const Icon(
                         Icons.star,
                         color: Colors.amber,
                       ),
@@ -84,7 +84,7 @@ class _DoctorRatingPageState extends State<DoctorRatingPage> {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(

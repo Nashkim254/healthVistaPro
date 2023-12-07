@@ -28,5 +28,7 @@ class PageBloc extends Bloc<PageEvent, PageState> {
     on<GoToHistoryPatientPage>((event, emit) => emit(OnHistoryPatientPage(event.call)));
     on<GoToDoctorRatingPage>((event, emit) => emit(OnDoctorRatingPage(event.call)));
     on<GoToPatientListMedicalRecordPage>((event, emit) => emit(OnPatientListMedicalRecordPage(event.user)));
+    on<GoToBookingAppointment>((event, emit) => emit(OnBookAppointmentPage(event.patient, event.doctor)));
+    on<GoToMyAppointments>((event, emit) => emit(OnMyAppointments()));
   }
 }

@@ -12,7 +12,7 @@ class LastMessageContainer extends StatelessWidget {
         if (snapshot.hasData) {
           var docList = snapshot.data!.docs;
           if (docList.isNotEmpty) {
-            Message message = Message.fromMap(docList.last.data()! as Map<String, dynamic>);
+            m.Message message = m.Message.fromMap(docList.last.data()! as Map<String, dynamic>);
             String time =
                 DateFormat.jm().add_MMMd().format(message.timeStamp!.toDate());
             return Container(

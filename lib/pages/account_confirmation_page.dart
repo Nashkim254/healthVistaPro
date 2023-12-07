@@ -18,7 +18,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
         (widget.registrationUserData!.status == "Doctor")
             ? context.read<PageBloc>().add(GoToRegistrationDoctorPage(widget.registrationUserData!))
             : context.read<PageBloc>().add(GoToRegistrationUserPage(widget.registrationUserData!));
-        return true;
+        return false;
       },
       child: Scaffold(
         backgroundColor: accentColor1.withOpacity(0.8),

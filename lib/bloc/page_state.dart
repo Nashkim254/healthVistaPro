@@ -22,7 +22,7 @@ class OnWelcomePage extends PageState {
 class OnMainPage extends PageState {
   final int bottomNavBarindex;
 
-  OnMainPage({this.bottomNavBarindex = 0});
+  const OnMainPage({this.bottomNavBarindex = 0});
   @override
   List<Object> get props => [bottomNavBarindex];
 }
@@ -34,7 +34,7 @@ class OnRegistrationPage extends PageState {
 
 class OnRegistrationUserPage extends PageState {
   final RegistrationUserData registrationUserData;
-  OnRegistrationUserPage(this.registrationUserData);
+  const OnRegistrationUserPage(this.registrationUserData);
 
   @override
   List<Object> get props => [];
@@ -42,7 +42,7 @@ class OnRegistrationUserPage extends PageState {
 
 class OnRegistrationDoctorPage extends PageState {
   final RegistrationUserData registrationUserData;
-  OnRegistrationDoctorPage(this.registrationUserData);
+  const OnRegistrationDoctorPage(this.registrationUserData);
 
   @override
   List<Object> get props => [];
@@ -50,13 +50,24 @@ class OnRegistrationDoctorPage extends PageState {
 
 class OnAccountConfirmationPage extends PageState {
   final RegistrationUserData registrationUserData;
-  OnAccountConfirmationPage(this.registrationUserData);
+  const OnAccountConfirmationPage(this.registrationUserData);
 
   @override
   List<Object> get props => [];
 }
 
 class OnUserProfilePage extends PageState {
+  @override
+  List<Object> get props => [];
+}
+class OnBookAppointmentPage extends PageState {
+   final User patient;
+   final User doctor;
+  const OnBookAppointmentPage(this.patient, this.doctor);
+  @override
+  List<Object> get props => [patient, doctor];
+}
+class OnMyAppointments extends PageState {
   @override
   List<Object> get props => [];
 }
@@ -69,14 +80,14 @@ class OnUserProfilePageMenu extends PageState {
 class OnEditProfilePage extends PageState {
   final User user;
 
-  OnEditProfilePage(this.user);
+  const OnEditProfilePage(this.user);
   @override
   List<Object> get props => [user];
 }
 
 class OnDoctorSelectedPage extends PageState {
   final DoctorType doctorType;
-  OnDoctorSelectedPage(this.doctorType);
+  const OnDoctorSelectedPage(this.doctorType);
   @override
   List<Object> get props => [doctorType];
 }
@@ -84,7 +95,7 @@ class OnDoctorSelectedPage extends PageState {
 class OnChatScreenPage extends PageState {
   final User receiver;
   final User sender;
-  OnChatScreenPage(this.receiver, this.sender);
+  const OnChatScreenPage(this.receiver, this.sender);
 
   @override
   List<Object> get props => [receiver, sender];
@@ -94,7 +105,7 @@ class OnCallScreenPage extends PageState {
   final Call call;
   final User sender;
   final User receiver;
-  OnCallScreenPage(this.call, this.sender, this.receiver);
+  const OnCallScreenPage(this.call, this.sender, this.receiver);
   @override
   List<Object> get props => [call, sender, receiver];
 }
@@ -106,28 +117,28 @@ class OnChatListScreenPage extends PageState {
 
 class OnSeeDoctorPage extends PageState {
   final User user;
-  OnSeeDoctorPage(this.user);
+  const OnSeeDoctorPage(this.user);
   @override
   List<Object> get props => [user];
 }
 
 class OnHistoryPatientPage extends PageState {
   final Call call;
-  OnHistoryPatientPage(this.call);
+  const OnHistoryPatientPage(this.call);
   @override
   List<Object> get props => [call];
 }
 
 class OnDoctorRatingPage extends PageState {
   final Call call;
-  OnDoctorRatingPage(this.call);
+  const OnDoctorRatingPage(this.call);
   @override
   List<Object> get props => [call];
 }
 
 class OnPatientListMedicalRecordPage extends PageState {
   final User user;
-  OnPatientListMedicalRecordPage(this.user);
+  const OnPatientListMedicalRecordPage(this.user);
   @override
   List<Object> get props => [user];
 }

@@ -42,16 +42,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ))
             : context.read<PageBloc>().add(GoToUserProfilePage());
 
-        return true;
+        return false;
       },
       child: SafeArea(
         child: Scaffold(
-           backgroundColor: Colors.white,
+          backgroundColor: Colors.white,
           appBar: AppBar(
             elevation: 0,
-             backgroundColor: Colors.white,
+            backgroundColor: Colors.white,
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back,color: Colors.black,),
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              ),
               onPressed: () {
                 (widget.user!.status == "Doctor")
                     ? context.read<PageBloc>().add(GoToMainPage(
@@ -60,7 +63,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     : context.read<PageBloc>().add(GoToUserProfilePage());
               },
             ),
-            title:  Text("Edit Profile",style: blackTextFont.copyWith(fontSize: 16),),
+            title: Text(
+              "Edit Profile",
+              style: blackTextFont.copyWith(fontSize: 16),
+            ),
             centerTitle: true,
           ),
           body: (widget.user!.status == "Patient")
@@ -101,7 +107,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                           profileImageFile = await getImage();
 
                                           if (profileImageFile != null) {
-                                            profilePath = basename(profileImageFile!.path);
+                                            profilePath = path.basename(profileImageFile!.path);
                                           }
                                         } else {
                                           profileImageFile = null;
@@ -267,7 +273,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       onSurface: accentColor3,
                                       textStyle: whiteTextFont.copyWith(
                                         fontSize: 16,
-                                        color: (isDataEdited) ? accentColor7 : const Color(0xFFBEBEBE),
+                                        color:
+                                            (isDataEdited) ? accentColor7 : const Color(0xFFBEBEBE),
                                       ),
                                     ),
                                     onPressed: (isDataEdited)
@@ -291,7 +298,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       "Update my profile",
                                       style: whiteTextFont.copyWith(
                                         fontSize: 16,
-                                        color: (isDataEdited) ? accentColor7 : const Color(0xFFBEBEBE),
+                                        color:
+                                            (isDataEdited) ? accentColor7 : const Color(0xFFBEBEBE),
                                       ),
                                     ),
                                   ),
@@ -340,7 +348,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                           profileImageFile = await getImage();
 
                                           if (profileImageFile != null) {
-                                            profilePath = basename(profileImageFile!.path);
+                                            profilePath = path.basename(profileImageFile!.path);
                                           }
                                         } else {
                                           profileImageFile = null;
@@ -548,7 +556,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       onSurface: accentColor3,
                                       textStyle: whiteTextFont.copyWith(
                                         fontSize: 16,
-                                        color: (isDataEdited) ? accentColor7 : const Color(0xFFBEBEBE),
+                                        color:
+                                            (isDataEdited) ? accentColor7 : const Color(0xFFBEBEBE),
                                       ),
                                     ),
                                     onPressed: (isDataEdited)
@@ -574,7 +583,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       "Update my profile",
                                       style: whiteTextFont.copyWith(
                                         fontSize: 16,
-                                        color: (isDataEdited) ? accentColor7 : const Color(0xFFBEBEBE),
+                                        color:
+                                            (isDataEdited) ? accentColor7 : const Color(0xFFBEBEBE),
                                       ),
                                     ),
                                   ),

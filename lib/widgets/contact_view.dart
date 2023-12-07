@@ -1,17 +1,17 @@
 part of 'widgets.dart';
 
 class ContactView extends StatelessWidget {
-  final Contact? contact;
+  final m.Contact? contact;
 
   ContactView(this.contact);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<User>(
+    return FutureBuilder<m.User>(
       future: UserServices.getUser(contact!.id!),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          User? user = snapshot.data;
+          m.User? user = snapshot.data;
           return ViewLayout(
             contact: user!,
           );
@@ -24,7 +24,7 @@ class ContactView extends StatelessWidget {
 }
 
 class ViewLayout extends StatelessWidget {
-  final User contact;
+  final m.User contact;
   ViewLayout({required this.contact});
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class ViewLayout extends StatelessWidget {
         if (userState is UserLoaded) {
           // TODO : sort new messages up
           return Container(
-            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+            padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
             child: CustomChatTile(
               mini: false,
               onTap: () {
@@ -41,7 +41,7 @@ class ViewLayout extends StatelessWidget {
                     receiver: contact, sender: userState.user!));
               },
               leading: Container(
-                constraints: BoxConstraints(maxHeight: 60, maxWidth: 60),
+                constraints: const BoxConstraints(maxHeight: 60, maxWidth: 60),
                 child: Stack(
                   children: [
                     CachedImage(

@@ -123,3 +123,15 @@ class GoToPatientListMedicalRecordPage extends PageEvent {
   @override
   List<Object> get props => [user];
 }
+
+class GoToBookingAppointment extends PageEvent {
+  final User patient;
+  final User doctor;
+  GoToBookingAppointment({required this.patient, required this.doctor});
+  @override
+  List<Object> get props => [patient, doctor];
+}
+class GoToMyAppointments extends PageEvent {
+  @override
+  List<Object> get props => [];
+}

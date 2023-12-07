@@ -118,7 +118,7 @@ class _CallScreenState extends State<CallScreen> {
     await _engine.startPreview();
 
     await _engine.joinChannel(
-      token: token,
+      token: TOKEN,
       channelId: channel,
       uid: 0,
       options: const ChannelMediaOptions(),

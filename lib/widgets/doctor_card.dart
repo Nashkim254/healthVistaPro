@@ -1,7 +1,7 @@
 part of 'widgets.dart';
 
 class DoctorCard extends StatelessWidget {
-  final User? doctorType;
+  final m.User? doctorType;
   final VoidCallback onTap;
   DoctorCard({this.doctorType, required this.onTap});
 

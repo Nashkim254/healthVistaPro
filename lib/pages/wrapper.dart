@@ -9,9 +9,9 @@ class Wrapper extends StatelessWidget {
     // check user login status
     // if user not login
     if (firebaseUser == null) {
-        prevPageEvent = GoToWelcomePage();
-        context.read<PageBloc>().add(prevPageEvent!);
-        prevPageEvent = GoToWelcomePage();
+      prevPageEvent = GoToWelcomePage();
+      context.read<PageBloc>().add(prevPageEvent!);
+      prevPageEvent = GoToWelcomePage();
     } else {
       if (!(prevPageEvent is GoToMainPage)) {
         //before go to main page, load user from firebase
@@ -49,12 +49,12 @@ class Wrapper extends StatelessWidget {
                                                       receiver: state.receiver,
                                                       sender: state.sender,
                                                     )
-                                                  : (state is OnCallScreenPage)
-                                                      ? CallScreen(
-                                                          call: state.call,
-                                                          caller: state.sender,
-                                                          receiver: state.receiver,
-                                                        )
+                                                  // : (state is OnCallScreenPage)
+                                                  //     ? CallScreen(
+                                                  //         call: state.call,
+                                                  //         user: state.sender,
+                                                  //         receiver: state.receiver,
+                                                  //       )
                                                       : (state is OnChatListScreenPage)
                                                           ? ChatListScreen()
                                                           : (state is OnSeeDoctorPage)
@@ -73,11 +73,22 @@ class Wrapper extends StatelessWidget {
                                                                           ? PatientListMedicalRecordPage(
                                                                               user: state.user,
                                                                             )
-                                                                          : MainPage(
-                                                                              bottomNavBarIndex: (state
-                                                                                      as OnMainPage)
-                                                                                  .bottomNavBarindex,
-                                                                            ),
+                                                                          : (state
+                                                                                  is OnBookAppointmentPage)
+                                                                              ? BookingScreen(
+                                                                                  doctor:
+                                                                                      state.doctor,
+                                                                                  patient:
+                                                                                      state.patient,
+                                                                                )
+                                                                              : (state
+                                                                                      is OnMyAppointments)
+                                                                                  ? MyAppointments()
+                                                                                  : MainPage(
+                                                                                      bottomNavBarIndex:
+                                                                                          (state as OnMainPage)
+                                                                                              .bottomNavBarindex,
+                                                                                    ),
     );
   }
 }
