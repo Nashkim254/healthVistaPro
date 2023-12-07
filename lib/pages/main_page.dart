@@ -114,7 +114,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                           SafeArea(child: Container(color: mainColor)),
                           PageView(
                             controller: pageController,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             onPageChanged: (index) {
                               setState(() {
                                 bottomNavbarIndex = index;
@@ -125,6 +125,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                               ChatListScreen(),
                               // HospitalPage(),
                               UserProfilePageMenu(),
+                              MyAppointments(),
                             ],
                           ),
                         ],
@@ -147,30 +148,39 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                     BottomNavyBarItem(
                         activeColor: mainColor,
                         inactiveColor: accentColor7,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.perm_contact_calendar,
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: Text("Homepage")),
+                        title: const Text("Homepage")),
                     BottomNavyBarItem(
                         activeColor: mainColor,
                         inactiveColor: accentColor7,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.chat,
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: Text("Messages")),
+                        title: const Text("Messages")),
                     BottomNavyBarItem(
                         activeColor: mainColor,
                         inactiveColor: accentColor7,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.person_pin,
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: Text("Profile")),
+                        title: const Text("Profile")),
+                         BottomNavyBarItem(
+                        activeColor: mainColor,
+                        inactiveColor: accentColor7,
+                        icon: const Icon(
+                          Icons.notes,
+                          // size: 28,
+                          // color: accentColor2,
+                        ),
+                        title: const Text("Appointments")),
                   ],
                 ),
               );
@@ -199,7 +209,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                             SafeArea(child: Container(color: mainColor)),
                             PageView(
                               controller: pageController,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               onPageChanged: (index) {
                                 setState(() {
                                   bottomNavbarIndex = index;
@@ -241,32 +251,32 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                       BottomNavyBarItem(
                         activeColor: mainColor,
                         inactiveColor: accentColor7,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.chat,
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: Text("Messages"),
+                        title: const Text("Messages"),
                       ),
                       BottomNavyBarItem(
                         activeColor: mainColor,
                         inactiveColor: accentColor7,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.format_list_bulleted,
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: Text("My Patient List Medical Record"),
+                        title: const Text("My Patient List Medical Record"),
                       ),
                       BottomNavyBarItem(
                         activeColor: mainColor,
                         inactiveColor: accentColor7,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.person_pin,
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: Text("Profile"),
+                        title: const Text("Profile"),
                       ),
                     ],
                   ),

@@ -141,59 +141,104 @@ class _CallScreenState extends State<CallScreen> {
   // Create UI with local view and remote view
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
+    return WillPopScope(
+      onWillPop: () async {
+           _engine.leaveChannel();
+              _engine.release();
+              CallServices.endCall();
+              m.User receiver = await UserServices.getUser(widget.call.receiverId!);
+              m.User sender = await UserServices.getUser(widget.call.callerId!);
+              elapsed = showTimeCallDuration();
+              saveCall(receiver, sender);
+              CallServices.endCall(call: widget.call);
+        context.read<PageBloc>().add(GoToMainPage(
+              bottomNavBarIndex: 1,
+            ));
+
+        return false;
+      },
+      child: Scaffold(
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () async {
+              _engine.leaveChannel();
+              _engine.release();
+              CallServices.endCall();
+              m.User receiver = await UserServices.getUser(widget.call.receiverId!);
+              m.User sender = await UserServices.getUser(widget.call.callerId!);
+              elapsed = showTimeCallDuration();
+              saveCall(receiver, sender);
+              CallServices.endCall(call: widget.call);
+              context.read<PageBloc>().add(GoToMainPage(
+                    bottomNavBarIndex: 1,
+                  ));
+            },
           ),
-          onPressed: () {
-            _engine.leaveChannel();
-            _engine.release();
-          },
-        ),
-        elevation: 0,
-        title: Text(
-          'Video Call',
-          style: blackTextFont.copyWith(fontSize: 16),
-        ),
-      ),
-      body: Stack(
-        children: [
-          Center(
-            child: _remoteVideo(),
+          elevation: 0,
+          title: Text(
+            'Video Call',
+            style: blackTextFont.copyWith(fontSize: 16),
           ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: 100,
-              height: 150,
-              child: Center(
-                child: _localUserJoined
-                    ? AgoraVideoView(
-                        controller: VideoViewController(
-                          rtcEngine: _engine,
-                          canvas: const VideoCanvas(uid: 0),
-                        ),
-                      )
-                    : const CircularProgressIndicator(),
+        ),
+        body: Stack(
+          children: [
+            Center(
+              child: _remoteVideo(),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: SizedBox(
+                width: 100,
+                height: 150,
+                child: Center(
+                  child: _localUserJoined
+                      ? AgoraVideoView(
+                          controller: VideoViewController(
+                            rtcEngine: _engine,
+                            canvas: const VideoCanvas(uid: 0),
+                          ),
+                        )
+                      : const CircularProgressIndicator(),
+                ),
               ),
             ),
-          ),
-        ],
+            Positioned(
+              bottom: 20,
+              left: 0,
+              right: 0,
+              child: FloatingActionButton(
+                backgroundColor: Colors.red,
+                onPressed: () async {
+                  _engine.leaveChannel();
+                  _engine.release();
+                  CallServices.endCall();
+                  m.User receiver = await UserServices.getUser(widget.call.receiverId!);
+                  m.User sender = await UserServices.getUser(widget.call.callerId!);
+                  elapsed = showTimeCallDuration();
+                  saveCall(receiver, sender);
+                  CallServices.endCall(call: widget.call);
+                   context.read<PageBloc>().add(GoToMainPage(
+                    bottomNavBarIndex: 1,
+                  ));
+                },
+                child: const Icon(
+                  Icons.call_end,
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
-//  m.User receiver =
-//                   await UserServices.getUser(widget.call.receiverId!);
-//               m.User sender = await UserServices.getUser(widget.call.callerId!);
-//               elapsed = showTimeCallDuration();
-//               saveCall(receiver, sender);
-//               CallServices.endCall(call: widget.call);
   // Display remote user's video
   Widget _remoteVideo() {
     if (_remoteUid != null) {

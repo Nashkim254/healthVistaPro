@@ -49,12 +49,12 @@ class Wrapper extends StatelessWidget {
                                                       receiver: state.receiver,
                                                       sender: state.sender,
                                                     )
-                                                  // : (state is OnCallScreenPage)
-                                                  //     ? CallScreen(
-                                                  //         call: state.call,
-                                                  //         user: state.sender,
-                                                  //         receiver: state.receiver,
-                                                  //       )
+                                                  : (state is OnCallScreenPage)
+                                                      ? CallScreen(
+                                                          call: state.call,
+                                                          caller: state.sender,
+                                                          receiver: state.receiver,
+                                                        )
                                                       : (state is OnChatListScreenPage)
                                                           ? ChatListScreen()
                                                           : (state is OnSeeDoctorPage)

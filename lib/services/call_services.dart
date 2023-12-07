@@ -24,12 +24,7 @@ class CallServices {
     }
   }
 
-  // static Future<void> saveCallLog({Call call}) async {
-  //   return await _callLogCollection
-  //       .document(call.callerId)
-  //       .collection(call.receiverId)
-  //       .add({'': call.ca});
-  // }
+
 
   static Future<bool> endCall({m.Call? call}) async {
     try {

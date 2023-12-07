@@ -106,7 +106,7 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
         },
       );
 
-      return true;
+      return false;
     }, child: BlocBuilder<UserBloc, UserState>(builder: (context, userState) {
       return PickupLayout(
         scaffold: Scaffold(
@@ -143,7 +143,7 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
                                 Navigator.pop(context);
                                 String image = "";
                                 widget.receiver!.profileImage == "no_pic"
-                                    ? image = "https://placehold.co/600x400"
+                                    ? image = "https://picsum.photos/250?image=9"
                                     : image = widget.receiver!.profileImage!;
                                 if (widget.sender!.status == "Patient") {
                                   showDialog<String>(

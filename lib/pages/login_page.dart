@@ -286,24 +286,26 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 12,
                   ),
-                  Center(
-                    child: _isAuthenticating
-                        ? const SpinKitCircle(
-                            color: accentColor2,
-                          )
-                        : SizedBox(
-                            height: 100,
-                            width: 200,
-                            child: InkWell(
-                                onTap: () async {
-                                  if (_supportState == _SupportState.supported &&
-                                      SharedPrefs.getEmail() != null) {
-                                    await _authenticateWithBiometrics();
-                                  }
-                                },
-                                child: Image.asset("images/fingerprint.png")),
-                          ),
-                  ),
+                  SharedPrefs.getEmail() == null
+                      ? const SizedBox()
+                      : Center(
+                          child: _isAuthenticating
+                              ? const SpinKitCircle(
+                                  color: accentColor2,
+                                )
+                              : SizedBox(
+                                  height: 100,
+                                  width: 200,
+                                  child: InkWell(
+                                      onTap: () async {
+                                        if (_supportState == _SupportState.supported &&
+                                            SharedPrefs.getEmail() != null) {
+                                          await _authenticateWithBiometrics();
+                                        }
+                                      },
+                                      child: Image.asset("images/fingerprint.png")),
+                                ),
+                        ),
                   Row(
                     children: [
                       Text(
