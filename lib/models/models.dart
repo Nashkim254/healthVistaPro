@@ -12,3 +12,4 @@ part 'call.dart';
 part 'contact.dart';
 part 'history_patient.dart';
 part 'patientMedRecord.dart';
+part 'remind_model.dart';

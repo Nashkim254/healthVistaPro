@@ -13,6 +13,7 @@ import 'package:health_vista_pro/pages/pages.dart';
 import 'package:health_vista_pro/services/services.dart';
 import 'package:health_vista_pro/shared/shared.dart';
 
+
 part 'rounded_btn.dart';
 part 'doctor_card.dart';
 // part 'custom_app_bar.dart';
@@ -24,3 +25,6 @@ part 'contact_view.dart';
 part 'last_message_container.dart';
 part 'online_dot_indicator.dart';
 part 'my_appointments_list.dart';
+part 'input_field.dart';
+part 'button.dart';
+part 'remind_tile.dart';

@@ -10,6 +10,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -22,7 +23,7 @@ import 'package:local_auth/local_auth.dart';
 import 'package:lottie/lottie.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
-
+import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:health_vista_pro/bloc/blocs.dart';
 import 'package:health_vista_pro/models/models.dart' as m;
 import 'package:health_vista_pro/provider/providers.dart';
@@ -31,7 +32,8 @@ import 'package:health_vista_pro/shared/shared.dart';
 import 'package:health_vista_pro/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dash_chat/dash_chat.dart';
+import 'package:dash_chat_2/dash_chat_2.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'package:path/path.dart' as path;
 import 'package:rating_dialog/rating_dialog.dart';
@@ -44,6 +46,8 @@ part 'user_registration_page.dart';
 part 'doctor_page.dart';
 part 'account_confirmation_page.dart';
 part 'hospital_page.dart';
+part 'home_reminder.dart';
+part 'add_reminder.dart';
 part 'user_profile_page.dart';
 part 'edit_profile.dart';
 part 'doctor_selected_page_list.dart';
@@ -63,3 +67,4 @@ part 'doctor_rating_page.dart';
 part 'patient_list_medical_record_page.dart';
 part 'booking_appointment.dart';
 part 'my_appointments.dart';
+part 'notified_page.dart';

@@ -4,9 +4,7 @@ class UserProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // set Theme
-    context
-        .read<ThemeBloc>()
-        .add(ChangeTheme(ThemeData().copyWith(primaryColor: mainColor)));
+    context.read<ThemeBloc>().add(ChangeTheme(ThemeData().copyWith(primaryColor: mainColor)));
     return WillPopScope(
       onWillPop: () async {
         context.read<PageBloc>().add(GoToMainPage());
@@ -16,14 +14,14 @@ class UserProfilePage extends StatelessWidget {
       child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-             backgroundColor: Colors.white,
-             elevation: 0,
+            backgroundColor: Colors.white,
+            elevation: 0,
             leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   context.read<PageBloc>().add(GoToMainPage());
                 }),
-            title:  Text("Profile",style: blackTextFont.copyWith(fontSize: 16)),
+            title: Text("Profile", style: blackTextFont.copyWith(fontSize: 16)),
             centerTitle: true,
           ),
           body: Container(
@@ -57,18 +55,13 @@ class UserProfilePage extends StatelessWidget {
                                   // height: 120,
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      image: 
-                                      (user.profileImage != "no_pic")
-                                              ?
-                                      DecorationImage(
-                                          image:  NetworkImage(user.profileImage!),
-                                          fit: BoxFit.cover)
-                                          :
-                                             const DecorationImage(
-                                          image:   AssetImage(
-                                                  "images/user_default.png"),
-                                          fit: BoxFit.cover)
-                                          ),
+                                      image: (user.profileImage != "no_pic")
+                                          ? DecorationImage(
+                                              image: NetworkImage(user.profileImage!),
+                                              fit: BoxFit.cover)
+                                          : const DecorationImage(
+                                              image: AssetImage("images/user_default.png"),
+                                              fit: BoxFit.cover)),
                                 ),
                               ],
                             ),
@@ -77,8 +70,8 @@ class UserProfilePage extends StatelessWidget {
                             userState.user!.fullName!,
                             maxLines: 2,
                             textAlign: TextAlign.center,
-                            style: blackTextFont.copyWith(
-                                fontSize: 24, fontWeight: FontWeight.w700),
+                            style:
+                                blackTextFont.copyWith(fontSize: 24, fontWeight: FontWeight.w700),
                           ),
                           Text(
                             userState.user!.job!,
@@ -99,8 +92,9 @@ class UserProfilePage extends StatelessWidget {
                       builder: (_, userState) => UserProfileMenuListTile(
                           userProfileMenuTitle: "Edit Profile",
                           onTap: () {
-                            context.read<PageBloc>().add(GoToEditProfilePage(
-                                (userState as UserLoaded).user!));
+                            context
+                                .read<PageBloc>()
+                                .add(GoToEditProfilePage((userState as UserLoaded).user!));
                           },
                           leadingIcon: const Icon(
                             Icons.person,
@@ -116,8 +110,7 @@ class UserProfilePage extends StatelessWidget {
                               context.read<UserBloc>().add(UserSignOut());
                               AuthServices.signOut();
                               UserServices.setUserState(
-                                  userId: userState.user!.id!,
-                                  userStates: UserStates.Offline);
+                                  userId: userState.user!.id!, userStates: UserStates.Offline);
                               context.read<PageBloc>().add(GoToWelcomePage());
                             },
                             leadingIcon: const Icon(
@@ -128,17 +121,6 @@ class UserProfilePage extends StatelessWidget {
                         return const SizedBox();
                       }
                     }),
-                    // UserProfileMenuListTile(
-                    //     userProfileMenuTitle: "Sign Out",
-                    //     onTap: () {
-                    //       context.bloc<UserBloc>().add(UserSignOut());
-                    //       AuthServices.signOut();
-                    //       context.bloc<PageBloc>().add(GoToWelcomePage());
-                    //     },
-                    //     leadingIcon: Icon(
-                    //       Icons.exit_to_app,
-                    //       color: accentColor2,
-                    //     )),
                     const DashDivider(),
                   ],
                 )
@@ -158,8 +140,7 @@ class DashDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // margin: EdgeInsets.only(top: 10, bottom: 16),
-      child: generateDashedDivider(
-          MediaQuery.of(context).size.width - 2 * defaultMargin),
+      child: generateDashedDivider(MediaQuery.of(context).size.width - 2 * defaultMargin),
     );
   }
 }
@@ -170,9 +151,7 @@ class UserProfileMenuListTile extends StatelessWidget {
   final Icon leadingIcon;
 
   UserProfileMenuListTile(
-      {required this.userProfileMenuTitle,
-      required this.onTap,
-      required this.leadingIcon});
+      {required this.userProfileMenuTitle, required this.onTap, required this.leadingIcon});
 
   @override
   Widget build(BuildContext context) {

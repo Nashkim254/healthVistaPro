@@ -14,6 +14,7 @@ void main() async{
 await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
 );
+  await DbHelper.initDb();
   await SharedPrefs.init();
   runApp(MyApp());
 }
@@ -52,6 +53,7 @@ class _MyAppState extends State<MyApp> {
               ChangeNotifierProvider(create: (_) => UserProvider()),
             ],
             child: MaterialApp(
+              navigatorKey: navkey,
               debugShowCheckedModeBanner: false,
               theme: themeState.themeData,
               home: Wrapper(),

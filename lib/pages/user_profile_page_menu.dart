@@ -126,6 +126,16 @@ class UserProfilePageMenu extends StatelessWidget {
                       }
                     }),
                     const DashDivider(),
+                      UserProfileMenuListTile(
+                        userProfileMenuTitle: "Reminders",
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (_)=> const ReminderHomePage()));
+                        },
+                        leadingIcon: const Icon(
+                          Icons.exit_to_app,
+                          color: accentColor2,
+                        )),
+                    const DashDivider(),
                   ],
                 )
               ],

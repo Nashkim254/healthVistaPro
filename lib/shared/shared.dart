@@ -21,3 +21,4 @@ part 'call_utils.dart';
 part 'agora_config.dart';
 part 'permission.dart';
 part 'user_state.dart';
+part 'colors.dart';

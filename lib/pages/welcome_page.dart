@@ -14,7 +14,7 @@ class _WelcomePageState extends State<WelcomePage> {
         children: [
           Container(
             child: const Image(
-              image: AssetImage("images/afric.jpeg"),
+              image: AssetImage("images/afric.png"),
               fit: BoxFit.cover,
             ),
           ),
