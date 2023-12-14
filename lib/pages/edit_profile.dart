@@ -209,9 +209,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 shape:
-                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                                primary: Colors.red[400],
-                                onSurface: const Color(0xFFE4E4E4),
+                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)), backgroundColor: Colors.red[400], disabledForegroundColor: const Color(0xFFE4E4E4).withOpacity(0.38), disabledBackgroundColor: const Color(0xFFE4E4E4).withOpacity(0.12),
                                 textStyle: whiteTextFont.copyWith(
                                   fontSize: 16,
                                   color: (isUpdating) ? const Color(0xFFBEBEBE) : Colors.white,
@@ -268,9 +266,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8)),
-                                      primary: mainColor,
-                                      onSurface: accentColor3,
+                                          borderRadius: BorderRadius.circular(8)), backgroundColor: mainColor, disabledForegroundColor: accentColor3.withOpacity(0.38), disabledBackgroundColor: accentColor3.withOpacity(0.12),
                                       textStyle: whiteTextFont.copyWith(
                                         fontSize: 16,
                                         color:
@@ -492,9 +488,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 shape:
-                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                                primary: Colors.red[400],
-                                onSurface: const Color(0xFFE4E4E4),
+                                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)), backgroundColor: Colors.red[400], disabledForegroundColor: const Color(0xFFE4E4E4).withOpacity(0.38), disabledBackgroundColor: const Color(0xFFE4E4E4).withOpacity(0.12),
                                 textStyle: whiteTextFont.copyWith(
                                   fontSize: 16,
                                   color: (isUpdating) ? const Color(0xFFBEBEBE) : Colors.white,
@@ -551,9 +545,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(8)),
-                                      primary: mainColor,
-                                      onSurface: accentColor3,
+                                          borderRadius: BorderRadius.circular(8)), backgroundColor: mainColor, disabledForegroundColor: accentColor3.withOpacity(0.38), disabledBackgroundColor: accentColor3.withOpacity(0.12),
                                       textStyle: whiteTextFont.copyWith(
                                         fontSize: 16,
                                         color:

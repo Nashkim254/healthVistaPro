@@ -180,9 +180,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                           padding: const EdgeInsets.all(10),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                              primary: mainColor,
-                              onSurface: accentColor3,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)), backgroundColor: mainColor, disabledForegroundColor: accentColor3.withOpacity(0.38), disabledBackgroundColor: accentColor3.withOpacity(0.12),
                               textStyle: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 color: Colors.white,
@@ -363,9 +361,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                           padding: const EdgeInsets.all(10),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                              primary: mainColor,
-                              onSurface: accentColor3,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)), backgroundColor: mainColor, disabledForegroundColor: accentColor3.withOpacity(0.38), disabledBackgroundColor: accentColor3.withOpacity(0.12),
                               textStyle: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 color: Colors.white,

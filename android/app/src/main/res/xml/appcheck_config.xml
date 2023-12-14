@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <firebase-app-check>
+        <provider name="debug">
+            <settings>
+                <setting name="token"
+                    value="E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"/>
+            </settings>
+        </provider>
+        <!-- Add additional providers here if needed -->
+    </firebase-app-check>
+</config>

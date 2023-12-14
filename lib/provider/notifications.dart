@@ -13,6 +13,7 @@ Future<int> addRemind({Remind? remind}) async {
 
 void getReminder() async {
   List<Map<String, dynamic>> reminder = await DbHelper.query();
+  remindList.clear();
   remindList.addAll(reminder.map((data) => Remind.fromJson(data)).toList());
 }
 
@@ -39,8 +40,8 @@ class DbHelper {
 
     try {
       // Get a location using getDatabasesPath
-var databasesPath = await getDatabasesPath();
-String path = join(databasesPath, 'reminder.db');
+      var databasesPath = await getDatabasesPath();
+      String path = join(databasesPath, 'reminder.db');
       _db = await openDatabase(
         path,
         version: _version,
@@ -65,10 +66,10 @@ String path = join(databasesPath, 'reminder.db');
 
   static Future<int> insert(Remind? remind) async {
     print("insert function called");
-   
+
     int id = DateTime.now().toString().hashCode;
     remind!.id = id;
-     print("insert remind ${remind.toJson()}");
+    print("insert remind ${remind.toJson()}");
     return await _db?.insert(_tableName, remind.toJson()) ?? 1;
   }
 

@@ -153,8 +153,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
-                              ),
-                              primary: mainColor,
+                              ), backgroundColor: mainColor,
                             ),
                             onPressed: () async {
                               context.read<PageBloc>().add(GoToChatScreenPage(
@@ -187,8 +186,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
-                              ),
-                              primary: mainColor,
+                              ), backgroundColor: mainColor,
                             ),
                             onPressed: () async {
                               context.read<PageBloc>().add(GoToBookingAppointment(

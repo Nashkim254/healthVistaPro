@@ -55,8 +55,7 @@ class RegistrationPage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
-                      ),
-                      primary: mainColor,
+                      ), backgroundColor: mainColor,
                     ),
                     onPressed: () {
                       context
@@ -77,8 +76,7 @@ class RegistrationPage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
-                      ),
-                      primary: accentColor2,
+                      ), backgroundColor: accentColor2,
                     ),
                     onPressed: () {
                       context

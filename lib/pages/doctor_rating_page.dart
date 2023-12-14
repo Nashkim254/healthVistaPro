@@ -45,7 +45,7 @@ class _DoctorRatingPageState extends State<DoctorRatingPage> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: mainColor,
+                      backgroundColor: mainColor,
                     ),
                     onPressed: () {
                       UserServices.setDoctorRating(widget.call!.receiverId!, _rating!.toDouble());
@@ -89,7 +89,7 @@ class _DoctorRatingPageState extends State<DoctorRatingPage> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: mainColor,
+                      backgroundColor: mainColor,
                     ),
                     onPressed: () {
                       UserServices.setDoctorRating(widget.call!.callerId!, _rating!.toDouble());

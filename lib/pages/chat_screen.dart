@@ -34,7 +34,7 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
             actions: [
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                 ),
                 onPressed: () {
                   setState(() {
@@ -88,7 +88,7 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: mainColor,
+                  backgroundColor: mainColor,
                 ),
                 onPressed: () {
                   setState(() {
@@ -135,7 +135,7 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
                         actions: [
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
+                              backgroundColor: Colors.white,
                             ),
                             onPressed: () async {
                               setState(() {
@@ -189,7 +189,7 @@ class _ChatScreenPageState extends State<ChatScreenPage> {
                           ),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: mainColor,
+                              backgroundColor: mainColor,
                             ),
                             onPressed: () {
                               setState(() {

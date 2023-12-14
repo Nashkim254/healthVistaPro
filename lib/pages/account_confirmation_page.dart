@@ -98,7 +98,7 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                           width: 250,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: accentColor2,
+                              backgroundColor: accentColor2,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
