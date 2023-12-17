@@ -5,7 +5,8 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     // get firebase user current status
     m.User? firebaseUser = Provider.of<m.User?>(context);
-
+    print("--------------------------------firebase user");
+    print(firebaseUser);
     // check user login status
     // if user not login
     if (firebaseUser == null) {
@@ -16,7 +17,7 @@ class Wrapper extends StatelessWidget {
       if (!(prevPageEvent is GoToMainPage)) {
         //before go to main page, load user from firebase
         context.read<UserBloc>().add(UserLoad(id: firebaseUser.id));
-
+  
         prevPageEvent = GoToMainPage();
         context.read<PageBloc>().add(prevPageEvent!);
       }

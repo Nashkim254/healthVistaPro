@@ -33,7 +33,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                   'Consultation with\ndoctors becomes easier and more flexible',
+                  LocalizationService.of(context).translate("consultation")!,
                     style: whiteTextFont.copyWith(
                         fontSize: 36,
                         fontWeight: FontWeight.w900,
@@ -48,7 +48,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   children: [
                     RoundedButton(
                       color: mainColor,
-                      title: 'Get Started',
+                      title: LocalizationService.of(context).translate("get_started"),
                       onPressed: () {
                         context.read<PageBloc>().add(GoToRegistrationPage());
                         // context.bloc<PageBloc>().add(
@@ -57,7 +57,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                     RoundedButton(
                       color: accentColor2,
-                      title: 'Sign in',
+                      title: LocalizationService.of(context).translate("sign_in"),
                       onPressed: () {
                         context.read<PageBloc>().add(GoToLoginPage());
                       },

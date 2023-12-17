@@ -15,7 +15,7 @@ class _PatientListMedicalRecordPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Past Patient List Medical Record"),
+        title:  Text(LocalizationService.of(context).translate("medical_records")!),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -82,7 +82,7 @@ class _PatientMedRecordViewState extends State<PatientMedRecordView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Patient Medical Record View"),
+        title:  Text(LocalizationService.of(context).translate("medical_records_view")!),
       ),
       body: Container(
         child: Column(
@@ -178,7 +178,7 @@ class _PatientMedRecordDetailPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Patient Medical Record Detail"),
+        title:  Text(LocalizationService.of(context).translate("medical_records_detail")!),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: HistoryPatientServices.getPatientData(
@@ -195,23 +195,23 @@ class _PatientMedRecordDetailPageState
                   children: [
                     MedicalRecordCard(
                       patientMedRecordDataName: patientMedRecord.doctorName!,
-                      title: "Doctor Name",
+                      title: LocalizationService.of(context).translate("doctor_name")!,
                     ),
                     MedicalRecordCard(
                         patientMedRecordDataName: patientMedRecord.patientName!,
-                        title: "Patient Name"),
+                        title: LocalizationService.of(context).translate("patient_name")!),
                     MedicalRecordCard(
                       patientMedRecordDataName: patientMedRecord.patientAge!,
-                      title: "Patient Age",
+                      title: LocalizationService.of(context).translate("patient_age")!,
                     ),
                     MedicalRecordCard(
                         patientMedRecordDataName:
                             patientMedRecord.patientStatus!,
-                        title: "Patient Status"),
+                        title: LocalizationService.of(context).translate("patient_status")!),
                     MedicalRecordCard(
                         patientMedRecordDataName:
                             patientMedRecord.patientDiagnose!,
-                        title: "Patient Diagnose"),
+                        title:  LocalizationService.of(context).translate("patient_diagnose")!),
                   ],
                 );
               },
@@ -250,7 +250,7 @@ class MedicalRecordCard extends StatelessWidget {
                 )),
             (patientMedRecordDataName == "")
                 ? Text(
-                    "No data",
+                    LocalizationService.of(context).translate("nodata")!,
                     style: blackTextFont.copyWith(
                       fontSize: 16,
                     ),

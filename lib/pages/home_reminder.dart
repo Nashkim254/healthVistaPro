@@ -113,7 +113,7 @@ class _ReminderHomePageState extends State<ReminderHomePage> {
                 remind.isCompleted == 1
                     ? Container()
                     : _bottmSheetButton(
-                        label: "Complete  Reminder",
+                        label: LocalizationService.of(context).translate("complete_reminder")!,
                         onTap: () {
                           markRemindCompleted(remind.id!);
                           Navigator.pop(context);
@@ -122,7 +122,7 @@ class _ReminderHomePageState extends State<ReminderHomePage> {
                         context: context,
                       ),
                 _bottmSheetButton(
-                  label: "Delete  Reminder",
+                  label: LocalizationService.of(context).translate("delete_reminder")!,
                   onTap: () {
                     delete(remind);
                     Navigator.pop(context);
@@ -134,7 +134,7 @@ class _ReminderHomePageState extends State<ReminderHomePage> {
                   height: 20,
                 ),
                 _bottmSheetButton(
-                  label: "Close",
+                  label: LocalizationService.of(context).translate("close")!,
                   onTap: () {
                     Navigator.pop(context);
                   },
@@ -219,14 +219,14 @@ class _ReminderHomePageState extends State<ReminderHomePage> {
                   style: subHeadingStyle,
                 ),
                 Text(
-                  "Today",
+                  LocalizationService.of(context).translate("today")!,
                   style: headingStyle,
                 )
               ],
             ),
           ),
           MyButton(
-              label: "+ Add \nReminder",
+              label: "+ " + LocalizationService.of(context).translate("add_reminder")!,
               onTap: () async {
                 await Navigator.push(context, MaterialPageRoute(builder: (_)=> const AddReminderPage()));
                 getReminder();

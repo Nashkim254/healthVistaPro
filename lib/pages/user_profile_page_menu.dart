@@ -21,7 +21,7 @@ class UserProfilePageMenu extends StatelessWidget {
             //     onPressed: () {
             //       context.bloc<PageBloc>().add(GoToMainPage());
             //     }),
-            title:  Text("Profile",style: blackTextFont.copyWith(fontSize: 20)),
+            title:  Text(LocalizationService.of(context).translate("profile")!,style: blackTextFont.copyWith(fontSize: 20)),
             centerTitle: true,
           ),
           body: Container(
@@ -94,7 +94,7 @@ class UserProfilePageMenu extends StatelessWidget {
                   children: [
                     BlocBuilder<UserBloc, UserState>(
                       builder: (_, userState) => UserProfileMenuListTile(
-                          userProfileMenuTitle: "Edit Profile",
+                          userProfileMenuTitle: LocalizationService.of(context).translate("edit_profile")!,
                           onTap: () {
                             context
                                 .read<PageBloc>()
@@ -109,7 +109,7 @@ class UserProfilePageMenu extends StatelessWidget {
                     BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
                       if (userState is UserLoaded) {
                         return UserProfileMenuListTileMenu(
-                            userProfileMenuTitle: "Sign Out",
+                            userProfileMenuTitle: LocalizationService.of(context).translate("sign_out")!,
                             onTap: () async {
                               await UserServices.setUserState(
                                   userId: userState.user!.id!, userStates: UserStates.Offline);
@@ -127,7 +127,7 @@ class UserProfilePageMenu extends StatelessWidget {
                     }),
                     const DashDivider(),
                       UserProfileMenuListTile(
-                        userProfileMenuTitle: "Reminders",
+                        userProfileMenuTitle: LocalizationService.of(context).translate("reminders")!,
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(builder: (_)=> const ReminderHomePage()));
                         },

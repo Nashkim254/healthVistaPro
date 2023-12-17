@@ -23,7 +23,7 @@ class _PickUpScreenState extends State<PickUpScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Incoming calls",
+              LocalizationService.of(context).translate("incoming_calls")!,
               style: blackTextFont.copyWith(fontSize: 30),
             ),
             const SizedBox(

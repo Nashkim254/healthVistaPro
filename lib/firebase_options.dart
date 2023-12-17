@@ -26,7 +26,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -50,19 +53,10 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBGKDiFk0dm0xd39DReAwcEU2p8-CEXUPs',
-    appId: '1:961431518227:android:db0235438e36805dd393e6',
-    messagingSenderId: '961431518227',
-    projectId: 'healthvistapro-2623f',
-    storageBucket: 'healthvistapro-2623f.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDQr8zBp808OcsetK8abjZLu8vzBLOOFv0',
-    appId: '1:961431518227:ios:9688d60d4d48786bd393e6',
-    messagingSenderId: '961431518227',
-    projectId: 'healthvistapro-2623f',
-    storageBucket: 'healthvistapro-2623f.appspot.com',
-    iosBundleId: 'com.example.healthVistaPro',
+    apiKey: 'AIzaSyBphgtI9oohzNwg-hAyo5KHERqd3NIbSuQ',
+    appId: '1:1028493311696:android:3dff5315b9026c780868d5',
+    messagingSenderId: '1028493311696',
+    projectId: 'healthpro-2e725',
+    storageBucket: 'healthpro-2e725.appspot.com',
   );
 }

@@ -40,7 +40,7 @@ class HospitalPage extends StatelessWidget {
                       height: 30,
                     ),
                     Text(
-                      "Nearby Hospital",
+                      LocalizationService.of(context).translate("nearby_hospital")!,
                       style: whiteTextFont.copyWith(
                           fontSize: 38, color: Colors.white),
                     ),

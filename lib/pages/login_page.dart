@@ -173,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     margin: const EdgeInsets.only(top: 10, bottom: 40),
                     child: Text(
-                      "Login and start\nconsulting",
+                     LocalizationService.of(context).translate("start_consulting")! ,
                       textAlign: TextAlign.center,
                       style: whiteTextFont.copyWith(fontSize: 28, color: Colors.white),
                     ),
@@ -194,9 +194,9 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         focusedBorder:
                             const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Email address",
+                        labelText: LocalizationService.of(context).translate("email_address")! ,
                         labelStyle: const TextStyle(color: accentColor1),
-                        hintText: "Email address",
+                        hintText: LocalizationService.of(context).translate("email_address")! ,
                         hintStyle: const TextStyle(color: accentColor1)),
                   ),
                   const SizedBox(
@@ -218,9 +218,9 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         focusedBorder:
                             const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Password",
+                        labelText: LocalizationService.of(context).translate("password")! ,
                         labelStyle: const TextStyle(color: accentColor1),
-                        hintText: "Password",
+                        hintText: LocalizationService.of(context).translate("password")! ,
                         hintStyle: const TextStyle(color: accentColor1)),
                   ),
                   const SizedBox(
@@ -229,11 +229,11 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     children: [
                       Text(
-                        "Forgot password? ",
+                        LocalizationService.of(context).translate("forgot_password")!,
                         style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        "Get now! ",
+                       LocalizationService.of(context).translate("get_now")!,
                         style: pinkTextFont.copyWith(
                           fontSize: 12,
                         ),
@@ -273,6 +273,8 @@ class _LoginPageState extends State<LoginPage> {
                                           backgroundColor: accentColor2,
                                           message: result.message,
                                         ).show(context);
+                                      } else {
+                                        context.read<PageBloc>().add(GoToMainPage());
                                       }
                                     }
                                   : null,
@@ -309,7 +311,7 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     children: [
                       Text(
-                        "Dont have an account ? ",
+                        LocalizationService.of(context).translate("dont_have_account")!,
                         style: greyTextFont.copyWith(fontWeight: FontWeight.w400),
                       ),
                       GestureDetector(
@@ -317,7 +319,7 @@ class _LoginPageState extends State<LoginPage> {
                           context.read<PageBloc>().add(GoToRegistrationPage());
                         },
                         child: Text(
-                          "Sign up",
+                         LocalizationService.of(context).translate("sign_up")!,
                           style: pinkTextFont,
                         ),
                       ),

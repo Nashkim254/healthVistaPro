@@ -6,8 +6,6 @@ class UserServices {
 
   // create and update user
   static Future<void> updateUser(m.User user) async {
-    print("================================================================");
-    print(user);
     await _userCollection.doc(user.id).set({
       'uid': user.id,
       'email': user.email,
@@ -35,15 +33,11 @@ class UserServices {
     print("before getting user map§§");
     print(documentSnapshot.data());
     var user = m.User.fromMap(documentSnapshot.data());
-    print("user details=====§");
-    print(user);
     return user;
   }
 
   // check and get user from firestore
   static Future<m.User> getUser(String id) async {
-    print("-------§--------");
-    print(id);
     try {
       DocumentSnapshot snapshot = await _userCollection.doc(id).get();
 

@@ -5,17 +5,14 @@ class ViewImage extends StatelessWidget {
   ViewImage(this.message);
   @override
   Widget build(BuildContext context) {
-    context
-        .read<ThemeBloc>()
-        .add(ChangeTheme(ThemeData().copyWith(primaryColor: mainColor)));
+    context.read<ThemeBloc>().add(ChangeTheme(ThemeData().copyWith(primaryColor: mainColor)));
 
-    final TransformationController _transformationController =
-        TransformationController();
+    final TransformationController _transformationController = TransformationController();
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(
-          "Photo from ${message.senderName}",
+          "${LocalizationService.of(context).translate('photo_from')} ${message.senderName}",
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
         ),

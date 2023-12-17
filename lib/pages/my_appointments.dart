@@ -36,7 +36,7 @@ class _MyAppointmentsState extends State<MyAppointments> {
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Text(
-              'My Appointments',
+              LocalizationService.of(context).translate("my_appointments")!,
               style: GoogleFonts.lato(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,

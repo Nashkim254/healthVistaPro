@@ -64,7 +64,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               },
             ),
             title: Text(
-              "Edit Profile",
+              LocalizationService.of(context).translate("edit_profile")!,
               style: blackTextFont.copyWith(fontSize: 16),
             ),
             centerTitle: true,
@@ -144,7 +144,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               decoration: InputDecoration(
                                   border:
                                       OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                                  labelText: "User ID"),
+                                  labelText: LocalizationService.of(context).translate("user_id")),
                             ),
                           ),
                           const SizedBox(height: 30),
@@ -155,7 +155,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               decoration: InputDecoration(
                                   border:
                                       OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                                  labelText: "User Email"),
+                                  labelText: LocalizationService.of(context).translate("user_email")),
                             ),
                           ),
                           const SizedBox(height: 30),
@@ -173,8 +173,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             style: blackTextFont,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                              labelText: "Full Name",
-                              hintText: "Full Name",
+                              labelText: LocalizationService.of(context).translate("full_name"),
+                              hintText: LocalizationService.of(context).translate("full_name"),
                             ),
                           ),
                           const SizedBox(
@@ -195,9 +195,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             decoration: InputDecoration(
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                               labelText: (widget.user!.status == "Patient")
-                                  ? "Your Job"
-                                  : "Your Speciality",
-                              hintText: "Your Job",
+                                  ? LocalizationService.of(context).translate("your_job")
+                                  : LocalizationService.of(context).translate("your_speciality"),
+                              hintText: LocalizationService.of(context).translate("your_job"),
                             ),
                           ),
                           const SizedBox(
@@ -224,7 +224,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                         flushbarPosition: FlushbarPosition.TOP,
                                         backgroundColor: accentColor2,
                                         message:
-                                            "The link to change your password has been sent to ${widget.user!.email}",
+                                            "${LocalizationService.of(context).translate("link_sent")} ${widget.user!.email}",
                                       )..show(context);
                                     },
                               child: Row(
@@ -233,7 +233,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   Icon(MdiIcons.alertCircle, color: Colors.white, size: 20),
                                   const SizedBox(width: 5),
                                   Text(
-                                    "Change Password",
+                                   LocalizationService.of(context).translate("change_password")!,
                                     style: whiteTextFont.copyWith(
                                       fontSize: 16,
                                       color: (isUpdating) ? const Color(0xFFBEBEBE) : Colors.white,
@@ -291,7 +291,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                           }
                                         : null,
                                     child: Text(
-                                      "Update my profile",
+                                      LocalizationService.of(context).translate("update_profile")!,
                                       style: whiteTextFont.copyWith(
                                         fontSize: 16,
                                         color:
@@ -381,7 +381,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               decoration: InputDecoration(
                                   border:
                                       OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                                  labelText: "User ID"),
+                                  labelText: LocalizationService.of(context).translate("user_id")),
                             ),
                           ),
                           const SizedBox(height: 30),
@@ -392,7 +392,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               decoration: InputDecoration(
                                   border:
                                       OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                                  labelText: "User Email"),
+                                  labelText: LocalizationService.of(context).translate("user_email")),
                             ),
                           ),
                           const SizedBox(height: 30),
@@ -410,8 +410,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             style: blackTextFont,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                              labelText: "Full Name",
-                              hintText: "Full Name",
+                              labelText: LocalizationService.of(context).translate("full_name"),
+                              hintText: LocalizationService.of(context).translate("full_name"),
                             ),
                           ),
                           const SizedBox(
@@ -432,9 +432,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             decoration: InputDecoration(
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                               labelText: (widget.user!.status == "Patient")
-                                  ? "Your Job"
-                                  : "Your Speciality",
-                              hintText: "Your Job",
+                                  ? LocalizationService.of(context).translate("your_job")
+                                  : LocalizationService.of(context).translate("your_speciality"),
+                              hintText: LocalizationService.of(context).translate("your_job"),
                             ),
                           ),
                           const SizedBox(
@@ -454,8 +454,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             style: blackTextFont,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                              labelText: "Alumnus",
-                              hintText: "Alumnus",
+                              labelText: LocalizationService.of(context).translate("alumnus"),
+                              hintText:LocalizationService.of(context).translate("alumnus"),
                             ),
                           ),
                           const SizedBox(

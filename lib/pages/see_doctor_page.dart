@@ -44,7 +44,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
             },
           ),
           title: Text(
-            "Profile",
+           LocalizationService.of(context).translate("profile")!,
             style: blackTextFont.copyWith(fontSize: 20),
           ),
           centerTitle: true,
@@ -93,7 +93,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Alumnus",
+                         LocalizationService.of(context).translate("alumnus")!,
                           style: greyTextFont,
                         ),
                         AbsorbPointer(
@@ -109,7 +109,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
                           height: 30,
                         ),
                         Text(
-                          "Practice Location",
+                          LocalizationService.of(context).translate("practice_location")!,
                           style: greyTextFont,
                         ),
                         AbsorbPointer(
@@ -162,7 +162,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
                                   ));
                             },
                             child: Text(
-                              "Start Consultation",
+                              LocalizationService.of(context).translate("start_consultation")!,
                               style: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 color: accentColor7,
@@ -195,7 +195,7 @@ class _SeeDoctorPageState extends State<SeeDoctorPage> {
                                   ));
                             },
                             child: Text(
-                              "Book Appointment",
+                              LocalizationService.of(context).translate("book_appointment")!,
                               style: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 color: accentColor7,

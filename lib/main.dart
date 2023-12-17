@@ -2,6 +2,7 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:health_vista_pro/Localization/localizations.dart';
 import 'package:health_vista_pro/firebase_options.dart';
 import 'package:health_vista_pro/provider/providers.dart';
 import 'package:health_vista_pro/services/services.dart';
@@ -19,7 +20,6 @@ void main() async {
       // Your personal reCaptcha public key goes here:
       .activate(
     androidProvider: AndroidProvider.debug,
-    appleProvider: AppleProvider.debug,
   );
 
   await DbHelper.initDb();
@@ -63,6 +63,9 @@ class _MyAppState extends State<MyApp> {
             child: MaterialApp(
               navigatorKey: navkey,
               debugShowCheckedModeBanner: false,
+              locale: View.of(context).platformDispatcher.locale,
+              supportedLocales: LocalizationService.supportedLocales,
+              localizationsDelegates: LocalizationService.localizationsDelegate,
               theme: themeState.themeData,
               home: Wrapper(),
             ),

@@ -35,7 +35,7 @@ class RegistrationPage extends StatelessWidget {
                     ),
                     Center(
                         child: Text(
-                      "Create New\nAccount",
+                      LocalizationService.of(context).translate("create_account")!,
                       style: whiteTextFont.copyWith(
                         fontSize: 20,
                       ),
@@ -63,7 +63,7 @@ class RegistrationPage extends StatelessWidget {
                           .add(GoToRegistrationDoctorPage(m.RegistrationUserData()));
                     },
                     child: Text(
-                      "Register As A Doctor",
+                     LocalizationService.of(context).translate("register_doctor")!,
                       style: whiteTextFont.copyWith(
                         fontSize: 18,
                       ),
@@ -84,7 +84,7 @@ class RegistrationPage extends StatelessWidget {
                           .add(GoToRegistrationUserPage(m.RegistrationUserData()));
                     },
                     child: Text(
-                      "Register As A Patient",
+                      LocalizationService.of(context).translate("register_patient")!,
                       style: blackTextFont.copyWith(
                         color: Colors.black,
                         fontSize: 18,

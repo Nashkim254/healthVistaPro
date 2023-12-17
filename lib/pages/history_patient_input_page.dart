@@ -44,7 +44,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
           backgroundColor: Colors.white,
           elevation: 0,
           title: Text(
-            "History Patient Page",
+            LocalizationService.of(context).translate("history_patient")!,
             style: blackTextFont.copyWith(fontSize: 20),
           ),
         ),
@@ -57,7 +57,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          "Please filled up the patient ${widget.call!.receiverName} history",
+                          "${LocalizationService.of(context).translate("fill_patient")!} ${widget.call!.receiverName} ${LocalizationService.of(context).translate("history")!}",
                           style: blackTextFont.copyWith(fontSize: 18),
                         ),
                         const SizedBox(
@@ -69,7 +69,8 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              labelText: "Patient's name"),
+                              labelText:
+                                  LocalizationService.of(context).translate("patient_name")!),
                         ),
                         const SizedBox(
                           height: 10,
@@ -80,7 +81,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              labelText: "Doctor's name"),
+                              labelText: LocalizationService.of(context).translate("doctor_name")!),
                         ),
                         const SizedBox(
                           height: 10,
@@ -91,7 +92,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              labelText: "Patient's Age"),
+                              labelText: LocalizationService.of(context).translate("patient_age")!),
                         ),
                         const SizedBox(
                           height: 10,
@@ -102,7 +103,8 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              labelText: "Patient's Diagnosis"),
+                              labelText:
+                                  LocalizationService.of(context).translate("patient_diagnose")!),
                         ),
                         const SizedBox(
                           height: 10,
@@ -112,7 +114,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Patient Status"),
+                              Text(LocalizationService.of(context).translate("patient_status")!),
                               RadioListTile(
                                   title: const Text("Outpatient Treatment"),
                                   value: "Outpatient Treatment",
@@ -152,7 +154,8 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            labelText: "Consultation Date",
+                            labelText:
+                                LocalizationService.of(context).translate("consultation_date"),
                             suffixIcon: IconButton(
                                 icon: const Icon(Icons.calendar_today),
                                 onPressed: () {
@@ -180,7 +183,10 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                           padding: const EdgeInsets.all(10),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)), backgroundColor: mainColor, disabledForegroundColor: accentColor3.withOpacity(0.38), disabledBackgroundColor: accentColor3.withOpacity(0.12),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                              backgroundColor: mainColor,
+                              disabledForegroundColor: accentColor3.withOpacity(0.38),
+                              disabledBackgroundColor: accentColor3.withOpacity(0.12),
                               textStyle: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 color: Colors.white,
@@ -217,7 +223,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                               context.read<PageBloc>().add(GoToMainPage(bottomNavBarIndex: 0));
                             },
                             child: Text(
-                              "Submit Patient ${widget.call!.receiverName} History",
+                              "${LocalizationService.of(context).translate("submit_patient")} ${widget.call!.receiverName} ${LocalizationService.of(context).translate("history")}",
                               style: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 color: Colors.white,
@@ -239,7 +245,7 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          "Please filled up the patient ${widget.call!.callerName} history",
+                          "${LocalizationService.of(context).translate("fill_patient")} ${widget.call!.callerName} ${LocalizationService.of(context).translate("history")}",
                           style: blackTextFont.copyWith(fontSize: 18),
                         ),
                         const SizedBox(
@@ -361,7 +367,10 @@ class _HistoryPatientPageState extends State<HistoryPatientPage> {
                           padding: const EdgeInsets.all(10),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)), backgroundColor: mainColor, disabledForegroundColor: accentColor3.withOpacity(0.38), disabledBackgroundColor: accentColor3.withOpacity(0.12),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                              backgroundColor: mainColor,
+                              disabledForegroundColor: accentColor3.withOpacity(0.38),
+                              disabledBackgroundColor: accentColor3.withOpacity(0.12),
                               textStyle: whiteTextFont.copyWith(
                                 fontSize: 16,
                                 color: Colors.white,

@@ -30,8 +30,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
       userProvider = Provider.of<UserProvider>(this.context, listen: false);
       await userProvider!.refreshUser();
 
-      UserServices.setUserState(
-          userId: userProvider!.getUser.id!, userStates: UserStates.Online);
+      UserServices.setUserState(userId: userProvider!.getUser.id!, userStates: UserStates.Online);
     });
 
     WidgetsBinding.instance.addObserver(this);
@@ -46,46 +45,38 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     String? currentUserId =
-        (userProvider != null && userProvider?.getUser.id != null)
-            ? userProvider!.getUser.id
-            : "";
+        (userProvider != null && userProvider?.getUser.id != null) ? userProvider!.getUser.id : "";
 
     super.didChangeAppLifecycleState(state);
     switch (state) {
       case AppLifecycleState.resumed:
         currentUserId != null
-            ? UserServices.setUserState(
-                userId: currentUserId, userStates: UserStates.Online)
+            ? UserServices.setUserState(userId: currentUserId, userStates: UserStates.Online)
             : print("resumed state");
         break;
       case AppLifecycleState.inactive:
         currentUserId != null
-            ? UserServices.setUserState(
-                userId: currentUserId, userStates: UserStates.Offline)
+            ? UserServices.setUserState(userId: currentUserId, userStates: UserStates.Offline)
             : print("Inactive state");
         break;
       case AppLifecycleState.paused:
         currentUserId != null
-            ? UserServices.setUserState(
-                userId: currentUserId, userStates: UserStates.Waiting)
+            ? UserServices.setUserState(userId: currentUserId, userStates: UserStates.Waiting)
             : print("paused state");
         break;
       case AppLifecycleState.detached:
         currentUserId != null
-            ? UserServices.setUserState(
-                userId: currentUserId, userStates: UserStates.Offline)
+            ? UserServices.setUserState(userId: currentUserId, userStates: UserStates.Offline)
             : print("Detached state");
         break;
       case AppLifecycleState.hidden:
-        // TODO: Handle this case.
+      // TODO: Handle this case.
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    context
-        .read<ThemeBloc>()
-        .add(ChangeTheme(ThemeData().copyWith(primaryColor: mainColor)));
+    context.read<ThemeBloc>().add(ChangeTheme(ThemeData().copyWith(primaryColor: mainColor)));
     return PickupLayout(
       scaffold: BlocBuilder<UserBloc, UserState>(
         builder: (context, userState) {
@@ -101,9 +92,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                       if (imageFileToUpload != null) {
                         uploadImage(imageFileToUpload!).then((downloadUrl) {
                           imageFileToUpload = null;
-                          context
-                              .read<UserBloc>()
-                              .add(UpdateUserData(profileImage: downloadUrl));
+                          context.read<UserBloc>().add(UpdateUserData(profileImage: downloadUrl));
                         });
                       }
                       return Stack(
@@ -153,7 +142,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: const Text("Homepage")),
+                        title: Text(LocalizationService.of(context).translate("homepage")!)),
                     BottomNavyBarItem(
                         activeColor: mainColor,
                         inactiveColor: accentColor7,
@@ -162,7 +151,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: const Text("Messages")),
+                        title: Text(LocalizationService.of(context).translate("messages")!)),
                     BottomNavyBarItem(
                         activeColor: mainColor,
                         inactiveColor: accentColor7,
@@ -171,8 +160,8 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: const Text("Profile")),
-                         BottomNavyBarItem(
+                        title: Text(LocalizationService.of(context).translate("profile")!)),
+                    BottomNavyBarItem(
                         activeColor: mainColor,
                         inactiveColor: accentColor7,
                         icon: const Icon(
@@ -180,7 +169,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: const Text("Appointments")),
+                        title: Text(LocalizationService.of(context).translate("appointments")!)),
                   ],
                 ),
               );
@@ -196,9 +185,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                         if (imageFileToUpload != null) {
                           uploadImage(imageFileToUpload!).then((downloadUrl) {
                             imageFileToUpload = null;
-                            context
-                                .read<UserBloc>()
-                                .add(UpdateUserData(profileImage: downloadUrl));
+                            context.read<UserBloc>().add(UpdateUserData(profileImage: downloadUrl));
                           });
                         }
                         return Stack(
@@ -217,8 +204,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                               },
                               children: [
                                 ChatListScreen(),
-                                PatientListMedicalRecordPage(
-                                    user: userState.user!),
+                                PatientListMedicalRecordPage(user: userState.user!),
                                 UserProfilePageMenu(),
                               ],
                             ),
@@ -256,7 +242,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: const Text("Messages"),
+                        title:  Text(LocalizationService.of(context).translate("messages")!),
                       ),
                       BottomNavyBarItem(
                         activeColor: mainColor,
@@ -266,7 +252,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: const Text("My Patient List Medical Record"),
+                        title:  Text(LocalizationService.of(context).translate("my_patient_record")!),
                       ),
                       BottomNavyBarItem(
                         activeColor: mainColor,
@@ -276,7 +262,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title: const Text("Profile"),
+                        title:  Text(LocalizationService.of(context).translate("my_patient_record")!),
                       ),
                     ],
                   ),

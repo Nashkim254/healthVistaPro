@@ -3,6 +3,7 @@ part of 'pages.dart';
 class UserProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<LocalizationController>(context);
     // set Theme
     context.read<ThemeBloc>().add(ChangeTheme(ThemeData().copyWith(primaryColor: mainColor)));
     return WillPopScope(
@@ -21,7 +22,8 @@ class UserProfilePage extends StatelessWidget {
                 onPressed: () {
                   context.read<PageBloc>().add(GoToMainPage());
                 }),
-            title: Text("Profile", style: blackTextFont.copyWith(fontSize: 16)),
+            title: Text(LocalizationService.of(context).translate("profile")!,
+                style: blackTextFont.copyWith(fontSize: 16)),
             centerTitle: true,
           ),
           body: Container(
@@ -90,7 +92,8 @@ class UserProfilePage extends StatelessWidget {
                   children: [
                     BlocBuilder<UserBloc, UserState>(
                       builder: (_, userState) => UserProfileMenuListTile(
-                          userProfileMenuTitle: "Edit Profile",
+                          userProfileMenuTitle:
+                              LocalizationService.of(context).translate("edit_profile")!,
                           onTap: () {
                             context
                                 .read<PageBloc>()
@@ -105,7 +108,8 @@ class UserProfilePage extends StatelessWidget {
                     BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
                       if (userState is UserLoaded) {
                         return UserProfileMenuListTileMenu(
-                            userProfileMenuTitle: "Sign Out",
+                            userProfileMenuTitle:
+                                LocalizationService.of(context).translate("sign_out")!,
                             onTap: () {
                               context.read<UserBloc>().add(UserSignOut());
                               AuthServices.signOut();
@@ -122,6 +126,164 @@ class UserProfilePage extends StatelessWidget {
                       }
                     }),
                     const DashDivider(),
+                    Row(children: [
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(Icons.arrow_back, color: Color(0xff292D32))),
+                      Text(
+                        'Language',
+                      ),
+                    ]),
+                    SizedBox(
+                      height: 32,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      child: GestureDetector(
+                        onTap: () {
+                          SharedPrefs.setLocale("en");
+                          LocalizationService.of(context).setLocale();
+
+                          provider.isEnglish = true;
+                          provider.isArabic = false;
+                        },
+                        child: Container(
+                          height: 56,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: provider.isEnglish
+                                  ? primaryColor
+                                  : Color(0xffEAECF0),
+                              width: provider.isEnglish ? 2 : 1,
+                            ),
+                            color:
+                                provider.isEnglish ? Color(0xffF3FFF8) : Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(children: [
+                                    CircleAvatar(
+                                      radius: 10,
+                                      backgroundImage: AssetImage('assets/flag1.png'),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      'English',
+                                     
+                                    ),
+                                  ]),
+                                  Container(
+                                    child: provider.isEnglish
+                                        ? Padding(
+                                            padding: const EdgeInsets.only(bottom: 0),
+                                            child: Container(
+                                              height: 16,
+                                              width: 16,
+                                              decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage('assets/nike.png'),
+                                                      fit: BoxFit.cover)),
+                                            ),
+                                          )
+                                        : Padding(
+                                            padding: const EdgeInsets.only(bottom: 0),
+                                            child: Container(
+                                                height: 16,
+                                                width: 16,
+                                                child: Icon(Icons.circle_outlined,
+                                                    size: 16, color: Color(0xffD0D5DD))),
+                                          ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      child: GestureDetector(
+                        onTap: () {
+                          SharedPrefs.setLocale("ar");
+                          LocalizationService.of(context).setLocale();
+
+                          // _changeLanguage(Locale.fromSubtags(languageCode: 'sw'));
+                          //
+                          provider.isEnglish = false;
+                          provider.isArabic = true;
+                        },
+                        child: Container(
+                          height: 56,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: provider.isArabic
+                                  ? primaryColor
+                                  : Color(0xffEAECF0),
+                              width: provider.isArabic ? 2 : 1,
+                            ),
+                            color:
+                                provider.isArabic ? Color(0xffF3FFF8) : Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(children: [
+                                    CircleAvatar(
+                                      radius: 10,
+                                      backgroundImage: AssetImage('assets/flag2.png'),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      'Arabic',
+                                    
+                                    ),
+                                  ]),
+                                  Container(
+                                    child: provider.isArabic
+                                        ? Padding(
+                                            padding: const EdgeInsets.only(bottom: 0),
+                                            child: Container(
+                                              height: 16,
+                                              width: 16,
+                                              decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage('assets/nike.png'),
+                                                      fit: BoxFit.cover)),
+                                            ),
+                                          )
+                                        : Padding(
+                                            padding: const EdgeInsets.only(bottom: 0),
+                                            child: Container(
+                                                height: 16,
+                                                width: 16,
+                                                child: Icon(Icons.circle_outlined,
+                                                    size: 16, color: Color(0xffD0D5DD))),
+                                          ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 )
               ],

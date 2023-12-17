@@ -63,7 +63,7 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                         ),
                         Center(
                             child: Text(
-                          "Create New\n Doctor Account",
+                          LocalizationService.of(context).translate("create_docotor")!,
                           style: whiteTextFont.copyWith(
                             fontSize: 20,
                           ),
@@ -131,9 +131,9 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                         ),
                         focusedBorder:
                             const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Full Name",
+                        labelText:  LocalizationService.of(context).translate("full_name")!,
                         labelStyle: const TextStyle(color: accentColor1),
-                        hintText: "Full Name",
+                        hintText:  LocalizationService.of(context).translate("full_name")!,
                         hintStyle: const TextStyle(color: accentColor1)),
                   ),
                   const SizedBox(
@@ -150,9 +150,9 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                         ),
                         focusedBorder:
                             const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Email Address",
+                        labelText:  LocalizationService.of(context).translate("email_address")!,
                         labelStyle: const TextStyle(color: accentColor1),
-                        hintText: "Email Address",
+                        hintText:  LocalizationService.of(context).translate("email_address")!,
                         hintStyle: const TextStyle(color: accentColor1)),
                   ),
                   const SizedBox(
@@ -169,9 +169,9 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                         ),
                         focusedBorder:
                             const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Your Speciality, ex : Physio",
+                        labelText: "${LocalizationService.of(context).translate("your_speciality")}, ex : Physio",
                         labelStyle: const TextStyle(color: accentColor1),
-                        hintText: "Your Speciality, ex : Physio",
+                        hintText: "${LocalizationService.of(context).translate("your_speciality")}, ex : Physio",
                         hintStyle: const TextStyle(color: accentColor1)),
                   ),
                   const SizedBox(
@@ -188,9 +188,9 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                         ),
                         focusedBorder:
                             const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Licence Number",
+                        labelText: LocalizationService.of(context).translate("licence"),
                         labelStyle: const TextStyle(color: accentColor1),
-                        hintText: "Licence Number",
+                        hintText: LocalizationService.of(context).translate("licence_no"),
                         hintStyle: const TextStyle(color: accentColor1)),
                   ),
                   const SizedBox(
@@ -206,9 +206,9 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                         ),
                         focusedBorder:
                             const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Alumnus",
+                        labelText: LocalizationService.of(context).translate("alumnus"),
                         labelStyle: const TextStyle(color: accentColor1),
-                        hintText: "Alumnus",
+                        hintText: LocalizationService.of(context).translate("alumnus"),
                         hintStyle: const TextStyle(color: accentColor1)),
                   ),
                   const SizedBox(
@@ -224,9 +224,9 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                         ),
                         focusedBorder:
                             const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Practice Location",
+                        labelText: LocalizationService.of(context).translate("practice_location"),
                         labelStyle: const TextStyle(color: accentColor1),
-                        hintText: "Practice Location",
+                        hintText: LocalizationService.of(context).translate("practice_location"),
                         hintStyle: const TextStyle(color: accentColor1)),
                   ),
                   const SizedBox(
@@ -243,9 +243,9 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                         ),
                         focusedBorder:
                             const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Password",
+                        labelText: LocalizationService.of(context).translate("password"),
                         labelStyle: const TextStyle(color: accentColor1),
-                        hintText: "Password",
+                        hintText: LocalizationService.of(context).translate("password"),
                         hintStyle: const TextStyle(color: accentColor1)),
                   ),
                   const SizedBox(
@@ -262,9 +262,9 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                         ),
                         focusedBorder:
                             const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: "Confirm Password",
+                        labelText: LocalizationService.of(context).translate("confirm_password"),
                         labelStyle: const TextStyle(color: accentColor1),
-                        hintText: "Confirm Password",
+                        hintText: LocalizationService.of(context).translate("confirm_password"),
                         hintStyle: const TextStyle(color: accentColor1)),
                   ),
                   const SizedBox(
@@ -287,21 +287,21 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                             duration: const Duration(milliseconds: 5500),
                             flushbarPosition: FlushbarPosition.TOP,
                             backgroundColor: accentColor2,
-                            message: "Please fill all the text fields",
+                            message: LocalizationService.of(context).translate("fill_fields"),
                           ).show(context);
                         } else if (!EmailValidator.validate(emailController.text)) {
                           Flushbar(
                             duration: const Duration(milliseconds: 4500),
                             flushbarPosition: FlushbarPosition.TOP,
                             backgroundColor: accentColor2,
-                            message: "Email format wrong, please check email format again",
+                            message: LocalizationService.of(context).translate("email_format"),
                           ).show(context);
                         } else if (passwordController.text != retypeController.text) {
                           Flushbar(
                             duration: const Duration(milliseconds: 4500),
                             flushbarPosition: FlushbarPosition.TOP,
                             backgroundColor: accentColor2,
-                            message: "Mismatch password and confirm password",
+                            message: LocalizationService.of(context).translate("password_mismatch"),
                           ).show(context);
                         } else if (passwordController.text.length < 6) {
                           Flushbar(
@@ -311,7 +311,7 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                             flushbarPosition: FlushbarPosition.TOP,
                             backgroundColor: accentColor2,
                             message:
-                                "Password is too short, please input password more than 6 character",
+                                LocalizationService.of(context).translate("password_short"),
                           ).show(context);
                         } else {
                           // jika semua data validasi lolos

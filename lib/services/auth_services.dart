@@ -41,7 +41,7 @@ class AuthServices {
       await UserServices.updateUser(user);
       return SignInSignUpResult(user: user);
     } catch (e) {
-      return SignInSignUpResult(message: e.toString().split(',')[1].trim());
+      return SignInSignUpResult(message: e.toString());
     }
   }
 
@@ -53,7 +53,7 @@ class AuthServices {
       m.User user = await result.user!.fromFireStore();
       return SignInSignUpResult(user: user);
     } catch (e) {
-      return SignInSignUpResult(message: e.toString().split(',')[1].trim());
+      return SignInSignUpResult(message: e.toString().trim());
     }
   }
 
