@@ -68,5 +68,14 @@
 	"update_profile": "Update my profile",
 	"create_doctor": "Create New\n Doctor Account",
 	"licence_no": "Licence Number",
-	"practice_location": "Practice Location"
+	"practice_location": "Practice Location",
+	"no_doctor": "No doctor found \nfor a moment",
+	"video_call":"Video Call",
+	"wait":"Please wait for remote user to join",
+	"appointment_booking": "Appointment Booking",
+	"top_rated": "Top Rated Doctors",
+	"write_to": "Write a message to",
+	"no_message":"No Message. Start your consultation now!",
+	"no_message_from_patient":"No Message From Patient Yet.",
+	"start_consulation":"Start Consultation Now"
 }

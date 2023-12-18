@@ -63,6 +63,15 @@
     "update_profile": "تحديث ملفي الشخصي",
     "create_doctor":"إنشاء حساب طبيب جديد",
     "licence_no":"رقم الترخيص",
-    "practice_location":"موقع الممارسة" 
+    "practice_location":"موقع الممارسة",
+    "no_doctor":"لم يتم العثور على طبيب في الوقت الحالي",
+    "video_call": "مكالمة فيديو",
+    "wait":"يرجى الانتظار حتى ينضم المستخدم عن بُعد",
+    "appointment_booking":"حجز موعد",
+    "top_rated":"أطباء مُصنّفون بأعلى تقييم",
+    "write_to":"اكتب رسالة إلى",
+    "no_message": "لا توجد رسالة. ابدأ استشارتك الآن!",
+    "no_message_from_patient": "لا توجد رسالة من المريض حتى الآن",
+    "start_consulation":"ابدأ الاستشارة الآن"
 
 }

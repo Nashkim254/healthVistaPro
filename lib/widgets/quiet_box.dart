@@ -20,7 +20,7 @@ class QuietBox extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "No Message From Patient Yet.",
+                              LocalizationService.of(context).translate("no_message_from_patient")!,
                               style: blackTextFont.copyWith(fontSize: 28),
                               textAlign: TextAlign.center,
                             ),
@@ -32,7 +32,7 @@ class QuietBox extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "No Message. Start your consultation now!",
+                              LocalizationService.of(context).translate("no_message")!,
                               style: blackTextFont.copyWith(fontSize: 28),
                               textAlign: TextAlign.center,
                             ),
@@ -54,7 +54,7 @@ class QuietBox extends StatelessWidget {
                                 );
                               },
                               child: Text(
-                                "Start Consultation Now",
+                                 LocalizationService.of(context).translate("no_message")!,
                                 style: whiteTextFont.copyWith(fontSize: 18),
                               ),
                             )

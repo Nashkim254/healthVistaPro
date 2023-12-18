@@ -73,7 +73,7 @@ class LocalizationController extends ChangeNotifier {
   String currentLanguage = '';
   String currentLang = '';
   bool isEnglish = true;
-  bool isArabic = true;
+  bool isArabic = false;
   void toggleLanguage() {
     currentLanguage = LocalizationService.currentLocale.languageCode == 'en' ? 'ar' : 'en';
     currentLang = '';

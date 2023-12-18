@@ -59,6 +59,7 @@ class _MyAppState extends State<MyApp> {
             providers: [
               ChangeNotifierProvider(create: (_) => ImageUploadProvider()),
               ChangeNotifierProvider(create: (_) => UserProvider()),
+              ChangeNotifierProvider(create: (_) => LocalizationController()),
             ],
             child: MaterialApp(
               navigatorKey: navkey,

@@ -182,7 +182,7 @@ class _CallScreenState extends State<CallScreen> {
           ),
           elevation: 0,
           title: Text(
-            'Video Call',
+            LocalizationService.of(context).translate("video_call")!,
             style: blackTextFont.copyWith(fontSize: 16),
           ),
         ),
@@ -250,8 +250,8 @@ class _CallScreenState extends State<CallScreen> {
         ),
       );
     } else {
-      return const Text(
-        'Please wait for remote user to join',
+      return  Text(
+         LocalizationService.of(context).translate("video_call")!,
         textAlign: TextAlign.center,
       );
     }

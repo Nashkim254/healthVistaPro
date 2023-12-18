@@ -8,7 +8,7 @@ class ChatListScreen extends StatelessWidget {
       scaffold: Scaffold(
           appBar: AppBar(
             title: Text(
-              "Messages",
+              LocalizationService.of(context).translate("messages")!,
               style: blackTextFont.copyWith(
                 fontSize: 28,
               ),

@@ -57,7 +57,7 @@ class _ChatListContainerState extends State<ChatListContainer> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "No doctor found \nfor a moment",
+                      LocalizationService.of(context).translate("no_doctor")!,
                       style: blackTextFont.copyWith(fontSize: 28),
                       textAlign: TextAlign.center,
                     ),

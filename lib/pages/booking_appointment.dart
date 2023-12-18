@@ -136,7 +136,7 @@ class _BookingScreenState extends State<BookingScreen> {
           backgroundColor: Colors.white,
           elevation: 0,
           title: Text(
-            'Appointment booking',
+            LocalizationService.of(context).translate("appointment_booking")!,
             style: GoogleFonts.lato(
               color: Colors.black,
               fontSize: 20,

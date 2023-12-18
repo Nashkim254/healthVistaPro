@@ -154,7 +154,7 @@ class _DoctorPageState extends State<DoctorPage> {
                       height: 14,
                     ),
                     Text(
-                      "Top Rated Doctors",
+                      LocalizationService.of(context).translate("top_rated")!,
                       style: blackTextFont.copyWith(
                         fontWeight: FontWeight.w800,
                         fontSize: 24,
@@ -226,7 +226,7 @@ class _TopRateDoctorListTileState extends State<TopRateDoctorListTile> {
               child: Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "...No doctor found for a moment...",
+                  "...${LocalizationService.of(context).translate("no_doctor")}...",
                   style: blackTextFont.copyWith(fontSize: 18, color: accentColor2),
                   textAlign: TextAlign.center,
                 ),

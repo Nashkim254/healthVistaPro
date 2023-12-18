@@ -568,8 +568,8 @@ class _ChatBottomControlState extends State<ChatBottomControl> {
                 },
                 decoration: InputDecoration(
                   hintText: (widget.receiver!.status == "Doctor")
-                      ? "Write a message to  Dr.$receiverName ..."
-                      : "Write a message to $receiverName ...",
+                      ? "${LocalizationService.of(context).translate("write_to")}  Dr.$receiverName ..."
+                      : "${LocalizationService.of(context).translate("write_to")}  $receiverName ...",
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(10),

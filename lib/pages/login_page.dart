@@ -173,7 +173,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     margin: const EdgeInsets.only(top: 10, bottom: 40),
                     child: Text(
-                     LocalizationService.of(context).translate("start_consulting")! ,
+                      LocalizationService.of(context).translate("start_consulting")!,
                       textAlign: TextAlign.center,
                       style: whiteTextFont.copyWith(fontSize: 28, color: Colors.white),
                     ),
@@ -194,9 +194,9 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         focusedBorder:
                             const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: LocalizationService.of(context).translate("email_address")! ,
+                        labelText: LocalizationService.of(context).translate("email_address")!,
                         labelStyle: const TextStyle(color: accentColor1),
-                        hintText: LocalizationService.of(context).translate("email_address")! ,
+                        hintText: LocalizationService.of(context).translate("email_address")!,
                         hintStyle: const TextStyle(color: accentColor1)),
                   ),
                   const SizedBox(
@@ -218,9 +218,9 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         focusedBorder:
                             const OutlineInputBorder(borderSide: BorderSide(color: accentColor1)),
-                        labelText: LocalizationService.of(context).translate("password")! ,
+                        labelText: LocalizationService.of(context).translate("password")!,
                         labelStyle: const TextStyle(color: accentColor1),
-                        hintText: LocalizationService.of(context).translate("password")! ,
+                        hintText: LocalizationService.of(context).translate("password")!,
                         hintStyle: const TextStyle(color: accentColor1)),
                   ),
                   const SizedBox(
@@ -233,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: greyTextFont.copyWith(fontSize: 12, fontWeight: FontWeight.w400),
                       ),
                       Text(
-                       LocalizationService.of(context).translate("get_now")!,
+                        LocalizationService.of(context).translate("get_now")!,
                         style: pinkTextFont.copyWith(
                           fontSize: 12,
                         ),
@@ -274,7 +274,16 @@ class _LoginPageState extends State<LoginPage> {
                                           message: result.message,
                                         ).show(context);
                                       } else {
-                                        context.read<PageBloc>().add(GoToMainPage());
+                                        m.User user = result.user!;
+                                        UserProvider provider =
+                                            Provider.of<UserProvider>(context, listen: false);
+                                        provider.setUser(user);
+                                        print(
+                                            "after login the user is --------------------${provider.getUser}");
+                                        context.read<UserBloc>().add(UserLoad(id: user.id));
+
+                                        prevPageEvent = GoToMainPage();
+                                        context.read<PageBloc>().add(prevPageEvent!);
                                       }
                                     }
                                   : null,
@@ -319,7 +328,7 @@ class _LoginPageState extends State<LoginPage> {
                           context.read<PageBloc>().add(GoToRegistrationPage());
                         },
                         child: Text(
-                         LocalizationService.of(context).translate("sign_up")!,
+                          LocalizationService.of(context).translate("sign_up")!,
                           style: pinkTextFont,
                         ),
                       ),
