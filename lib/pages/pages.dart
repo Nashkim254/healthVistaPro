@@ -39,6 +39,9 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'package:path/path.dart' as path;
 import 'package:rating_dialog/rating_dialog.dart';
+import 'package:table_calendar/table_calendar.dart';
+
+import '../models/models.dart' as m;
 
 part 'welcome_page.dart';
 part 'login_page.dart';
@@ -71,3 +74,5 @@ part 'booking_appointment.dart';
 part 'my_appointments.dart';
 part 'notified_page.dart';
 part 'voice_assistant.dart';
+part 'schedule_appointment_screen.dart';
+part 'vaccine_page.dart';

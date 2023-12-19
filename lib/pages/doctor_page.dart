@@ -14,13 +14,24 @@ class _DoctorPageState extends State<DoctorPage> {
     return SafeArea(
       child: PickupLayout(
         scaffold: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(elevation: 0, backgroundColor: Colors.white, actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => VaccinePage()));
+                },
+                icon: Icon(Icons.notes, color: Colors.black)),
+          ]),
           body: ListView(
             shrinkWrap: true,
             children: [
               Container(
-                padding: const EdgeInsets.fromLTRB(defaultMargin, 20, defaultMargin, 30),
+                padding: const EdgeInsets.fromLTRB(
+                    defaultMargin, 20, defaultMargin, 30),
                 // get user data from firebase using BlocUser
-                child: BlocBuilder<UserBloc, UserState>(builder: (context, userState) {
+                child: BlocBuilder<UserBloc, UserState>(
+                    builder: (context, userState) {
                   if (userState is UserLoaded) {
                     // if (imageFileToUpload != null) {
                     //   uploadImage(imageFileToUpload).then((downloadUrl) {
@@ -55,12 +66,15 @@ class _DoctorPageState extends State<DoctorPage> {
                                   height: 50,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    image: (userState.user!.profileImage != "no_pic")
+                                    image: (userState.user!.profileImage !=
+                                            "no_pic")
                                         ? DecorationImage(
-                                            image: NetworkImage(userState.user!.profileImage!),
+                                            image: NetworkImage(
+                                                userState.user!.profileImage!),
                                             fit: BoxFit.cover)
                                         : const DecorationImage(
-                                            image: AssetImage("images/user_default.png"),
+                                            image: AssetImage(
+                                                "images/user_default.png"),
                                             fit: BoxFit.cover),
                                   ),
                                 ),
@@ -75,7 +89,9 @@ class _DoctorPageState extends State<DoctorPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width: MediaQuery.of(context).size.width - 2 * defaultMargin - 78,
+                              width: MediaQuery.of(context).size.width -
+                                  2 * defaultMargin -
+                                  78,
                               child: Text(
                                 userState.user!.fullName!,
                                 style: blackTextFont.copyWith(
@@ -98,7 +114,7 @@ class _DoctorPageState extends State<DoctorPage> {
                 }),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal:20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: SizedBox(
                   height: 140,
                   child: StreamBuilder(
@@ -123,10 +139,13 @@ class _DoctorPageState extends State<DoctorPage> {
                               itemBuilder: (context, int index) {
                                 return DoctorCard(
                                   doctorType: userList[index],
-                                  onTap:() => context.read<PageBloc>().add(GoToSeeDoctorPage(userList[index])),
+                                  onTap: () => context
+                                      .read<PageBloc>()
+                                      .add(GoToSeeDoctorPage(userList[index])),
                                 );
                               },
-                              separatorBuilder: (context, int index) => const SizedBox(width: 16),
+                              separatorBuilder: (context, int index) =>
+                                  const SizedBox(width: 16),
                               itemCount: userList.length);
                         } else {
                           return Container(
@@ -134,7 +153,8 @@ class _DoctorPageState extends State<DoctorPage> {
                               alignment: Alignment.center,
                               child: Text(
                                 "...No doctor found for a moment...",
-                                style: blackTextFont.copyWith(fontSize: 18, color: accentColor2),
+                                style: blackTextFont.copyWith(
+                                    fontSize: 18, color: accentColor2),
                                 textAlign: TextAlign.center,
                               ),
                             ),
@@ -215,7 +235,8 @@ class _TopRateDoctorListTileState extends State<TopRateDoctorListTile> {
           // userList = snapshot.data;
           userList.clear();
           for (int i = 0; i < snapshot.data!.length; i++) {
-            if (snapshot.data![i].status == doctorStatus && snapshot.data![i].ratingNum! > 3.0) {
+            if (snapshot.data![i].status == doctorStatus &&
+                snapshot.data![i].ratingNum! > 3.0) {
               userList.add(snapshot.data![i]);
             }
           }
@@ -227,7 +248,8 @@ class _TopRateDoctorListTileState extends State<TopRateDoctorListTile> {
                 alignment: Alignment.center,
                 child: Text(
                   "...${LocalizationService.of(context).translate("no_doctor")}...",
-                  style: blackTextFont.copyWith(fontSize: 18, color: accentColor2),
+                  style:
+                      blackTextFont.copyWith(fontSize: 18, color: accentColor2),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -278,11 +300,13 @@ class _TopRateDoctorListTileState extends State<TopRateDoctorListTile> {
                         : (doctor.profileImage != "no_pic")
                             ? CircleAvatar(
                                 radius: 30,
-                                backgroundImage: NetworkImage(doctor.profileImage!),
+                                backgroundImage:
+                                    NetworkImage(doctor.profileImage!),
                               )
                             : const CircleAvatar(
                                 radius: 30,
-                                backgroundImage: AssetImage("images/user_default.png"),
+                                backgroundImage:
+                                    AssetImage("images/user_default.png"),
                               ),
                     title: Text(
                       doctor.fullName!,

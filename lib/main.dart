@@ -53,7 +53,8 @@ class _MyAppState extends State<MyApp> {
           BlocProvider(
             create: (context) => UserBloc(),
           ),
-          BlocProvider(create: (context) => ThemeBloc())
+          BlocProvider(create: (context) => ThemeBloc()),
+          BlocProvider(create: (context) => VaccineCubit())
         ],
         child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, themeState) => MultiProvider(
