@@ -7,7 +7,6 @@ import 'package:health_vista_pro/firebase_options.dart';
 import 'package:health_vista_pro/provider/providers.dart';
 import 'package:health_vista_pro/services/services.dart';
 import 'package:provider/provider.dart';
-
 import 'bloc/blocs.dart';
 import 'pages/pages.dart';
 
@@ -34,6 +33,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+
   @override
   void initState() {
     super.initState();

@@ -120,6 +120,15 @@ class _LoginPageState extends State<LoginPage> {
       if (authenticated == true) {
         SignInSignUpResult result = await AuthServices.signIn(
             email: SharedPrefs.getEmail(), password: SharedPrefs.getPassword());
+        if(result.user != null) {
+          m.User user = result.user!;
+          UserProvider provider =
+          Provider.of<UserProvider>(context, listen: false);
+          context.read<UserBloc>().add(UserLoad(id: user.id));
+
+          prevPageEvent = GoToMainPage();
+          context.read<PageBloc>().add(prevPageEvent!);
+        }
       }
     } on PlatformException catch (e) {
       print(e);
@@ -277,9 +286,6 @@ class _LoginPageState extends State<LoginPage> {
                                         m.User user = result.user!;
                                         UserProvider provider =
                                             Provider.of<UserProvider>(context, listen: false);
-                                        provider.setUser(user);
-                                        print(
-                                            "after login the user is --------------------${provider.getUser}");
                                         context.read<UserBloc>().add(UserLoad(id: user.id));
 
                                         prevPageEvent = GoToMainPage();

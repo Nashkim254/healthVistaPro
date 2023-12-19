@@ -24,11 +24,11 @@ class _AddReminderPageState extends State<AddReminderPage> {
   @override
   void initState() {
     super.initState();
-    getReminder();
   }
 
   @override
   Widget build(BuildContext context) {
+    getReminder();
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: _appBar(context),
@@ -155,6 +155,8 @@ class _AddReminderPageState extends State<AddReminderPage> {
       );
     }
   }
+
+
 
   _addRemindDb() async {
     int value = await addRemind(

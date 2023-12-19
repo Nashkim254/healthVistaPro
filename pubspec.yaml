@@ -74,6 +74,7 @@ dependencies:
   sqflite: ^2.3.0
   flutter_staggered_animations: ^1.1.1
   firebase_app_check: ^0.2.1+8
+  alan_voice: ^4.4.0
 
 dev_dependencies:
   flutter_test:

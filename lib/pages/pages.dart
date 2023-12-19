@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
+import 'package:alan_voice/alan_voice.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -68,3 +70,4 @@ part 'patient_list_medical_record_page.dart';
 part 'booking_appointment.dart';
 part 'my_appointments.dart';
 part 'notified_page.dart';
+part 'voice_assistant.dart';

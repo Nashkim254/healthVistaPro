@@ -17,11 +17,11 @@ class _ReminderHomePageState extends State<ReminderHomePage> {
     super.initState();
     notifyHelper = NotifyHelper();
     notifyHelper.initializeNotification();
-    getReminder();
   }
 
   @override
   Widget build(BuildContext context) {
+    getReminder();
     return Scaffold(
       appBar: _appBar(),
       backgroundColor: Colors.white,

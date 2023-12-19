@@ -4,9 +4,20 @@ part of 'providers.dart';
 var remindList = <Remind>[];
 
 Future<int> addRemind({Remind? remind}) async {
+  sendData(remind);
   return await DbHelper.insert(remind);
 }
 
+void sendData(Remind? remind) async {
+  var isActive = await AlanVoice.isActive();
+  if (!isActive) {
+    AlanVoice.activate();
+  }
+
+  Map jsonValue = remind!.toJson();
+  var params = json.encode(jsonValue);
+  AlanVoice.callProjectApi("script::getReminders", params);
+}
 // Future<void> addRemind({required Remind? remind}) async {
 //   await DbHelper.insert(remind);
 // }
@@ -15,6 +26,10 @@ void getReminder() async {
   List<Map<String, dynamic>> reminder = await DbHelper.query();
   remindList.clear();
   remindList.addAll(reminder.map((data) => Remind.fromJson(data)).toList());
+  for (int i = 0; i < remindList.length; i++) {
+    sendData(remindList[i]);
+    Future.delayed(Duration(seconds: 5), () {});
+  }
 }
 
 void delete(Remind remind) {

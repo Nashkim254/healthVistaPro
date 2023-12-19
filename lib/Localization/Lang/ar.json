@@ -72,6 +72,8 @@
     "write_to":"اكتب رسالة إلى",
     "no_message": "لا توجد رسالة. ابدأ استشارتك الآن!",
     "no_message_from_patient": "لا توجد رسالة من المريض حتى الآن",
-    "start_consulation":"ابدأ الاستشارة الآن"
+    "start_consulation":"ابدأ الاستشارة الآن",
+    "nurse_assistant": "مساعدتي التمريض",
+    "change_language": "تغيير اللغة"
 
 }

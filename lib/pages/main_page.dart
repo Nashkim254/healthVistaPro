@@ -42,6 +42,11 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this);
   }
 
+  void _playText() {
+    /// Provide text as string param
+    AlanVoice.playText("Hello from Vista pro");
+  }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     String? currentUserId =
@@ -242,7 +247,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title:  Text(LocalizationService.of(context).translate("messages")!),
+                        title: Text(LocalizationService.of(context).translate("messages")!),
                       ),
                       BottomNavyBarItem(
                         activeColor: mainColor,
@@ -252,7 +257,8 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title:  Text(LocalizationService.of(context).translate("my_patient_record")!),
+                        title:
+                            Text(LocalizationService.of(context).translate("my_patient_record")!),
                       ),
                       BottomNavyBarItem(
                         activeColor: mainColor,
@@ -262,9 +268,15 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
                           // size: 28,
                           // color: accentColor2,
                         ),
-                        title:  Text(LocalizationService.of(context).translate("my_patient_record")!),
+                        title:
+                            Text(LocalizationService.of(context).translate("my_patient_record")!),
                       ),
                     ],
+                  ),
+                  floatingActionButton: FloatingActionButton(
+                    onPressed: () {
+                      _playText();
+                    },
                   ),
                 ),
               );

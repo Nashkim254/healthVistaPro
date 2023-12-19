@@ -93,6 +93,7 @@ class UserProfilePageMenu extends StatelessWidget {
                     },
                   ),
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       BlocBuilder<UserBloc, UserState>(
                         builder: (_, userState) => UserProfileMenuListTile(
@@ -138,12 +139,26 @@ class UserProfilePageMenu extends StatelessWidget {
                                 MaterialPageRoute(builder: (_) => const ReminderHomePage()));
                           },
                           leadingIcon: const Icon(
-                            Icons.exit_to_app,
+                            Icons.notes,
                             color: accentColor2,
                           )),
                       const DashDivider(),
+                      UserProfileMenuListTile(
+                          userProfileMenuTitle:
+                          LocalizationService.of(context).translate("nurse_assistant")!,
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) => const NurseAssistant()));
+                          },
+                          leadingIcon: const Icon(
+                            Icons.person,
+                            color: accentColor2,
+                          )),
+
+                      const DashDivider(),
+                      const SizedBox(height:16),
                       Text(
-                        'Language',
+                        LocalizationService.of(context).translate("change_language")!,
                       ),
                       SizedBox(
                         height: 32,
@@ -287,6 +302,7 @@ class UserProfilePageMenu extends StatelessWidget {
                           ),
                         ),
                       ),
+                      const SizedBox(height:16),
                       const DashDivider(),
                     ],
                   )
