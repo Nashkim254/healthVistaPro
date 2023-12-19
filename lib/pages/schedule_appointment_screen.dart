@@ -53,9 +53,14 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
           ElevatedButton(
             onPressed: () async {
               // Add logic to schedule appointment
+              m.Vaccine vaccine = m.Vaccine(
+                 selectedVaccine!.name,
+                  _selectedDate,
+                  selectedVaccine!.isCompleted
+              );
               final vaccineBloc = context.read<VaccineCubit>();
               // Assuming you have a Vaccine model and you want to schedule a new
-              // vaccineBloc.add([...vaccineBloc.state, newAppointment]);
+              vaccineBloc.addVaccine(vaccine);
               Navigator.pop(context);
             },
             child: Text("Schedule"),

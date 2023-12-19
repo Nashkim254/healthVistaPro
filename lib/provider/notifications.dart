@@ -113,7 +113,7 @@ class DbHelper {
     ''', [1, id]);
   }
 
-  Future<int> insertImmunization(Vaccine dose) async {
+  static Future<int> insertImmunization(Vaccine dose) async {
     final db = await _db;
     return await db!.insert('immunizations', dose.toJson());
   }

@@ -30,8 +30,9 @@ class _VaccinePageState extends State<VaccinePage> {
           }
           if (state is VaccineLoading) {
             return Center(child: CircularProgressIndicator());
-          } else if (state is VaccineLoaded) {
-            return ListView.builder(
+          } else if (state is VaccineLoaded && state.vaccines.length > 0) {
+            return
+              ListView.builder(
               itemCount: state.vaccines.length,
               itemBuilder: (context, index) {
                 final vaccine = state.vaccines[index];
@@ -53,7 +54,7 @@ class _VaccinePageState extends State<VaccinePage> {
               },
             );
           } else {
-            return Center(child: Text("Error occurred"));
+            return Center(child: Text("No Vaccine schedule"));
           }
         },
       ),
