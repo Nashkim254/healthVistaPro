@@ -61,22 +61,23 @@ class DbHelper {
       _db = await openDatabase(
         path,
         version: _version,
-        onCreate: (db, version) async{
+        onCreate: (db, version) async {
           print("Creating a new one");
           await db.execute(
             "CREATE TABLE $_tableName("
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                "title STRING, dose TEXT, date STRING, "
-                "startTime STRING, endTime STRING, "
-                "repeat STRING, "
-                "color INTEGER, "
-                "isCompleted INTEGER)",
+            "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+            "title STRING, dose TEXT, date STRING, "
+            "startTime STRING, endTime STRING, "
+            "repeat STRING, "
+            "color INTEGER, "
+            "isCompleted INTEGER)",
           );
           await db.execute('''
       CREATE TABLE immunizations(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
-        date TEXT
+        scheduleDate STRING,
+      isCompleted BOOLEAN
       )
     ''');
         },
@@ -118,19 +119,22 @@ class DbHelper {
     return await db!.insert('immunizations', dose.toJson());
   }
 
- static Future<List<Vaccine>> getImmunizations() async {
+  static Future<List<Vaccine>> getImmunizations() async {
     final db = await _db;
     final List<Map<String, dynamic>> vaccine = await db!.query('immunizations');
     vaccines.clear();
     vaccines.addAll(vaccine.map((data) => Vaccine.fromJson(data)).toList());
-   return vaccines;
+    return vaccines;
   }
 
-  static Future markVaccineAsCompleted(Vaccine vaccine)async{
+  static Future markVaccineAsCompleted(Vaccine vaccine) async {
     return await _db!.rawUpdate('''
       UPDATE immunizations
       SET isCompleted = ?
       WHERE id = ?
-    ''', [1, vaccine.id,]);
+    ''', [
+      1,
+      vaccine.id,
+    ]);
   }
 }
