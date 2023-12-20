@@ -134,6 +134,14 @@ class _AccountConfirmationPageState extends State<AccountConfirmationPage> {
                                     message: result.message,
                                   ).show(context);
                                 });
+                              }else{
+                                m.User user = result.user!;
+                                UserProvider provider =
+                                Provider.of<UserProvider>(context, listen: false);
+                                context.read<UserBloc>().add(UserLoad(id: user.id));
+
+                                prevPageEvent = GoToMainPage();
+                                context.read<PageBloc>().add(prevPageEvent!);
                               }
                             },
                             child: Text(

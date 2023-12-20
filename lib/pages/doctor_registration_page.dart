@@ -2,7 +2,7 @@ part of 'pages.dart';
 
 class DoctorRegistrationPage extends StatefulWidget {
   // untuk menyimpan data registrasi
-  final m.RegistrationUserData registrationUserData;
+  final m.RegistrationUserData? registrationUserData;
   DoctorRegistrationPage(this.registrationUserData);
 
   @override
@@ -22,12 +22,12 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
   @override
   void initState() {
     super.initState();
-    fullNameController.text = widget.registrationUserData.fullName ?? "";
-    emailController.text = widget.registrationUserData.email ?? "";
-    jobController.text = widget.registrationUserData.job ?? "";
-    noSipController.text = widget.registrationUserData.noSIP ?? "";
-    alumnusController.text = widget.registrationUserData.alumnus ??"";
-    tempatPraktekController.text = widget.registrationUserData.tempatPraktek ?? "";
+    fullNameController.text = widget.registrationUserData?.fullName ?? "";
+    emailController.text = widget.registrationUserData?.email ?? "";
+    jobController.text = widget.registrationUserData?.job ?? "";
+    noSipController.text = widget.registrationUserData?.noSIP ?? "";
+    alumnusController.text = widget.registrationUserData?.alumnus ??"";
+    tempatPraktekController.text = widget.registrationUserData?.tempatPraktek ?? "";
   }
 
   @override
@@ -63,7 +63,7 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                         ),
                         Center(
                             child: Text(
-                          LocalizationService.of(context).translate("create_docotor")!,
+                          LocalizationService.of(context).translate("create_doctor")!,
                           style: whiteTextFont.copyWith(
                             fontSize: 20,
                           ),
@@ -83,11 +83,11 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                           width: 90,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            image: (widget.registrationUserData.profilePicture) == null
+                            image: (widget.registrationUserData?.profilePicture) == null
                                 ? const DecorationImage(
                                     image: AssetImage("images/user_default.png"), fit: BoxFit.cover)
                                 : DecorationImage(
-                                    image: FileImage(widget.registrationUserData.profilePicture!),
+                                    image: FileImage(widget.registrationUserData!.profilePicture!),
                                     fit: BoxFit.cover),
                           ),
                         ),
@@ -95,10 +95,10 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                           alignment: Alignment.bottomCenter,
                           child: GestureDetector(
                             onTap: () async {
-                              if (widget.registrationUserData.profilePicture == null) {
-                                widget.registrationUserData.profilePicture = await getImage();
+                              if (widget.registrationUserData?.profilePicture == null) {
+                                widget.registrationUserData?.profilePicture = await getImage();
                               } else {
-                                widget.registrationUserData.profilePicture = null;
+                                widget.registrationUserData?.profilePicture = null;
                               }
                               setState(() {});
                             },
@@ -109,7 +109,7 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
                                       image: AssetImage(
-                                          (widget.registrationUserData.profilePicture == null
+                                          (widget.registrationUserData?.profilePicture == null
                                               ? "images/btn_add_photo.png"
                                               : "images/btn_delete_photo.png")))),
                             ),
@@ -317,18 +317,18 @@ class _DoctorRegistrationPageState extends State<DoctorRegistrationPage> {
                           // jika semua data validasi lolos
                           // isi registration data
                           // As a doctor
-                          widget.registrationUserData.fullName = fullNameController.text;
-                          widget.registrationUserData.email = emailController.text;
-                          widget.registrationUserData.job = jobController.text;
-                          widget.registrationUserData.noSIP = noSipController.text;
-                          widget.registrationUserData.alumnus = alumnusController.text;
-                          widget.registrationUserData.tempatPraktek = tempatPraktekController.text;
-                          widget.registrationUserData.password = passwordController.text;
-                          widget.registrationUserData.status = "Doctor";
+                          widget.registrationUserData?.fullName = fullNameController.text;
+                          widget.registrationUserData?.email = emailController.text;
+                          widget.registrationUserData?.job = jobController.text;
+                          widget.registrationUserData?.noSIP = noSipController.text;
+                          widget.registrationUserData?.alumnus = alumnusController.text;
+                          widget.registrationUserData?.tempatPraktek = tempatPraktekController.text;
+                          widget.registrationUserData?.password = passwordController.text;
+                          widget.registrationUserData?.status = "Doctor";
                           // GOTO Confirmation Page
                           context
                               .read<PageBloc>()
-                              .add(GoToConfirmationPage(widget.registrationUserData));
+                              .add(GoToConfirmationPage(widget.registrationUserData!));
                         }
                       }),
                   const SizedBox(

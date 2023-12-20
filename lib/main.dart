@@ -18,7 +18,8 @@ void main() async {
   await FirebaseAppCheck.instance
       // Your personal reCaptcha public key goes here:
       .activate(
-    androidProvider: AndroidProvider.debug,
+    androidProvider: AndroidProvider.playIntegrity,
+
   );
 
   await DbHelper.initDb();

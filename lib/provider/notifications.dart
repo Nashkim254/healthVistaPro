@@ -76,7 +76,7 @@ class DbHelper {
       CREATE TABLE immunizations(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
-        scheduleDate STRING,
+        scheduleDate DATETIME,
       isCompleted BOOLEAN
       )
     ''');
