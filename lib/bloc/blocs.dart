@@ -5,3 +5,4 @@ export 'user_bloc.dart';
 // theme_bloc -> untuk mengatur warna tema dari app
 export 'theme_bloc.dart';
 export 'vaccine_bloc.dart';
+export 'reminder_cubit.dart';

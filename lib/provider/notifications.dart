@@ -23,14 +23,15 @@ void sendData(Remind? remind) async {
 //   await DbHelper.insert(remind);
 // }
 
-void getReminder() async {
+getReminder() async {
   List<Map<String, dynamic>> reminder = await DbHelper.query();
   remindList.clear();
   remindList.addAll(reminder.map((data) => Remind.fromJson(data)).toList());
-  for (int i = 0; i < remindList.length; i++) {
-    sendData(remindList[i]);
-    Future.delayed(Duration(seconds: 5), () {});
-  }
+  // for (int i = 0; i < remindList.length; i++) {
+  //   sendData(remindList[i]);
+  //   Future.delayed(Duration(seconds: 5), () {});
+  // }
+  return remindList;
 }
 
 void delete(Remind remind) {

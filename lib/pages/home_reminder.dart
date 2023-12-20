@@ -15,13 +15,13 @@ class _ReminderHomePageState extends State<ReminderHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    context.read<ReminderCubit>().getRemindersList();
     notifyHelper = NotifyHelper();
     notifyHelper.initializeNotification();
   }
 
   @override
   Widget build(BuildContext context) {
-    getReminder();
     return Scaffold(
       appBar: _appBar(),
       backgroundColor: Colors.white,
@@ -33,22 +33,44 @@ class _ReminderHomePageState extends State<ReminderHomePage> {
             const SizedBox(
               height: 20,
             ),
-            _showReminder(),
+            BlocConsumer<ReminderCubit, ReminderState>(
+              listener: (context, state) {
+                // TODO: implement listener
+              },
+              builder: (context, state) {
+                if (state is ReminderLoading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is ReminderLoaded) {
+                  if (state.reminders.length > 0) {
+                    return _showReminder(state.reminders);
+                  }else{
+                    return Center(
+                    child: Text("No Reminders at the moment"),
+                  );
+                  }
+                }else{
+                  return Center(
+                    child: Text("An Error occurred while fetching reminders"),
+                  );
+                }
+              },
+            ),
           ],
         ),
       ]),
     );
   }
 
-  _showReminder() {
+  _showReminder(List<m.Remind> reminders) {
     return Expanded(
-      child: 
-        ListView.builder(
-            itemCount: remindList.length,
+        child: ListView.builder(
+            itemCount: reminders.length,
             itemBuilder: (_, index) {
-              m.Remind remind = remindList[index];
+              m.Remind remind = reminders[index];
               if (remind.repeat == 'Daily') {
-                DateTime date = DateFormat.jm().parse(remind.startTime.toString());
+                DateTime date = DateFormat("hh:mm a").parse(remind.startTime.toString());
                 var myTime = DateFormat("HH:mm").format(date);
                 notifyHelper.scheduledNotification(int.parse(myTime.toString().split(":")[0]),
                     int.parse(myTime.toString().split(":")[1]), remind);
@@ -87,8 +109,7 @@ class _ReminderHomePageState extends State<ReminderHomePage> {
               } else {
                 return Container();
               }
-            })
-    );
+            }));
   }
 
   _showBottomSheet(BuildContext context, m.Remind remind) {
@@ -228,8 +249,8 @@ class _ReminderHomePageState extends State<ReminderHomePage> {
           MyButton(
               label: "+ " + LocalizationService.of(context).translate("add_reminder")!,
               onTap: () async {
-                await Navigator.push(context, MaterialPageRoute(builder: (_)=> const AddReminderPage()));
-                getReminder();
+                await Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => const AddReminderPage()));
               })
         ],
       ),
