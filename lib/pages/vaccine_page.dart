@@ -18,12 +18,11 @@ class _VaccinePageState extends State<VaccinePage> {
 
   @override
   Widget build(BuildContext context) {
+    context.read<VaccineCubit>().getVaccines();
     return Scaffold(
       appBar: AppBar(title: Text("Vaccine Schedule")),
       body: BlocConsumer<VaccineCubit, VaccineState>(
-        listener: (context, state) {
-
-        },
+        listener: (context, state) {},
         builder: (context, state) {
           if (state is VaccineInitial) {
             return Center(child: CircularProgressIndicator());
@@ -31,22 +30,20 @@ class _VaccinePageState extends State<VaccinePage> {
           if (state is VaccineLoading) {
             return Center(child: CircularProgressIndicator());
           } else if (state is VaccineLoaded && state.vaccines.length > 0) {
-            return
-              ListView.builder(
+            return ListView.builder(
               itemCount: state.vaccines.length,
               itemBuilder: (context, index) {
                 final vaccine = state.vaccines[index];
                 return ListTile(
                   title: Text(vaccine.name),
-                  subtitle:
-                      Text("Scheduled on ${vaccine.scheduledDate.toLocal()}"),
-                  trailing: vaccine.isCompleted
+                  subtitle: Text("Scheduled on ${vaccine.scheduledDate}"),
+                  trailing: vaccine.isCompleted == 1
                       ? Icon(Icons.check, color: Colors.green)
                       : ElevatedButton(
                           onPressed: () async {
-                            await context
-                                .read<VaccineCubit>()
-                                .markAsCompleted(vaccine);
+                            print("00000-----§");
+                            print(vaccine);
+                            await context.read<VaccineCubit>().markAsCompleted(vaccine);
                           },
                           child: Text("Mark as Complete"),
                         ),
@@ -62,8 +59,7 @@ class _VaccinePageState extends State<VaccinePage> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => ScheduleAppointmentScreen()),
+            MaterialPageRoute(builder: (context) => ScheduleAppointmentScreen()),
           );
         },
         child: Icon(Icons.add),

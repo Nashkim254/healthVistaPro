@@ -76,8 +76,8 @@ class DbHelper {
       CREATE TABLE immunizations(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
-        scheduleDate DATETIME,
-      isCompleted BOOLEAN
+        scheduledDate STRING,
+      isCompleted INTEGER
       )
     ''');
         },
@@ -128,6 +128,8 @@ class DbHelper {
   }
 
   static Future markVaccineAsCompleted(Vaccine vaccine) async {
+    print(":----------------------------------------------------------------");
+    print(vaccine.id);
     return await _db!.rawUpdate('''
       UPDATE immunizations
       SET isCompleted = ?

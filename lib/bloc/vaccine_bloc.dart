@@ -17,7 +17,6 @@ class VaccineCubit extends Cubit<VaccineState> {
     getVaccines();
     emit(VaccineLoaded(vaccines));
   }
-
   Future getVaccines() async {
     emit(VaccineLoading());
     List<Vaccine> vaccines = await DbHelper.getImmunizations();
